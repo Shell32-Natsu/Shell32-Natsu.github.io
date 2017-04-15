@@ -1,0 +1,82 @@
+# ===========================================
+# Site Information Settings
+# ===========================================
+
+# Site creation time
+since: 2014
+
+# Custom your favicon.ico in `site/source`
+favicon: /favicon.ico
+
+# Set feed link (false | default | your feed link)
+# false: disable
+# default: use `atom.xml`, generator for `hexo-generator-feed`
+rss: false
+
+# ===========================================
+# Menu Settings
+# ===========================================
+menu:
+  Home: /
+  Archives: /archives/
+  Tags: /tags
+  Categories: /categories
+  About: /about
+
+# ===========================================
+# Theme Settings
+# ===========================================
+# theme styling
+# color: Default | Mint Green | Cobalt Blue | Hot Pink | Dark Violet
+theme:
+  color: Cobalt Blue
+  toc: true
+  search: false
+  fancybox: true
+
+copyright:
+  enable: false
+  # https://creativecommons.org/
+  license: '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
+
+reward:
+  enable: false
+  qrCode: 
+    wechat: /image/reward/wechat.png
+    alipay: /image/reward/alipay.png
+
+# ===========================================
+# Social links Settings
+# ===========================================
+social:
+  email: xiadong.main@gmail.com
+  stack-overflow:
+  twitter:
+  facebook: https://www.facebook.com/xiadong1994
+  linkedin: https://www.linkedin.com/in/dong-xia
+  google:
+  github: https://github.com/xiadong1994
+  weibo:
+  zhihu: https://www.zhihu.com/people/xia_dong
+  pocket:
+
+# ===========================================
+# Third Party Services Settings
+# ===========================================
+
+# Baidu Analytics
+baidu_analytics: 
+# Google Analytics
+google_analytics: UA-97442160-1
+
+# Duoshuo
+# duoshuo_shortname: ahonn
+# Disqus
+disqus_shortname:
+# netease
+# netease_key: 8c89124062934daf963154d81c305348
+
+# ===========================================
+# Version
+# ===========================================
+version: 2.3.x

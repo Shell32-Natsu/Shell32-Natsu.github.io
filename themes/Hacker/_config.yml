@@ -1,0 +1,18 @@
+menu:
+  Home: /
+  Archives: /archives
+  Categories: /categories
+  Tags: /tags
+  LeetCode Notes: /leetcode-notes
+  About: /about
+
+# duoshuo comment
+duoshuo: false
+duoshuo_name:
+
+# disqus comment
+disqus: true
+disqus_shortname:
+
+# google analytics
+googleTrackId:

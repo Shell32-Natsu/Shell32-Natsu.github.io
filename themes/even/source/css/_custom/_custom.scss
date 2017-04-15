@@ -1,0 +1,58 @@
+// ==============================
+// Custom style
+// ==============================
+// You can override the variables in _variables.scss to customize the style
+
+/* Font family Stint Ultra Expanded latin-ext */
+@font-face {
+  font-family: 'Stint Ultra Expanded';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Stint Ultra Expanded'), local('StintUltraExpanded-Regular'), url('../fonts/stint-ultra-expanded/stint-ultra-expanded-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: 'Bree Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Bree Serif'), local('BreeSerif-Regular'), url('../fonts/bree-serif/bree-serif-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Bree Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Bree Serif'), local('BreeSerif-Regular'), url('../fonts/bree-serif/bree-serif-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+$logo-font-family: 'Stint Ultra Expanded', 'Chancery', cursive, LiSu, sans-serif !default;
+
+$global-font-family: 'Open sans', 'Helvetica Neue', Arial, sans-serif !default;
+
+// Code type list.
+$code-type-list: (
+  html: "HTML",
+  js: "JavaScript",
+  bash: "Bash",
+  css: "CSS",
+  scss: "Scss",
+  java: "Java",
+  xml: "XML",
+  python: "Python",
+  json: "JSON",
+  swift: "Swift",
+  ruby: "Ruby",
+  php: "PHP",
+  c: "C",
+  cpp: "C++",
+  scheme: "Scheme",
+  objectivec: "Objective-C",
+  yml: "YAML",
+  stylus: "Stylus",
+  sql: "SQL",
+  http: "HTTP"
+) !default;
