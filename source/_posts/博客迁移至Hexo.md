@@ -47,9 +47,7 @@ article
 
 另一个问题是导入插件是通过把HTML文本转换为Markdown来进行数据导入的，这个逆向转换的过程很有可能让你的页面面目全非。不过我的博客数据主要是LeetCode的笔记，原本的Markdown文件都有保留，所以可以直接放弃转换出来的Markdown而使用正确的数据。
 
-以上两个问题我是通过Python脚本来解决的，脚本拼接导入数据的Front-matter
-
-部分和原始Markdown文件的正文部分，同时删除Front-matter[^关于Front-matter]中除了第一个分类以外的分类。这个脚本只能处理LeetCode笔记（因为可以通过题号匹配起来），其余的文章不多，我就手动修改了。
+以上两个问题我是通过Python脚本来解决的，脚本拼接导入数据的Front-matter部分和原始Markdown文件的正文部分，同时删除Front-matter[^关于Front-matter]中除了第一个分类以外的分类。这个脚本只能处理LeetCode笔记（因为可以通过题号匹配起来），其余的文章不多，我就手动修改了。
 
 最后一个问题，Hexo的Markdown语法与我一直使用的语法不太一致，导致有的地方渲染不太正常。比如
 
