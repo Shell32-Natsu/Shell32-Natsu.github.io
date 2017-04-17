@@ -1,5 +1,5 @@
 ---
-title: LeeetCode 551. Student Attendance Record I
+title: LeetCode 551. Student Attendance Record I
 date: 2017-04-16 16:16:33
 tags:
  - 字符串
