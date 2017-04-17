@@ -72,7 +72,7 @@ deploy:
 #  repo: https://github.com/xiadong1994/xiadong1994.github.io.git
 #  branch: master
 #  message: Hexo deploy.
-  type: git
+  type: 
   
 # Custom
 # Markdown-it config
