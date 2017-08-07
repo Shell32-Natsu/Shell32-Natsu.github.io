@@ -27,6 +27,8 @@ Explanation: You need one step to make "sea" to "ea" and another step to make "e
 1. The length of given words won't exceed 500.
 2. Characters in given words can only be lower-case letters.
 
+<!-- more -->
+
 --------------
 
 使用动态规划求出最长公共子串是很容易想到的方法。
