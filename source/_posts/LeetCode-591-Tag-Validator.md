@@ -2,7 +2,7 @@
 title: LeetCode 591. Tag Validator
 date: 2017-08-07 18:06:22
 tags:
-- LeetCode
+ - LeetCode
  - CPP
  - 算法
  - 栈
