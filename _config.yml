@@ -68,16 +68,16 @@ theme: even
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-#  type: git
-#  repo: https://github.com/xiadong1994/xiadong1994.github.io.git
-#  branch: master
-#  message: Hexo deploy.
-  type: 
-  
+  type: git
+  repo: https://github.com/xiadong1994/xiadong1994.github.io.git
+  branch: master
+  message: Hexo deploy.
+#  type:
+
 # Custom
 # Markdown-it config
 ## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki/
-markdown: 
+markdown:
   render:
     breaks: true
     typographer: true
