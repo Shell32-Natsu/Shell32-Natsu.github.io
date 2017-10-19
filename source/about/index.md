@@ -9,6 +9,8 @@ date: 2014-07-14 01:16:41
 向着硅谷努力的学生党, WEB前端, 后端, 操作系统和计算机网络都有兴趣但是都没有深入, 想学许多东西可是总觉得时间不够. 语言熟练度C++ = C > Python > JavaScript = PHP = Java >> Shell
 平时兴趣有计算机和日本ACG, 重度宅, 萌豚。
 
+## Contact
+
 E-mail：
 [xiadong.main@gmail.com](mailto:xiadong.main@gmail.com)
 [dongx@andrew.cmu.edu](mailto:dongx@andrew.cmu.edu)
@@ -24,3 +26,9 @@ LinkedIn:
 
 Line:
 <http://line.me/ti/p/B6KWIDydHU>
+
+## Other pages
+
+[LeetCode Notes](https://www.xiadong.info/leetcode-notes/)
+
+[GitHub](https://github.com/xiadong1994)
