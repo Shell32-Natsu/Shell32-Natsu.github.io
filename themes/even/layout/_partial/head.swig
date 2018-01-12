@@ -36,3 +36,7 @@
 {% if not env.debug %}
   {% include "../_script/analytics.swig" %}
 {% endif %}
+
+{# Web fonts #}
+<script src="https://use.typekit.net/tqr0ojg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>

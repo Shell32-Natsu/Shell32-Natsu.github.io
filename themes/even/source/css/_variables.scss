@@ -2,6 +2,22 @@
 // Variables
 // ==============================
 
+@mixin fontFace($family,$src,$style: normal,$weight: normal) {
+	@font-face {
+		font-family: $family;
+		src: url('#{$src}.eot'); // IE9 compat
+		src: url('#{$src}.eot?#iefix') format('embedded-opentype'), // IE8 and below
+			url('#{$src}.woff') format('woff'), // standards
+			url('#{$src}.ttf') format('truetype'), // Safari, Android, iOS
+			url('#{$src}.svg##{$family}') format('svg'); // legacy iOS
+
+		font-style: $style;
+		font-weight: $weight;
+	}
+}
+
+@include fontFace('MyFont','font/myfont');
+
 // ========== Theme Color ========== //
 // Theme color config from `even/_config.yml`
 $theme-color-config: hexo-theme-config('theme.color');
@@ -55,6 +71,7 @@ $global-lineheight: 1.5 !default;
 
 // Font family of the site.
 $global-font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !default;
+// $global-font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif', 'source-han-serif-sc', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !default;
 
 // Serif font family of the site.
 $global-serif-font-family: Athelas, STHeiti, Microsoft Yahei, serif !default;
