@@ -1,5 +1,7 @@
 {# Social Links #}
 {% include "./_footer/social.swig" %}
+{# Friend Links #}
+{% include "./_footer/friend_links.swig" %}
 
 <div class="copyright">
   <span class="power-by">

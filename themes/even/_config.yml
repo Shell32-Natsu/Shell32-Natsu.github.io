@@ -81,3 +81,10 @@ disqus_shortname: www-xiadong-info
 # Version
 # ===========================================
 version: 2.3.x
+
+# ===========================================
+# Friend Links
+# ===========================================
+friend_links:
+  '打满鸡血来刷题': https://wf94.github.io/
+  '塞外麾下炙': http://tianyuh.com/
