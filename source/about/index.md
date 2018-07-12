@@ -18,7 +18,7 @@ WEB前端，后端，操作系统和计算机网络都有兴趣但是都没有�
 
 E-mail：
 [xiadong.main@gmail.com](mailto:xiadong.main@gmail.com)
-[dongx@andrew.cmu.edu](mailto:dongx@andrew.cmu.edu)
+[dongx@alumni.cmu.edu](mailto:dongx@alumni.cmu.edu)
 
 Facebook：
 [https://www.facebook.com/xiadong1994](https://www.facebook.com/xiadong1994)
