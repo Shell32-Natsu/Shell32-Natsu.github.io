@@ -13,4 +13,4 @@ tags:
 
 今天突然想看看自己算不算肝, 但是却没怎么找到在线的计算器, 于是就扒拉了几个公式写了个在线计算器. 纯属娱乐.
 
-[https://xiadong1994.github.io/KanColleHairDensity/KanColleHairDensity.html](https://xiadong1994.github.io/KanColleHairDensity/KanColleHairDensity.html)
+[https://blog.xiadong.info/KanColleHairDensity/KanColleHairDensity.html](https://blog.xiadong.info/KanColleHairDensity/KanColleHairDensity.html)
