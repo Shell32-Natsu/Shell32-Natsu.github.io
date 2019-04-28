@@ -31,7 +31,7 @@ OS这门课不是有位置就能选的，它的waitlist不是一个FIFO结构，
 
 我是在刚刚过去的18 Spring上的这门课，老师是[Dave Eckhardt](http://www.cs.cmu.edu/~davide/)和[Brian Railing](http://www.cs.cmu.edu/~bpr)。Dave教这门课教了挺久了，Brian也在教15213，所以老师们的水平是很高的。
 
-![Dave的大胡子](https://wx2.sinaimg.cn/small/4c1654ddly1frf7i3fv50j20du0dujsr.jpg)
+{% sinaimage https://wx2.sinaimg.cn/small/4c1654ddly1frf7i3fv50j20du0dujsr.jpg %}
 
 上面这个大胡子就是Dave……
 

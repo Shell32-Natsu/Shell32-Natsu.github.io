@@ -27,7 +27,7 @@ categories:
 # poi浏览器
 新版poi浏览器中有使用pac文件来访问代理的方法
 
-![](http://wx3.sinaimg.cn/large/4c1654ddgy1fjbbwbnqlyj20ey0af74y.jpg)
+{% sinaimage http://wx3.sinaimg.cn/large/4c1654ddgy1fjbbwbnqlyj20ey0af74y.jpg %}
 
 因此只要新建一个如下的pac文件，再把它的地址填上就ok了。
 

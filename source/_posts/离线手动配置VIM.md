@@ -60,4 +60,4 @@ VIM强大的一个主要原因就是插件。
 
 # 最终效果
 
-![](http://wx2.sinaimg.cn/large/4c1654ddgy1fh29u9l3znj21hc0nm418.jpg)
+{% sinaimage http://wx2.sinaimg.cn/large/4c1654ddgy1fh29u9l3znj21hc0nm418.jpg %}

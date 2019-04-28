@@ -82,7 +82,7 @@ $ npm install
 
 在`myapp`目录中运行`npm start`，然后在浏览器内打开`http://localhost:3000/`就可以看到示例页面了。
 
-![](http://wx3.sinaimg.cn/mw690/4c1654ddgy1ff1jp2n1bcj20dn096jrf.jpg)
+{% sinaimage http://wx3.sinaimg.cn/mw690/4c1654ddgy1ff1jp2n1bcj20dn096jrf.jpg %}
 
 ## 看看初始化了些什么
 

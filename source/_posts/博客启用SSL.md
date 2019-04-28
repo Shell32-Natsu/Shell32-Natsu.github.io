@@ -10,7 +10,7 @@ categories:
 
 GitHub Pages默认是启用SSL的，但是绑定了自己的域名之后证书就不匹配了。通过Cloudfare官方的免费服务[^1]就可以给博客启用SSL了（当然也就默认使用了他家的CDN）。终于可以跟国内无良ISP的劫持说再见了。
 
-![](https://wx4.sinaimg.cn/large/4c1654ddgy1feodo69jpej207600twea.jpg)
+{% sinaimage https://wx4.sinaimg.cn/large/4c1654ddgy1feodo69jpej207600twea.jpg %}
 
 <!--more-->
 

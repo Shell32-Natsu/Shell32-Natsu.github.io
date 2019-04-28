@@ -70,7 +70,7 @@ theme: even
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/xiadong1994/xiadong1994.github.io.git
+  repo: git@github.com:Shell32-Natsu/Shell32-Natsu.github.io.git
   branch: master
   message: Hexo deploy.
 #  type:
