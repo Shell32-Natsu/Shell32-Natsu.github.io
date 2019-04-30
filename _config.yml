@@ -83,12 +83,12 @@ markdown:
     breaks: true
     typographer: true
     html: true
-  # anchors:
-  #   level: 2
-  #   collisionSuffix: 'v'
+  anchors:
+    level: 1
+    collisionSuffix: 'v'
   #   permalink: true
   #   permalinkClass: header-anchor
-  #   permalinkSymbol: ¶
+    permalinkSymbol: ¶
   plugins:
     - markdown-it-abbr
     - markdown-it-footnote
