@@ -6,7 +6,7 @@ name: Build & Publish
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ src ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,9 +26,8 @@ jobs:
         npm run build
 
     - name: Deploy
-      uses: ad-m/github-push-action@v0.5.0
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        github_token: ${{ secrets.ACCESS_TOKEN }}
-        repository: git@github.com:Shell32-Natsu/Shell32-Natsu.github.io.git
-        force: true
-        directory: public
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: master
+        FOLDER: public
