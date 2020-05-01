@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="LeetCode 838. Push Dominoes"/>
+
+
+
+
+  <meta name="keywords" content="LeetCode,字符串,算法," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shell32">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.3.x" />
+
+
+
+<link rel="canonical" href="http://blog.xiadong.info/2018/05/21/LeetCode-838-Push-Dominoes/"/>
+
+
+<meta name="description" content="There are N dominoes in a line, and we place each domino vertically upright. In the beginning, we simultaneously push some of the dominoes either to the left or to the right.  After each second, each">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 838. Push Dominoes">
+<meta property="og:url" content="http://blog.xiadong.info/2018/05/21/LeetCode-838-Push-Dominoes/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="There are N dominoes in a line, and we place each domino vertically upright. In the beginning, we simultaneously push some of the dominoes either to the left or to the right.  After each second, each">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/05/18/domino.png">
+<meta property="article:published_time" content="2018-05-21T16:53:52.000Z">
+<meta property="article:modified_time" content="2020-05-01T04:19:39.975Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/05/18/domino.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: true,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97442160-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+
+<script src="https://use.typekit.net/tqr0ojg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <title> LeetCode 838. Push Dominoes · Shell32 </title>
+  <meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Shell32</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e" target="_blank" rel="noopener">
+        <li class="mobile-menu-item">
+          
+          
+            Search
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Shell32</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e" target="_blank" rel="noopener">
+            
+            
+              Search
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          LeetCode 838. Push Dominoes
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 21, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <p>There are <code>N</code> dominoes in a line, and we place each domino vertically upright.</p>
+<p>In the beginning, we simultaneously push some of the dominoes either to the left or to the right.</p>
+<p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/05/18/domino.png" alt="img"></p>
+<p>After each second, each domino that is falling to the left pushes the adjacent domino on the left.</p>
+<p>Similarly, the dominoes falling to the right push their adjacent dominoes standing on the right.</p>
+<p>When a vertical domino has dominoes falling on it from both sides, it stays still due to the balance of the forces.</p>
+<p>For the purposes of this question, we will consider that a falling domino expends no additional force to a falling or already fallen domino.</p>
+<p>Given a string “S” representing the initial state. <code>S[i] = 'L'</code>, if the i-th domino has been pushed to the left; <code>S[i] = 'R'</code>, if the i-th domino has been pushed to the right; <code>S[i] = '.'</code>, if the <code>i</code>-th domino has not been pushed.</p>
+<p>Return a string representing the final state.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;.L.R...LR..L..&quot;</span><br><span class="line">Output: &quot;LL.RR.LLRRLL..&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;RR.L&quot;</span><br><span class="line">Output: &quot;RR.L&quot;</span><br><span class="line">Explanation: The first domino expends no additional force on the second domino.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>0 &lt;= N &lt;= 10^5</code></li>
+<li>String <code>dominoes</code> contains only <code>'L</code>', <code>'R'</code> and <code>'.'</code></li>
+</ol>
+<a id="more"></a>
+<p>这道题我使用双指针</p>
+<ul>
+<li>如果遇到<code>L</code>，那么就把之前的<code>.</code>设置成<code>L</code>。</li>
+<li>如果遇到<code>R</code>，那么就往后搜索<code>L</code>
+<ul>
+<li>如果没有<code>L</code>了，那么就把后面的全部设置成<code>R</code></li>
+<li>如果遇到了<code>R</code>，那么这两个<code>R</code>之间的<code>.</code>就全部设置成<code>R</code>，把新的<code>R</code>当成新的起点</li>
+<li>如果遇到了<code>L</code>，那么就从两边的<code>R</code>和<code>L</code>向中间合拢，直到相遇</li>
+</ul>
+</li>
+</ul>
+<p>时间复杂度<code>O(n)</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">pushDominoes</span><span class="params">(<span class="built_in">string</span> dominoes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> p1 = <span class="number">0</span>, p2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (p1 &lt; dominoes.length()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (p1 &lt; dominoes.length() &amp;&amp; dominoes[p1] == <span class="string">'.'</span>)</span><br><span class="line">                p1++;</span><br><span class="line">            <span class="keyword">if</span> (dominoes[p1] == <span class="string">'L'</span>) &#123;</span><br><span class="line">                p2 = p1;</span><br><span class="line">                <span class="keyword">int</span> i = p1 - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; dominoes[i] == <span class="string">'.'</span>)</span><br><span class="line">                    dominoes[i--] = <span class="string">'L'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                p2 = p1;</span><br><span class="line">                <span class="keyword">while</span> (p2 &lt; dominoes.length() &amp;&amp; dominoes[p2] != <span class="string">'L'</span>) &#123;</span><br><span class="line">                    p2++;</span><br><span class="line">                    <span class="keyword">if</span> (dominoes[p2] == <span class="string">'R'</span>) &#123;</span><br><span class="line">                        <span class="keyword">for</span> (<span class="keyword">int</span> i = p1; i &lt; p2; i++)</span><br><span class="line">                            dominoes[i] = <span class="string">'R'</span>;</span><br><span class="line">                        p1 = p2;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (p2 == dominoes.length()) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (p2 = p1; p2 &lt; dominoes.length(); p2++)</span><br><span class="line">                        dominoes[p2] = <span class="string">'R'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (p2 - p1 + <span class="number">1</span>) / <span class="number">2</span>; i++) &#123;</span><br><span class="line">                        dominoes[p1 + i] = <span class="string">'R'</span>;</span><br><span class="line">                        dominoes[p2 - i] = <span class="string">'L'</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            p1 = p2 + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dominoes;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+      <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox"></div>
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/LeetCode/">LeetCode</a>
+            
+              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/05/21/LeetCode-839-Similar-String-Groups/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">LeetCode 839. Similar String Groups</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/05/21/LeetCode-837-New-21-Game/">
+        <span class="next-text nav-default">LeetCode 837. New 21 Game</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:xiadong.main@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.facebook.com/xiadong1994" target="_blank" rel="noopener" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/dong-xia" target="_blank" rel="noopener" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xiadong1994" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="friend-links">
+    <span>Links:&nbsp;</span>
+    
+        <a href="https://wf94.github.io/" target="_blank" rel="noopener" class="friend-links-item">打满鸡血来刷题</a>
+    
+        <a href="http://tianyuh.com/" target="_blank" rel="noopener" class="friend-links-item">塞外麾下炙</a>
+    
+</div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shell32</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xiadong.info/2018/05/21/LeetCode-838-Push-Dominoes/';
+        this.page.identifier = '2018/05/21/LeetCode-838-Push-Dominoes/';
+        this.page.title = 'LeetCode 838. Push Dominoes';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//www-xiadong-info.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.3.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.3.x"></script>
+<script type="text/javascript">
+$(function(){
+    const imgs = $("img").filter(function() {
+        return this.src.match(/.*\.sinaimg\.cn\/.*/);
+    });
+    for (let i = 0; i < imgs.length; i++) {
+        let img = imgs[i];
+        $(img).attr('referrerpolicy', 'no-referrer');
+    }
+    console.log(`Removed referrer header for ${imgs.length} sina weibo images.`);
+});
+</script>
+    
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58f2179bf0859c32"></script> 
+  </body>
+</html>

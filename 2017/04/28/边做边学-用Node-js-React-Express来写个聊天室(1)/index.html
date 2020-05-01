@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="[边做边学]用Node.js+React+Express来写个聊天室(1)"/>
+
+
+
+
+  <meta name="keywords" content="WEB,Node.js,React,Express,JavaScript," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shell32">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.3.x" />
+
+
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/04/28/边做边学-用Node-js-React-Express来写个聊天室(1)/"/>
+
+
+<meta name="description" content="前言 Node.js现在实在是火的不行，搞得我也想来学一学。以我的经验，上手的最快办法就是直接开始做这篇文章就是我边做边学的记录吧。但是以我几年前学的三脚猫js水平，想要直接开始做真的是有点困难。所以先找几篇文章来补补基础知识。 我也是只个纯新手，难免有错漏之处，欢迎指出。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[边做边学]用Node.js+React+Express来写个聊天室(1)">
+<meta property="og:url" content="http://blog.xiadong.info/2017/04/28/%E8%BE%B9%E5%81%9A%E8%BE%B9%E5%AD%A6-%E7%94%A8Node-js-React-Express%E6%9D%A5%E5%86%99%E4%B8%AA%E8%81%8A%E5%A4%A9%E5%AE%A4(1)/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="前言 Node.js现在实在是火的不行，搞得我也想来学一学。以我的经验，上手的最快办法就是直接开始做这篇文章就是我边做边学的记录吧。但是以我几年前学的三脚猫js水平，想要直接开始做真的是有点困难。所以先找几篇文章来补补基础知识。 我也是只个纯新手，难免有错漏之处，欢迎指出。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://wx3.sinaimg.cn/mw690/4c1654ddgy1ff1jp2n1bcj20dn096jrf.jpg">
+<meta property="article:published_time" content="2017-04-28T18:54:37.000Z">
+<meta property="article:modified_time" content="2020-05-01T04:19:39.987Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="WEB">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Express">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wx3.sinaimg.cn/mw690/4c1654ddgy1ff1jp2n1bcj20dn096jrf.jpg">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: true,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97442160-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+
+<script src="https://use.typekit.net/tqr0ojg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    <title> [边做边学]用Node.js+React+Express来写个聊天室(1) · Shell32 </title>
+  <meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Shell32</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e" target="_blank" rel="noopener">
+        <li class="mobile-menu-item">
+          
+          
+            Search
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Shell32</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e" target="_blank" rel="noopener">
+            
+            
+              Search
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          [边做边学]用Node.js+React+Express来写个聊天室(1)
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 28, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#事前学习"><span class="toc-text">事前学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#后端"><span class="toc-text">后端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化一个express项目"><span class="toc-text">初始化一个Express项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#看看初始化了些什么"><span class="toc-text">看看初始化了些什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加一个新的路由"><span class="toc-text">添加一个新的路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#要增加的功能"><span class="toc-text">要增加的功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聊天信息保存"><span class="toc-text">聊天信息保存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过post提交数据"><span class="toc-text">通过POST提交数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回消息列表"><span class="toc-text">返回消息列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#つづく"><span class="toc-text">つづく</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <!-- toc -->
+<h1 id="前言">前言</h1>
+<p>Node.js现在实在是火的不行，搞得我也想来学一学。以我的经验，上手的最快办法就是直接开始做这篇文章就是我边做边学的记录吧。但是以我几年前学的三脚猫js水平，想要直接开始做真的是有点困难。所以先找几篇文章来补补基础知识。</p>
+<p><strong>我也是只个纯新手，难免有错漏之处，欢迎指出。</strong></p>
+<a id="more"></a>
+<h2 id="事前学习">事前学习</h2>
+<p>首先，你不能一点编程不会，至少要有基本js语法知识，比如变量、函数、类之类的东西多少懂一点。在开始动手前，我先看了以下的资料：</p>
+<ol>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript</a>：如果你没接触过js但是对自己有信心或者接触过但是记忆模糊了，花几十分钟时间看看MDN的这个简单介绍吧。</li>
+<li><a href="http://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="noopener">http://www.nodebeginner.org/index-zh-cn.html</a>：Node.js简单入门。</li>
+<li><a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">http://es6.ruanyifeng.com/</a>：《ECMAScript 6入门》，主流浏览器基本已经全部支持了ECMAScript 6，Node.js也基本都支持了，但是诸如<code>import</code>之类的却没有支持。所幸可以用<a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a>来提供ES6的支持，不用在前端与后端之间使用不同的代码风格。</li>
+</ol>
+<p>以下的资料都是在代码编写过程中参考：</p>
+<ol>
+<li><a href="https://expressjs.com/" target="_blank" rel="noopener">https://expressjs.com/</a>：Express官方网站</li>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a>：Node.js官方网站</li>
+<li><a href="https://facebook.github.io/react/" target="_blank" rel="noopener">https://facebook.github.io/react/</a>：React官方网站</li>
+</ol>
+<h2 id="环境">环境</h2>
+<p>Node.js的安装方法、框架的安装方法，编辑器的安装与使用都请参考官方网站的指导，任何其他人的教程都没有官方指导来的及时权威。</p>
+<h1 id="后端">后端</h1>
+<h2 id="初始化一个express项目">初始化一个Express项目</h2>
+<p>我们可以使用<em>Express generator</em><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>来创建一个Express项目的基本骨架：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express-generator -g</span><br><span class="line">$ express --view=pug myapp</span><br><span class="line">$ <span class="built_in">cd</span> myapp</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>目前的Express默认使用Jade模板引擎，但是Jade因为商标原因更名为Pug<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>，所以我就直接使用Pug了。</p>
+<p>目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── app.js</span><br><span class="line">├── bin</span><br><span class="line">│   └── www</span><br><span class="line">├── package.json</span><br><span class="line">├── public</span><br><span class="line">│   ├── images</span><br><span class="line">│   ├── javascripts</span><br><span class="line">│   └── stylesheets</span><br><span class="line">│       └── style.css</span><br><span class="line">├── routes</span><br><span class="line">│   ├── index.js</span><br><span class="line">│   └── users.js</span><br><span class="line">└── views</span><br><span class="line">    ├── error.pug</span><br><span class="line">    ├── index.pug</span><br><span class="line">    └── layout.pug</span><br><span class="line"></span><br><span class="line">7 directories, 9 files</span><br></pre></td></tr></table></figure>
+<p>在<code>myapp</code>目录中运行<code>npm start</code>，然后在浏览器内打开<code>http://localhost:3000/</code>就可以看到示例页面了。</p>
+<img src="http://wx3.sinaimg.cn/mw690/4c1654ddgy1ff1jp2n1bcj20dn096jrf.jpg" alt="" referrerpolicy="no-referrer"></img>
+<h2 id="看看初始化了些什么">看看初始化了些什么</h2>
+<p>从<code>package.json</code>中可以看到以下配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "start": "node ./bin/www"</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>所以我们刚才的<code>npm start</code>便是执行了<code>./bin/www</code>这个文件。这个文件中注释很清晰，主要是做了一些HTTP服务器的初始化工作，其中引入了<code>app</code>这个依赖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'../app'</span>);</span><br></pre></td></tr></table></figure>
+<p>在<code>./app.js</code>这个文件中，同样先是引入依赖，然后设置了一些<em>中间件</em><sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup>，然后增加了两个<em>路由</em><sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">var</span> index = <span class="built_in">require</span>(<span class="string">'./routes/index'</span>);</span><br><span class="line"><span class="keyword">var</span> users = <span class="built_in">require</span>(<span class="string">'./routes/users'</span>);</span><br><span class="line">...</span><br><span class="line">app.use(<span class="string">'/'</span>, index);</span><br><span class="line">app.use(<span class="string">'/users'</span>, users);</span><br></pre></td></tr></table></figure>
+<p>再接下来是一些错误处理。</p>
+<p>我们再到<code>./routes/index</code>里看看主页的处理函数是怎么写的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* GET home page. */</span></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  res.render(<span class="string">'index'</span>, &#123; <span class="attr">title</span>: <span class="string">'Express'</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+<p>可以看出主页是通过渲染<code>index</code>这个文件来的（实际是<code>views/index.pug</code>），<code>index.pug</code>的文件内容如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extends layout</span><br><span class="line"></span><br><span class="line">block content</span><br><span class="line">  h1&#x3D; title</span><br><span class="line">  p Welcome to #&#123;title&#125;</span><br></pre></td></tr></table></figure>
+<p>关于Pug的语法如果有兴趣的话可以参见文档<a href="https://pugjs.org/api/getting-started.html" target="_blank" rel="noopener">https://pugjs.org/api/getting-started.html</a>。</p>
+<p>现在我们搞明白了一个最简单的页面是怎么产生的，但是在后端部分我并不打算通过模板引擎来产生前端页面，这是React的工作，后台我们只要提供API就可以了，也就是说返回的数据是JSON而不是HTML。</p>
+<h2 id="添加一个新的路由">添加一个新的路由</h2>
+<p>现在我们添加一个新的路由用来处理<code>/chat</code>这个path，或者以它开头的path。先在<code>routes</code>目录下创建一个新的文件<code>chat.js</code>，内容如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Chat room homepage.*/</span></span><br><span class="line">router.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    res.send(<span class="string">"Welcome to chat room!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* A sample sub page.*/</span></span><br><span class="line">router.get(<span class="string">'/sub-page'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    res.send(<span class="string">"Welcome to chat room sub page!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+<p>然后回到<code>app.js</code>中，增加路由的绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">var</span> chat = <span class="built_in">require</span>(<span class="string">'./routes/chat'</span>);</span><br><span class="line">...</span><br><span class="line">app.use(<span class="string">'/chat'</span>, chat);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>然后启动服务器，访问<code>http://localhost:3000/chat</code>，和<code>http://localhost:3000/chat/sub-page</code>就可以看到我们在处理函数中设置的文字了。</p>
+<p>怎么样？依葫芦画瓢是不是很简单？接下来工作就没有模板来参照了，换句话说下面的实现都是我的一家之言，如果写得太烂还请多多包涵。</p>
+<h2 id="要增加的功能">要增加的功能</h2>
+<p>回到我最初的目的上来，我想做一个最最简单的在线聊天的页面，有这么几个功能：</p>
+<ul>
+<li>有个页面来显示聊天信息和输入框</li>
+<li>增加新的聊天内容</li>
+<li>新的内容能<strong>推送</strong>给所有用户（需要WebSocket）</li>
+</ul>
+<p>酌情考虑的功能：</p>
+<ul>
+<li>数据持久化；一开始我可能不会使用数据库，数据直接放在内存中</li>
+<li>用户登录；可能会使用cookie来进行身份识别，但是因为是个匿名的聊天室所以不打算有注册登录功能</li>
+</ul>
+<p>下面我一步一步地来增加这些功能。</p>
+<h2 id="聊天信息保存">聊天信息保存</h2>
+<p>出于简化的考虑，我先不引入数据库，直接使用一个数组来保存所有的消息。暂时决定每一条消息记录有三个字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time</td>
+<td>消息发送的时间</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>消息内容</td>
+</tr>
+<tr>
+<td>sender</td>
+<td>消息发送者，需要cookie的配合，暂时留空</td>
+</tr>
+</tbody>
+</table>
+<p>增加数组和创建消息记录的函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> chat_content = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> makeMsgRecord = <span class="function">(<span class="params">msg, sender</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">'time'</span>: date.toString(), </span><br><span class="line">        <span class="string">'msg'</span>: msg,</span><br><span class="line">        <span class="string">'sender'</span>: sender</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="通过post提交数据">通过POST提交数据</h2>
+<p>网页向服务器提交数据一般都是通过POST（当然也可以通过GET，只不过我们是要更新服务器上的数据，GET并不太合适），那么就要从Express中获取浏览器通过POST提交的数据。分析HTTP Request的body来获取POST数据，这个工作是由<code>bodyParser</code>中间件来完成的，而我们在初始化项目时就已经为我们在<code>app.js</code>中设置好了这个中间件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line">...</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>我们可以直接在<code>chat.js</code>中的处理函数里取得POST提交的数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Add new message.*/</span></span><br><span class="line">router.post(<span class="string">'/add-new'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    chat_content.push(makeMsgRecord(req.body.msg, <span class="string">''</span>));</span><br><span class="line">    res.json(&#123;<span class="attr">result</span>: <span class="string">'OK'</span>&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="返回消息列表">返回消息列表</h2>
+<p>返回消息列表就很简单了，不过每次都返回所有的消息太浪费，所以我用了两个URL，<code>/range-list</code>和<code>/list</code>，前者返回一个范围内的消息，后者可以返回最近的<code>num</code>条消息，为了配合<code>/range-list</code>增加了<code>/list-length</code>来返回消息数目</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="comment">/* For router '/range-list', check and set the value. */</span></span><br><span class="line"><span class="keyword">let</span> checkBeginEnd = <span class="function">(<span class="params">begin, end</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> _begin = <span class="number">0</span>, _end = chat_content.length;</span><br><span class="line">    <span class="keyword">if</span> (begin !== <span class="literal">undefined</span> &amp;&amp; <span class="built_in">parseInt</span>(begin) !== <span class="literal">NaN</span>) &#123;</span><br><span class="line">        _begin = <span class="built_in">parseInt</span>(begin);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (end !== <span class="literal">undefined</span> &amp;&amp; <span class="built_in">parseInt</span>(end) !== <span class="literal">NaN</span>) &#123;</span><br><span class="line">        _end = <span class="built_in">parseInt</span>(end);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [_begin, _end];</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line"><span class="comment">/* Return the range of message list, from begin to end. */</span></span><br><span class="line">router.get(<span class="string">'/range-list'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> [begin, end] = checkBeginEnd(req.query.begin, req.query.end);</span><br><span class="line">    res.json(chat_content.slice(begin, end));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Return the last num records of message. If the num is not specified, return the whole list.*/</span></span><br><span class="line">router.get(<span class="string">'/list'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (req.query.num !== <span class="literal">undefined</span> &amp;&amp; <span class="built_in">parseInt</span>(req.query.num) !== <span class="literal">NaN</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> num = <span class="built_in">parseInt</span>(req.query.num);</span><br><span class="line">        res.json(chat_content.slice(chat_content.length - num));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        res.json(chat_content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Return the length of the messages list. */</span></span><br><span class="line">router.get(<span class="string">'/list-length'</span>, (req, res) =&gt; &#123;</span><br><span class="line">    res.json(&#123;<span class="attr">length</span>: chat_content.length&#125;);</span><br><span class="line">&#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="つづく">つづく</h1>
+<p>最简单的功能已经差不多了，先写到这里，接下来的工作就需要前端的配合，包括</p>
+<ul>
+<li>使用WebSocket与服务器连接</li>
+<li>通过Cookie来生成随机的用户名</li>
+</ul>
+<p>下一篇Blog开始用React写前端页面。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p>http://expressjs.com/en/starter/generator.html <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn2"  class="footnote-item"><p>https://github.com/pugjs/pug#rename-from-jade <a href="#fnref2" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn3"  class="footnote-item"><p>http://expressjs.com/en/guide/using-middleware.html <a href="#fnref3" class="footnote-backref">↩</a></p>
+</li>
+<li id="fn4"  class="footnote-item"><p>http://expressjs.com/en/guide/routing.html <a href="#fnref4" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+      <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox"></div>
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/WEB/">WEB</a>
+            
+              <a href="/tags/Node-js/">Node.js</a>
+            
+              <a href="/tags/React/">React</a>
+            
+              <a href="/tags/Express/">Express</a>
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/05/01/LeetCode-566-Reshape-the-Matrix/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">LeetCode 566. Reshape the Matrix</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/04/24/LeetCode-563-Binary-Tree-Tilt/">
+        <span class="next-text nav-default">LeetCode 563. Binary Tree Tilt</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:xiadong.main@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.facebook.com/xiadong1994" target="_blank" rel="noopener" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/dong-xia" target="_blank" rel="noopener" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/xiadong1994" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="friend-links">
+    <span>Links:&nbsp;</span>
+    
+        <a href="https://wf94.github.io/" target="_blank" rel="noopener" class="friend-links-item">打满鸡血来刷题</a>
+    
+        <a href="http://tianyuh.com/" target="_blank" rel="noopener" class="friend-links-item">塞外麾下炙</a>
+    
+</div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shell32</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xiadong.info/2017/04/28/%E8%BE%B9%E5%81%9A%E8%BE%B9%E5%AD%A6-%E7%94%A8Node-js-React-Express%E6%9D%A5%E5%86%99%E4%B8%AA%E8%81%8A%E5%A4%A9%E5%AE%A4(1)/';
+        this.page.identifier = '2017/04/28/边做边学-用Node-js-React-Express来写个聊天室(1)/';
+        this.page.title = '[边做边学]用Node.js+React+Express来写个聊天室(1)';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//www-xiadong-info.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.3.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.3.x"></script>
+<script type="text/javascript">
+$(function(){
+    const imgs = $("img").filter(function() {
+        return this.src.match(/.*\.sinaimg\.cn\/.*/);
+    });
+    for (let i = 0; i < imgs.length; i++) {
+        let img = imgs[i];
+        $(img).attr('referrerpolicy', 'no-referrer');
+    }
+    console.log(`Removed referrer header for ${imgs.length} sina weibo images.`);
+});
+</script>
+    
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58f2179bf0859c32"></script> 
+  </body>
+</html>
