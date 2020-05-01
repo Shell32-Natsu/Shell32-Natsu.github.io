@@ -24,9 +24,11 @@ jobs:
       run: |
         npm install
         npm run build
+
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: ad-m/github-push-action@v0.5.0
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages 
-        FOLDER: public
+        github_token: ${{ secrets.ACCESS_TOKEN }}
+        repository: git@github.com:Shell32-Natsu/Shell32-Natsu.github.io.git
+        force: true
+        directory: public
