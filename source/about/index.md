@@ -20,13 +20,13 @@ E-mail：
 [xiadong.main@gmail.com](mailto:xiadong.main@gmail.com)
 
 GitHub:
-<https://github.com/xiadong1994>
+<https://github.com/Shell32-Natsu>
 
 Bangumi:
-[http://bgm.tv/user/xiadong1994](http://bgm.tv/user/xiadong1994)
+<http://bgm.tv/user/xiadong1994>
 
 LinkedIn:
-[https://www.linkedin.com/in/dong-xia](https://www.linkedin.com/in/dong-xia)
+<https://www.linkedin.com/in/donny-xia>
 
 Line:
 <http://line.me/ti/p/B6KWIDydHU>
