@@ -14,7 +14,7 @@ date: 2020-10-31 23:15:58
 
 首先考虑的就是POI的代码中还是有BUG，于是我从源码直接跑POI，PAC代理竟然神奇地work了，我以为是10.6.0之后修了什么bug，于是重新build，安装，又不行了……于是我花了好久看代码，但是看不出什么所以然，毕竟直接run是没有问题的，build之后问题才会出现。POI使用electron-builder来进行打包，我也不是很清楚怎么debug打包后的application，于是我尝试在[proxy.es](https://github.com/poooi/poi/blob/master/lib/proxy.es)文件中用`console.log`来打log。
 
-由于这些log是打在electron的main process中的，所以它们不会现在是开发者工具的console里，而是会输出到stdout，所以我尝试着从terminal里运行打包后的application，命令如下
+由于这些log是打在electron的main process中的，所以它们不会出现在开发者工具的console里，而是会输出到stdout，所以我尝试着从terminal里运行打包后的application，命令如下
 ```bash
 open -W /Application/poi.app
 ```
