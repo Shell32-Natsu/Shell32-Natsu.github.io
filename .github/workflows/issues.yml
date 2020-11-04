@@ -46,5 +46,4 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: "Add article ${{ github.event.issue.title }}"
-        files: "\"source/_posts/${{ github.event.issue.title }}.md\""
       
