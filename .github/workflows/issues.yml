@@ -42,8 +42,9 @@ jobs:
         echo "${{ steps.generate-article.outputs.article }}" >> "$FILE"
         
     - name: Commit and Push
-      uses: github-actions-x/commit@v2.6
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: "Add article ${{ github.event.issue.title }}"
+      run: |
+        git config --global user.name 'Donny Xia'
+        git config --global user.email 'shell32-natsu@users.noreply.github.com'
+        git commit -am "Add artivle ${{ github.event.issue.title }}"
+        git push
       
