@@ -40,7 +40,7 @@ jobs:
       if: ${{ steps.generate-article.outputs.valid == 'true' }}
       run: |
         FILE="source/_posts/${{ github.event.issue.title }}.md"
-        echo "${{ steps.generate-article.outputs.article }}" | base64 --decode >> "$FILE"
+        echo "${{ steps.generate-article.outputs.article }}" | base64 --decode > "$FILE"
         
     - name: Commit and Push
       if: ${{ steps.generate-article.outputs.valid == 'true' }}
