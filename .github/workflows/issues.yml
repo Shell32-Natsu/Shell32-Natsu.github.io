@@ -14,13 +14,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Get Issue Info
+      id: issue-info
+      env:
+        ISSUE: ${{toJson(github.event.issue)}}
+      run: |
+        ISSUE="${ISSUE//$'\n'}"
+        echo "::set-output name=issue::$ISSUE"
 
     - name: Generate article
       id: generate-article
       uses: Shell32-Natsu/blog-article-from-issue-action@v1
       with:
-        issueJson: >-
-          ${{toJson(github.event.issue)}}
+        issueJson: ${{ steps.issue-info.outputs.issue )}}
         
     - name: Show article
       run: echo "${{ steps.generate-article.outputs.acticle }}"
