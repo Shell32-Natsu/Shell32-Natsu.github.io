@@ -30,6 +30,7 @@ jobs:
       uses: Shell32-Natsu/blog-article-from-issue-action@v1
       with:
         issueJson: ${{ steps.issue-info.outputs.issue }}
+        authorizedUser: Shell32-Natsu
         
     - name: Show article
       if: ${{ steps.generate-article.outputs.valid == 'true' }}
