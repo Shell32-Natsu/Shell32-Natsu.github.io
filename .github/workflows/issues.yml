@@ -17,5 +17,5 @@ jobs:
 
     - name: Env
       env:
-        ISSUE: ${{ github.event.issue }}
+        ISSUE: ${{toJson(github.event.issue)}}
       run: echo $ISSUE
