@@ -45,6 +45,7 @@ jobs:
       run: |
         git config --global user.name 'Donny Xia'
         git config --global user.email 'shell32-natsu@users.noreply.github.com'
+        git add --all
         git commit -am "Add artivle ${{ github.event.issue.title }}"
         git push
       
