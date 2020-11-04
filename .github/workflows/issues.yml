@@ -31,3 +31,20 @@ jobs:
         
     - name: Show article
       run: echo "${{ steps.generate-article.outputs.article }}"
+    
+    - name: Write to file
+      run: |
+        FILE="source/_posts/${{ github.event.issue.title }}.md"
+        if [[ -f "$FILE" ]]; then
+          echo "$FILE" has already existed.
+          exit 1
+        fi
+        echo "${{ steps.generate-article.outputs.article }}" >> "$FILE"
+        
+    - name: Commit and Push
+      uses: github-actions-x/commit@v2.6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "Add article ${{ github.event.issue.title }}"
+        files: "source/_posts/${{ github.event.issue.title }}.md"
+      
