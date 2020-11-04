@@ -32,9 +32,11 @@ jobs:
         issueJson: ${{ steps.issue-info.outputs.issue }}
         
     - name: Show article
+      if: ${{ steps.generate-article.outputs.valid == 'true' }}
       run: echo "${{ steps.generate-article.outputs.article }}"
     
     - name: Write to file
+      if: ${{ steps.generate-article.outputs.valid == 'true' }}
       run: |
         FILE="source/_posts/${{ github.event.issue.title }}.md"
         if [[ -f "$FILE" ]]; then
@@ -44,6 +46,7 @@ jobs:
         echo "${{ steps.generate-article.outputs.article }}" >> "$FILE"
         
     - name: Commit and Push
+      if: ${{ steps.generate-article.outputs.valid == 'true' }}
       run: |
         git config --global user.name 'Donny Xia'
         git config --global user.email 'shell32-natsu@users.noreply.github.com'
