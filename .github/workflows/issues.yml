@@ -19,7 +19,8 @@ jobs:
       id: generate-article
       uses: Shell32-Natsu/blog-article-from-issue-action@v1
       with:
-        issueJson: ${{toJson(github.event.issue)}}
+        issueJson: >-
+          ${{toJson(github.event.issue)}}
         
     - name: Show article
       run: echo "${{ steps.generate-article.outputs.acticle }}"
