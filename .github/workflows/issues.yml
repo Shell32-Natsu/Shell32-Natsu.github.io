@@ -22,7 +22,7 @@ jobs:
       env:
         ISSUE: ${{toJson(github.event.issue)}}
       run: |
-        ISSUE="${ISSUE//$'\n'}"
+        ISSUE=$(echo $ISSUE | base64)
         echo "::set-output name=issue::$ISSUE"
 
     - name: Generate article
@@ -34,7 +34,7 @@ jobs:
         
     - name: Show article
       if: ${{ steps.generate-article.outputs.valid == 'true' }}
-      run: echo "${{ steps.generate-article.outputs.article }}"
+      run: echo "${{ steps.generate-article.outputs.article }}" | base64 --decode
     
     - name: Write to file
       if: ${{ steps.generate-article.outputs.valid == 'true' }}
@@ -44,7 +44,7 @@ jobs:
           echo "$FILE" has already existed.
           exit 1
         fi
-        echo "${{ steps.generate-article.outputs.article }}" >> "$FILE"
+        echo "${{ steps.generate-article.outputs.article }}" | base64 --decode >> "$FILE"
         
     - name: Commit and Push
       if: ${{ steps.generate-article.outputs.valid == 'true' }}
