@@ -30,4 +30,4 @@ jobs:
         issueJson: ${{ steps.issue-info.outputs.issue }}
         
     - name: Show article
-      run: echo "${{ steps.generate-article.outputs.acticle }}"
+      run: echo "${{ steps.generate-article.outputs.article }}"
