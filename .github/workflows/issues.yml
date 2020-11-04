@@ -14,6 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.PAT }}
     
     - name: Get Issue Info
       id: issue-info
@@ -46,6 +48,6 @@ jobs:
         git config --global user.name 'Donny Xia'
         git config --global user.email 'shell32-natsu@users.noreply.github.com'
         git add --all
-        git commit -am "Add artivle ${{ github.event.issue.title }}"
+        git commit -am "Add article ${{ github.event.issue.title }}"
         git push
       
