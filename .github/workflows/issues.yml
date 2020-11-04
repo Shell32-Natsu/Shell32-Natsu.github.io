@@ -40,10 +40,6 @@ jobs:
       if: ${{ steps.generate-article.outputs.valid == 'true' }}
       run: |
         FILE="source/_posts/${{ github.event.issue.title }}.md"
-        if [[ -f "$FILE" ]]; then
-          echo "$FILE" has already existed.
-          exit 1
-        fi
         echo "${{ steps.generate-article.outputs.article }}" | base64 --decode >> "$FILE"
         
     - name: Commit and Push
