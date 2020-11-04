@@ -22,7 +22,7 @@ jobs:
       env:
         ISSUE: ${{toJson(github.event.issue)}}
       run: |
-        ISSUE=$(echo $ISSUE | base64)
+        ISSUE=$(echo $ISSUE | base64 --wrap=0)
         echo "::set-output name=issue::$ISSUE"
 
     - name: Generate article
