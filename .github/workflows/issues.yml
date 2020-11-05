@@ -49,5 +49,5 @@ jobs:
         git config --global user.email 'shell32-natsu@users.noreply.github.com'
         git add --all
         git commit -am "Add article ${{ github.event.issue.title }}"
-        git push
+        git push -f
       
