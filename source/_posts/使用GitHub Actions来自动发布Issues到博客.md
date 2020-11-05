@@ -34,7 +34,7 @@ Workflow和Action之间都是用base64编码过的字符串，以防止特殊字
  - Checkout
  - 这里注意checkout使用的是Personal Access Token来clone仓库，这是为了在push的时候可以触发部署的Action，否则push后是不会触发别的action的。
  - 从`github.event.issue`获取Issue信息
- - 注意`ISSUE="${ISSUE//$'\n'}"`这里专门去掉了换行符，是为了下一步运行自定义action的时候不会因换行符导致bash命令出错。
+ - base64编码
  - 运行自定义的action生成文章
  - 保存到文件
  - Add & Push
