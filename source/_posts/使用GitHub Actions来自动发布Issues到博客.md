@@ -32,7 +32,7 @@ Workflow和Action之间都是用base64编码过的字符串，以防止特殊字
 
  - Issue的创建，更改会触发action
  - Checkout
- - 这里注意checkout使用的是Personal Access Token来clone仓库，这是为了在push的时候可以触发部署的Action，否则push后是不会触发别的action的。
+ 	- 这里注意checkout使用的是Personal Access Token来clone仓库，这是为了在push的时候可以触发部署的Action，否则push后是不会触发别的action的。
  - 从`github.event.issue`获取Issue信息
  - base64编码
  - 运行自定义的action生成文章
@@ -54,3 +54,4 @@ Workflow和Action之间都是用base64编码过的字符串，以防止特殊字
 
 问题：
 1. 目前还不支持删除文章，想要删除只能手动操作。感觉可以通过tag增减和删除issue的事件来做。
+
