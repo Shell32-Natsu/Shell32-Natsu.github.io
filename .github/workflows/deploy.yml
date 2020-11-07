@@ -30,7 +30,6 @@ jobs:
         
     - name: check index.html
       run: |
-        cat public/index.html
         stat public/index.html
 
     - name: Deploy
