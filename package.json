@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.8.0"
+    "version": "4.2.0"
   },
   "scripts": {
-    "build": "hexo generate",
-    "newDraft": "./scripts/new_post.py"
+    "build": "hexo generate"
   },
   "dependencies": {
     "hexo": "^4.2.0",
