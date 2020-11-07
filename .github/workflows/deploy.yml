@@ -29,7 +29,9 @@ jobs:
         npm run build
         
     - name: check index.html
-      run: cat public/index.html
+      run: |
+        cat public/index.html
+        stat public/index.html
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
