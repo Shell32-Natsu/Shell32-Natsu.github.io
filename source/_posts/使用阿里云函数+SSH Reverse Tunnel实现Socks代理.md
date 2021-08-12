@@ -165,7 +165,7 @@ import (
 
 func hello(w http.ResponseWriter, req *http.Request) {
  // 请求返回后这次函数调用就会视为结束，因此要block在这里以保持容器运行
- time.Sleep(595 \* time.Second)
+ time.Sleep(595*time.Second)
  fmt.Fprintf(w, "hello\n")
 }
 
