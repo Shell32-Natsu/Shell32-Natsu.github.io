@@ -14,8 +14,6 @@ WEB前端，后端，操作系统和计算机网络都有兴趣但是都没有�
 
 C++, C, Go, JavaScript, Python, PHP, Java, Shell。Rust勉强中。
 
-平时兴趣有计算机和日本ACG，重度宅，萌豚。
-
 ## Contact
 
 E-mail：
