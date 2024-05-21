@@ -15,7 +15,7 @@ date: 2024-05-21 21:31:30
 > 
 > Return the number of substrings containing at least one occurrence of all these characters a, b and c.
 > 
-> 
+>  
 > 
 > Example 1:
 > 
@@ -31,7 +31,7 @@ date: 2024-05-21 21:31:30
 > 
 > Input: s = "abc"
 > Output: 1
-> 
+>  
 > 
 > Constraints:
 > 
@@ -43,30 +43,30 @@ date: 2024-05-21 21:31:30
 ```cpp
 class Solution {
 public:
- int numberOfSubstrings(string s) {
- int n = s.length(), res = 0;
- if (n < 3)
- return 0;
+    int numberOfSubstrings(string s) {
+        int n = s.length(), res = 0;
+        if (n < 3)
+            return 0;
 
- vector<vector<int>> prefix(n, vector<int>(3, -1));
- prefix[0][s[0] - 'a'] = 0;
+        vector<vector<int>> prefix(n, vector<int>(3, -1));
+        prefix[0][s[0] - 'a'] = 0;
 
- for (int i = 1; i < n; i++) {
- prefix[i] = prefix[i - 1];
- prefix[i][s[i] - 'a'] = i;
- int minIdx = INT_MAX;
- for (int j = 0; j < 3; j++) {
- if (j == s[i] - 'a')
- continue;
- minIdx = min(prefix[i][j], minIdx);
- }
- if (minIdx == -1)
- continue;
- res += (minIdx + 1);
- }
- 
- return res;
- }
+        for (int i = 1; i < n; i++) {
+            prefix[i] = prefix[i - 1];
+            prefix[i][s[i] - 'a'] = i;
+            int minIdx = INT_MAX;
+            for (int j = 0; j < 3; j++) {
+                if (j == s[i] - 'a')
+                    continue;
+                minIdx = min(prefix[i][j], minIdx);
+            }
+            if (minIdx == -1)
+                continue;
+            res += (minIdx + 1);
+        }
+        
+        return res;
+    }
 };
 ```
 
@@ -75,43 +75,44 @@ public:
 ```cpp
 class Solution {
 public:
- int numberOfSubstrings(string s) {
- int n = s.length(), res = 0;
- if (n < 3)
- return 0;
+    int numberOfSubstrings(string s) {
+        int n = s.length(), res = 0;
+        if (n < 3)
+            return 0;
 
- vector<vector<int>> cnt(n + 1, vector<int>(3, 0));
+        vector<vector<int>> cnt(n + 1, vector<int>(3, 0));
 
- for (int i = 1; i <= n; i++) {
- cnt[i] = cnt[i - 1];
- cnt[i][s[i - 1] - 'a']++;
- }
+        for (int i = 1; i <= n; i++) {
+            cnt[i] = cnt[i - 1];
+            cnt[i][s[i - 1] - 'a']++;
+        }
 
- for (int i = 3; i <= n; i++) {
- if (cnt[i][0] && cnt[i][1] && cnt[i][2]) {
- int t = bshelper(cnt, i);
- res += (t + 1);
- }
- }
- return res;
- }
+        for (int i = 3; i <= n; i++) {
+            if (cnt[i][0] && cnt[i][1] && cnt[i][2]) {
+                int t = bshelper(cnt, i);
+                res += (t + 1);
+            }
+        }
+        return res;
+    }
 
- int bshelper(const vector<vector<int>>& cnt, int end) {
- int left = 0, right = end, mid;
- vector<int> tmp(3, 0);
- while (left < right) {
- mid = (left + right) / 2 + 1;
- for (int i = 0; i < 3; i++) {
- tmp[i] = cnt[end][i] - cnt[mid][i];
- }
- if (tmp[0] && tmp[1] && tmp[2]) {
- left = mid;
- }
- else {
- right = mid - 1;
- }
- }
- return left;
- }
+    int bshelper(const vector<vector<int>>& cnt, int end) {
+        int left = 0, right = end, mid;
+        vector<int> tmp(3, 0);
+        while (left < right) {
+            mid = (left + right) / 2 + 1;
+            for (int i = 0; i < 3; i++) {
+                tmp[i] = cnt[end][i] - cnt[mid][i];
+            }
+            if (tmp[0] && tmp[1] && tmp[2]) {
+                left = mid;
+            }
+            else {
+                right = mid - 1;
+            }
+        }
+        return left;
+    }
 };
 ```
+
