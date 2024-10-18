@@ -3,16 +3,12 @@ title: About
 url: 5.html
 id: 5
 comments: false
-date: 2014-07-14 01:16:41
+date: 2024-10-17 19:25:41
 ---
 
+湾区码农，Googler。做过k8s，现在做Linux内核。
 
-
-湾区码农，Googler。
-
-WEB前端，后端，操作系统和计算机网络都有兴趣但是都没有深入，想学许多东西可是总觉得时间不够。
-
-C++, C, Go, JavaScript, Python, PHP, Java, Shell。Rust勉强中。
+C++, C, Go, JavaScript, Python, PHP, Java, Shell。Rust学习中。
 
 ## Contact
 
