@@ -10,6 +10,8 @@ date: 2024-10-17 19:25:41
 
 C++, C, Go, JavaScript, Python, PHP, Java, Shell。Rust学习中。
 
+我的摄影网站：<https://photography.xiadong.info/>
+
 ## Contact
 
 E-mail：
