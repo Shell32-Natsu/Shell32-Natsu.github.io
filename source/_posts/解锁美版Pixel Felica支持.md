@@ -22,11 +22,11 @@ date: 2025-08-11 19:35:24
 
 # 解锁bootloader
 
-1. 打开开发者模式
-2. 打开USB调试然后连接adb
-3. `adb reboot bootloader`
-4. `fastboot flashing unlock`
-
+1. **备份备份备份**
+2. 打开开发者模式
+3. 打开USB调试然后连接adb
+4. `adb reboot bootloader`
+5. `fastboot flashing unlock`。这一步就会清除数据了。
 # 刷入Magisk
 
 1. 从[Google](https://developers.google.com/android/images)下载对应机型的刷机包，这个不要删了，后面有用。
