@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>http://blog.xiadong.info</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/%25E8%25AF%25BB%25E4%25B9%25A6/</loc>
+        <lastmod>2025-08-12T17:36:20.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/WEB/</loc>
+        <lastmod>2025-08-12T17:36:20.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/Study/</loc>
+        <lastmod>2025-08-12T17:36:20.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/%25E5%25A4%2587%25E5%25BF%2598/</loc>
+        <lastmod>2025-08-12T17:36:20.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/Life/</loc>
+        <lastmod>2025-08-12T17:36:20.831Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/C/</loc>
+        <lastmod>2025-08-12T17:36:20.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/Linux/</loc>
+        <lastmod>2025-08-12T17:36:20.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/C/</loc>
+        <lastmod>2025-08-12T17:36:20.830Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/Docker/</loc>
+        <lastmod>2025-08-12T17:36:20.829Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/Life/%25E5%25A4%2587%25E5%25BF%2598/</loc>
+        <lastmod>2025-08-12T17:36:20.829Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/ACG/</loc>
+        <lastmod>2025-08-12T17:36:20.829Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/OpenCV/Python/%25E5%25A4%2587%25E5%25BF%2598/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/OpenCV/Python/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/STL/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/OpenCV/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/C/Study/%25E5%25A4%2587%25E5%25BF%2598/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/C/Study/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/Python/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/LeetCode/</loc>
+        <lastmod>2025-08-12T17:36:20.828Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/CPP/</loc>
+        <lastmod>2025-08-12T17:36:20.825Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/%25E6%25B2%2599%25E7%25AE%25B1/</loc>
+        <lastmod>2025-08-12T17:36:20.815Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://blog.xiadong.info/categories/Android/</loc>
+        <lastmod>2025-08-12T17:36:20.815Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+</urlset>
+<!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator -->

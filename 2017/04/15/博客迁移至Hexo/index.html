@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="博客迁移至Hexo"/>
+
+
+
+
+  <meta name="keywords" content="备忘,Hexo,博客," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shell32">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.3.x" />
+
+
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/04/15/博客迁移至Hexo/"/>
+
+
+<meta name="description" content="前段时间多说宣布准备关闭服务，之后偶然看到一个用GitHub Issues来做评论系统的项目：https:&#x2F;&#x2F;github.com&#x2F;imsun&#x2F;gitment，倒不是说对这个想法很感兴趣，而且因为它又激起了我转移到静态博客+GitHub Pages的念头。今天算是付诸行动了吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客迁移至Hexo">
+<meta property="og:url" content="http://blog.xiadong.info/2017/04/15/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3Hexo/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="前段时间多说宣布准备关闭服务，之后偶然看到一个用GitHub Issues来做评论系统的项目：https:&#x2F;&#x2F;github.com&#x2F;imsun&#x2F;gitment，倒不是说对这个想法很感兴趣，而且因为它又激起了我转移到静态博客+GitHub Pages的念头。今天算是付诸行动了吧。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://blog.xiadong.info/image/post/Screenshot%20from%202017-04-15%2020-45-51.png">
+<meta property="article:published_time" content="2017-04-15T19:35:00.000Z">
+<meta property="article:modified_time" content="2025-08-12T17:36:20.829Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="备忘">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.xiadong.info/image/post/Screenshot%20from%202017-04-15%2020-45-51.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: true,
+    toc: true,
+  }
+</script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97442160-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+
+<script>
+  (function(d) {
+    var config = {
+      kitId: 'tqr0ojg',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+
+    <title> 博客迁移至Hexo · Shell32 </title>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Shell32</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e" target="_blank" rel="noopener">
+        <li class="mobile-menu-item">
+          
+          
+            Search
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Shell32</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e" target="_blank" rel="noopener">
+            
+            
+              Search
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          博客迁移至Hexo
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 15, 2017
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-为什么要迁移？"><span class="toc-text">1. 为什么要迁移？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-hexo安装配置"><span class="toc-text">2. Hexo安装配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-数据导入"><span class="toc-text">3. 数据导入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-主题"><span class="toc-text">4. 主题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-托管"><span class="toc-text">5. 托管</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>前段时间多说宣布准备关闭服务，之后偶然看到一个用GitHub Issues来做评论系统的项目：<a href="https://github.com/imsun/gitment" target="_blank" rel="noopener">https://github.com/imsun/gitment</a>，倒不是说对这个想法很感兴趣，而且因为它又激起了我转移到静态博客+GitHub Pages的念头。今天算是付诸行动了吧。</p>
+<a id="more"></a>
+<h1 id="1-为什么要迁移？">1. 为什么要迁移？</h1>
+<p>当初搭博客的时候还是个小白，Hexo，Jekyll这种高大上<s>并不</s>的东西玩不转，所以退而求其次用了比较傻瓜化的WordPress。这几年用着也还可以，但是频繁的更新挺烦人的，而且不支持Markdown(JetPack提供的Markdown支持不知道为什么我总是用不了)，总体来说也还是太“重”了。最最主要的一点是从上个月开始每次更新插件/主题之后都不能退出维护模式，只能ssh到服务器上去手动删除<code>.maintenance</code>文件，所以我决定还是换一个轻量级的静态博客。并且静态博客折腾起主题之类的东西也方便的多。</p>
+<h1 id="2-hexo安装配置">2. Hexo安装配置</h1>
+<p>网上教程到处都有，就不赘述了。</p>
+<h1 id="3-数据导入">3. 数据导入</h1>
+<p>Hexo提供从Wordpress迁移数据的插件<a href="https://hexo.io/docs/migration.html" target="_blank" rel="noopener">https://hexo.io/docs/migration.html</a>，是通过分析WP导出的数据文件来工作的，省去了我写脚本分析数据的麻烦。但是还是不可避免地会有许多问题。</p>
+<p>这个插件会保留WP中的tag和分类，tag是正常的，但是因为Hexo不支持一个页面多个分类（其实我也不太理解为什么WP会支持，跟tag的功能重复了），所以在WP中属于多个分类的页面在导入后会变成子分类的形式，比如一篇文章<code>article</code>分别属于<code>A</code>和<code>B</code>两个分类，在WP中是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> article</span><br><span class="line"> &#x2F;      \</span><br><span class="line">A        B</span><br></pre></td></tr></table></figure>
+<p>而导入到Hexo之后会变成类似</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">article</span><br><span class="line">  |</span><br><span class="line">  B</span><br><span class="line">  |</span><br><span class="line">  A</span><br></pre></td></tr></table></figure>
+<p>这样的形式，在Hexo中看起来是相当的烦人。</p>
+<p>另一个问题是导入插件是通过把HTML文本转换为Markdown来进行数据导入的，这个逆向转换的过程很有可能让你的页面面目全非。不过我的博客数据主要是LeetCode的笔记，原本的Markdown文件都有保留，所以可以直接放弃转换出来的Markdown而使用正确的数据。</p>
+<p>以上两个问题我是通过Python脚本来解决的，脚本拼接导入数据的Front-matter部分和原始Markdown文件的正文部分，同时删除Front-matter<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>中除了第一个分类以外的分类。这个脚本只能处理LeetCode笔记（因为可以通过题号匹配起来），其余的文章不多，我就手动修改了。</p>
+<p>最后一个问题，Hexo的Markdown语法与我一直使用的语法不太一致，导致有的地方渲染不太正常。比如</p>
+<p><img src="/image/post/Screenshot%20from%202017-04-15%2020-45-51.png" alt=""></p>
+<p>这段Markdown，GitHub和Pandoc都会生成引用内的代码块的形式，而Hexo中的三个反引号似乎优先级更高。这个问题我还没有解决，涉及的页面太多了，情况也比较复杂。</p>
+<h1 id="4-主题">4. 主题</h1>
+<p>Hexo的主题并没多到让人挑花眼的程度，但是普遍质量都很高，而且自己修改起来也比较容易。在GitHub上搜索就可以找到很多，我现在用的是<a href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>这个主题，稍微改了一下字体。</p>
+<h1 id="5-托管">5. 托管</h1>
+<p>我以前的Wordpress博客是用我自己的服务器+CDN的形式，Hexo虽然也可以放在我的服务器上，不过既然已经是静态博客了还是GitHub Pages省心省力。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1"  class="footnote-item"><p>https://hexo.io/docs/front-matter.html <a href="#fnref1" class="footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+      <!-- Go to www.addthis.com/dashboard to customize your tools --> <div class="addthis_inline_share_toolbox"></div>
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/%E5%A4%87%E5%BF%98/">备忘</a>
+            
+              <a href="/tags/Hexo/">Hexo</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/04/16/%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8SSL/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">博客启用SSL</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/04/09/leetcode-557-reverse-words-in-a-string-iii/">
+        <span class="next-text nav-default">LeetCode 557. Reverse Words in a String III</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:xiadong.main@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.facebook.com/xiadong1994" target="_blank" rel="noopener" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/dong-xia" target="_blank" rel="noopener" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/Shell32-Natsu" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="friend-links">
+    <span>Links:&nbsp;</span>
+    
+        <a href="https://wf94.github.io/" target="_blank" rel="noopener" class="friend-links-item">打满鸡血来刷题</a>
+    
+        <a href="http://tianyuh.com/" target="_blank" rel="noopener" class="friend-links-item">塞外麾下炙</a>
+    
+</div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2025
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shell32</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xiadong.info/2017/04/15/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3Hexo/';
+        this.page.identifier = '2017/04/15/博客迁移至Hexo/';
+        this.page.title = '博客迁移至Hexo';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//www-xiadong-info.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.3.x"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.3.x"></script>
+<script type="text/javascript">
+$(function(){
+    const imgs = $("img").filter(function() {
+        return this.src.match(/.*\.sinaimg\.cn\/.*/);
+    });
+    for (let i = 0; i < imgs.length; i++) {
+        let img = imgs[i];
+        $(img).attr('referrerpolicy', 'no-referrer');
+    }
+    console.log(`Removed referrer header for ${imgs.length} sina weibo images.`);
+});
+</script>
+    
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58f2179bf0859c32"></script> 
+  </body>
+</html>
