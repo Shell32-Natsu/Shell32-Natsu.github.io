@@ -37,8 +37,8 @@ $global-lineheight: 1.7 !default;
 // System font stack — fast, modern, no FOUT
 $global-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif !default;
 
-// Serif font family — kept for backwards compat, but mostly unused now
-$global-serif-font-family: $global-font-family !default;
+// System serif stack — for article titles
+$global-serif-font-family: ui-serif, "New York", Georgia, Cambria, "Noto Serif", "Noto Serif CJK SC", "Source Han Serif SC", "Source Han Serif", "Songti SC", serif !default;
 
 // Background color of the site.
 $global-background: $white !default;
