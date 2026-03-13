@@ -3,27 +3,33 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "4.2.1"
+    "version": "7.3.0"
   },
   "scripts": {
-    "build": "rm -rf public; hexo generate -f"
+    "build": "rm -rf public; hexo generate -f",
+    "server": "hexo server"
   },
   "dependencies": {
-    "hexo": "^4.2.0",
-    "hexo-generator-archive": "^0.1.4",
-    "hexo-generator-category": "^0.1.3",
-    "hexo-generator-feed": "^1.2.0",
-    "hexo-generator-index": "^0.2.0",
-    "hexo-generator-search": "^2.4.0",
-    "hexo-generator-seo-friendly-sitemap": "0.0.25",
-    "hexo-generator-tag": "^0.2.0",
-    "hexo-renderer-ejs": "^0.2.0",
-    "hexo-renderer-markdown-it": "^3.4.1",
-    "hexo-renderer-scss": "^1.0.2",
-    "hexo-server": "^0.2.0",
-    "markdown-it-emoji": "^1.3.0"
+    "hexo": "^7.3.0",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-feed": "^3.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-search": "^2.4.3",
+    "hexo-generator-sitemap": "^3.0.1",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-dartsass": "^0.1.2",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-markdown-it": "^7.1.1",
+    "hexo-renderer-swig": "^2.0.0",
+    "hexo-server": "^3.0.0",
+    "markdown-it-abbr": "^2.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-ins": "^4.0.0",
+    "markdown-it-sub": "^2.0.0",
+    "markdown-it-sup": "^2.0.0"
   },
   "devDependencies": {
-    "hexo-cli": "^3.1.0"
+    "hexo-cli": "^4.3.2"
   }
 }

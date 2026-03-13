@@ -3,30 +3,11 @@
 // ==============================
 
 // ========== Theme Color ========== //
-// Theme color config from `even/_config.yml`
-$theme-color-config: hexo-theme-config('theme.color');
-
-// Low-saturation, modern color palette
-$theme-color-map: (
-  'Default': #c05b4d #f8f5ec,
-  'Mint Green': #16982B #f5f5f5,
-  'Cobalt Blue': #6b7b8c #f7f6f3,
-  'Hot Pink': #FF69B4 #f8f5f5,
-  'Dark Violet': #9932CC #f5f4fa
-);
-
-// Check theme color config.
-// if it does not exist, use default theme color.
-@if not(map-has-key($theme-color-map, $theme-color-config)) {
-  $theme-color-config: 'Default';
-}
-$theme-color-list: map-get($theme-color-map, $theme-color-config);
-
 // Primary accent color — muted slate
-$theme-color: nth($theme-color-list, 1) !default;
+$theme-color: #6b7b8c !default;
 
 // Deputy color — warm off-white for code/toc backgrounds
-$deputy-color: nth($theme-color-list, 2) !default;
+$deputy-color: #f7f6f3 !default;
 
 
 // ========== Color ========== //
