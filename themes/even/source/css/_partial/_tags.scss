@@ -23,7 +23,7 @@
       position: relative;
       margin: $tag-cloud-tags-link-margin;
       word-wrap: break-word;
-      color: var(--text-secondary) !important;
+      color: rgba($global-font-color, 0.7) !important;
       transition: color 0.15s ease;
 
       &:active,

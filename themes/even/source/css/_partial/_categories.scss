@@ -20,7 +20,7 @@
       position: relative;
       margin: $categories-tags-link-margin;
       word-wrap: break-word;
-      color: var(--text-secondary);
+      color: rgba($global-font-color, 0.7);
       transition: color 0.15s ease;
 
       .category-count {

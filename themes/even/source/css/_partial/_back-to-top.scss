@@ -3,44 +3,22 @@
 // =============================
 
 .back-to-top {
+  display: none;
   position: fixed;
-  right: 24px;
-  bottom: 24px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--bg-subtle);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  font-size: 18px;
-  line-height: 38px;
-  text-align: center;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px);
-  transition: opacity 0.2s ease, visibility 0.2s, transform 0.2s ease, background 0.15s ease;
+  right: 20px;
+  bottom: 20px;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+  transition-duration: 0.3s;
   z-index: 10;
 
-  &.visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
   &:hover {
-    background: var(--bg-subtle-hover);
-    color: var(--text);
+    transform: translateY(-5px); 
   }
 }
 
 @include max-screen() {
   .back-to-top {
-    right: 16px;
-    bottom: 16px;
-    width: 36px;
-    height: 36px;
-    line-height: 34px;
-    font-size: 16px;
+    display: none !important;
   }
 }

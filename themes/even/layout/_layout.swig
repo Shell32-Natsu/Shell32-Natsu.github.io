@@ -6,7 +6,6 @@
   </head>
 
   <body>
-    <div class="progress-bar" id="progress-bar"></div>
     {%- include '_partial/slideout.swig' %}
     <div class="container" id="mobile-panel">
       <header id="header" class="header">
@@ -19,17 +18,22 @@
             {% block content %}{% endblock %}
           </div>
           {% include '_partial/comments.swig' %}
-        </div>
+        </div>  
       </main>
 
       <footer id="footer" class="footer">
         {%- include '_partial/footer.swig' %}
       </footer>
 
-      <div class="back-to-top" id="back-to-top">↑</div>
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
     </div>
 
     {% include '_script/comments.swig' %}
+
+    {% include '_script/libs.swig' %}
     {% include '_script/theme.swig' %}
+    {% include '_script/search.swig' %}
   </body>
 </html>

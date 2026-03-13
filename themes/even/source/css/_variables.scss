@@ -1,23 +1,37 @@
 // ==============================
 // Variables
 // ==============================
-// Colors use CSS custom properties (see _theme.scss) for dark mode support.
-// SCSS vars here are either references to --vars, or static values (fonts, sizes).
 
-// ========== Color aliases ========== //
-$theme-color: var(--accent) !default;
-$deputy-color: var(--bg-subtle) !default;
+// ========== Theme Color ========== //
+// Primary accent color — muted slate
+$theme-color: #6b7b8c !default;
+
+// Deputy color — warm off-white for code/toc backgrounds
+$deputy-color: #f7f6f3 !default;
+
+
+// ========== Color ========== //
 $black: #1a1a1a !default;
-$white: var(--bg) !default;
-$light-gray: var(--border) !default;
-$gray: var(--border-strong) !default;
-$dark-gray: var(--text-muted) !default;
+$white: #ffffff !default;
+$light-gray: #e9e9e7 !default;
+$gray: #d0d0ce !default;
+$dark-gray: #9b9a97 !default;
+
 
 // ========== Global ========== //
-$global-font-color: var(--text) !default;
+// Text color of the body — warm dark gray, easier on eyes than pure black
+$global-font-color: #37352f !default;
+
+// Font size attribute applied to '<html>' and '<body>'.
 $global-font-size: 16px !default;
+
+// Global width of '<body>'.
 $global-body-width: 720px !default;
+
+// Padding of container main
 $global-container-padding: 0 24px !default;
+
+// Default line height — more generous for readability
 $global-lineheight: 1.7 !default;
 
 // System font stack — fast, modern, no FOUT
@@ -26,8 +40,10 @@ $global-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hel
 // System serif stack — for article titles
 $global-serif-font-family: ui-serif, "New York", Georgia, Cambria, "Noto Serif", "Noto Serif CJK SC", "Source Han Serif SC", "Source Han Serif", "Songti SC", serif !default;
 
-$global-background: var(--bg) !default;
+// Background color of the site.
+$global-background: $white !default;
 
+// Headings font size of the site.
 $global-headings: (
   h1: 1.8em,
   h2: 1.45em,
@@ -39,48 +55,119 @@ $global-headings: (
 
 
 // ========== Header ========== //
+// Padding of the site header.
 $header-padding: 48px 24px 24px !default;
+
+// Font size of the logo.
 $logo-font-size: 32px !default;
+
+// Font family of the logo — system font, bold
 $logo-font-family: $global-font-family !default;
+
+// Margin of menu item.
 $menu-item-margin-left: 24px !default;
+
+// Margin of menu item in mobile.
 $menu-item-mobile-margin: 5px !default;
+
+// Font size of menu item link.
 $menu-link-font-size: 15px !default;
+
+// Height of the mobile header.
 $mobile-navbar-height: 56px !default;
 
 // ========== Post ========== //
+// Margin bottom of post list.
 $post-list-margin-bottom: 32px !default;
+
+// Padding of the post.
 $post-padding: 2em 0 2.5em !default;
-$post-border: 1px solid var(--border) !default;
+
+// Border top of the post + post.
+$post-border: 1px solid $light-gray !default;
+
+// Font size of post title.
 $post-title-font-size: 26px !default;
+
+// Font weight of post title.
 $post-title-font-weight: 600 !default;
+
+// Margin top of the post meta (post time).
 $post-meta-margin-top: 8px !default;
-$post-time-font-color: var(--text-muted) !default;
-$post-readMore-border-bottom: 1px solid var(--accent) !default;
+
+// Font color of the post time.
+$post-time-font-color: $dark-gray !default;
+
+// Border bottom of the read more link when hover it.
+$post-readMore-border-bottom: 1px solid $theme-color !default;
+
+// Margin top of the post footer.
 $post-footer-margin-top: 32px !default;
-$post-footer-border-top: 1px solid var(--border) !default;
+
+// Border top of post footer.
+$post-footer-border-top: 1px solid $light-gray !default;
+
+// Padding of the post tags.
 $post-tags-padding: 20px 0 !default;
+
+// Font size of post pagination.
 $post-nav-font-size: 16px !default;
 
+
 // ========== TOC ========== //
+// Width of the post toc.
 $post-toc-width: 200px !default;
-$post-toc-backgroud: var(--bg-subtle) !default;
+
+// Backgroud color of the post toc.
+$post-toc-backgroud: rgba($deputy-color, 0.6) !default;
+
+// Font size of the post toc title.
 $post-toc-title-size: 16px !default;
+
+// Font size of the post toc content.
 $post-toc-content: 13px !default;
+
+// List style of the post toc list.
 $post-toc-list-style: none !default;
 
 // ========== Content ========== //
+// Headings anchor.
 $content-headings-anchor: "#" !default;
-$content-link-border: 1px solid var(--accent) !default;
-$content-blockquote-backgroud: var(--bg-subtle) !default;
-$content-blockquote-border-left: 3px solid var(--border-strong) !default;
-$content-table-border-color: var(--border) !default;
+
+// Border bottom of the link when hover it.
+$content-link-border: 1px solid $theme-color !default;
+
+// Background color of the blockquote.
+$content-blockquote-backgroud: $deputy-color !default;
+
+// Border left of the blockquote.
+$content-blockquote-border-left: 3px solid $gray !default;
+
+// Border color of the table.
+$content-table-border-color: $light-gray !default;
 
 // ========== Code ========== //
-$code-color: var(--code-inline) !default;
-$code-font-size: 14px !default;
-$code-font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !default;
-$code-background: var(--bg-subtle) !default;
+// Color of the inline code — desaturated plum
+$code-color: #a05a6c !default;
 
+// Font size of code.
+$code-font-size: 14px !default;
+
+// Font family of the code — modern system mono stack
+$code-font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !default;
+
+// Color of code highlight — low saturation syntax palette
+$code-highlight-color: (
+  comment: #9b9a97,
+  keyword: #7a8b7f,
+  number: #6b8a99,
+  title: #5b7a99,
+  attribute: #a08a5b,
+  symbol: #a0765b,
+  built_in: #a05a6c
+) !default;
+
+// Code type list.
 $code-type-list: (
   html: "HTML",
   js: "JavaScript",
@@ -108,36 +195,85 @@ $code-type-list: (
   typescript: "TypeScript"
 ) !default;
 
+// Color of the code background.
+$code-background: $deputy-color !default;
+
+
 // ========== Pagination ========== //
+// Margin of the pagination.
 $pagination-margin: 2.5em 0 !default;
+
+// Font size of the pagination (Without post, post pagination see line 140).
 $pagination-font-size: 16px !default;
 
+
 // ========== Footer ========== //
+// Margin top of the footer.
 $footer-margin-top: 4em !default;
+
+// Margin left of the social link.
 $social-link-margin-left: 16px !default;
-$social-icon-font-size: 20px !default;
+
+// Font size of the social icon.
+$social-icon-font-size: 24px !default;
+
+// Margin of the copyright.
 $copyright-margin: 16px 0 32px !default;
 
+
 // ========== Archive ========== //
+// Margin of the archive.
 $archive-margin: 2em 0px !default;
+
+// Max width of the archive.
 $archive-max-width: 600px !default;
+
+// Font size of the archive name.
 $archive-name-font-size: 26px !default;
+
+// Font size of the collection title.
 $collection-title-font-size: 22px !default;
+
+// Padding of the archive post.
 $archive-post-padding: 6px 20px !default;
+
+// Padding of the archive post in mobile.
 $archive-post-mobile-padding: 6px 12px !default;
+
+// Font size of the archive post time in mobile.
 $archive-post-mobile-time-font-size: 13px !default;
-$archive-post-border-left: 1px solid var(--border) !default;
-$archive-post-hover-border-left: 2px solid var(--accent) !default;
+
+// Border left of the archive post, use $archive-post-hover-border-left when hover it.
+$archive-post-border-left: 1px solid $light-gray !default;
+$archive-post-hover-border-left: 2px solid $theme-color !default;
+
+// Transition of the archive post when hover it.
 $archive-post-hover-transition: 0.15s ease-out !default;
+
+// Transform of the archive post when hover it.
 $archive-post-hover-transform: translateX(2px) !default;
 
+
 // ========== Tags ========== //
+// Font soze of the tag cloud title.
 $tag-cloud-title-size: 18px !default;
-$tag-cloud-title-border-bottom: 2px solid var(--accent) !default;
+
+// Border bottom of the tag cloud title.
+$tag-cloud-title-border-bottom: 2px solid $theme-color !default;
+
+// Margin of the tag cloud tags link.
 $tag-cloud-tags-link-margin: 6px 12px !default;
 
+
 // ========== Categories ========== //
+// Font soze of the categories title.
 $categories-title-size: 18px !default;
-$categories-title-border-bottom: 2px solid var(--accent) !default;
+
+// Border bottom of the categories title.
+$categories-title-border-bottom: 2px solid $theme-color !default;
+
+// Margin of the categories tags link.
 $categories-tags-link-margin: 6px 12px !default;
+
+// Font size of the category count
 $category-count-font-size: 12px !default;

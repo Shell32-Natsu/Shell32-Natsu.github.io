@@ -11,11 +11,11 @@
 
   .hexo-link,
   .theme-link {
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--border);
+    color: $dark-gray;
+    border-bottom: 1px solid $light-gray;
 
     &:hover {
-      color: var(--accent);
+      color: $theme-color;
     }
   }
 

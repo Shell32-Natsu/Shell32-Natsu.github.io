@@ -4,21 +4,18 @@
 
 .social-links {
   text-align: center;
-  font-size: 14px;
 
-  .social-link {
-    display: inline-block;
-    color: var(--text-muted);
+  .iconfont {
+    font-size: $social-icon-font-size;
+    color: $dark-gray;
     transition: color 0.15s ease;
 
-    &:hover {
-      color: var(--accent);
+    & + .iconfont {
+      margin-left: $social-link-margin-left;
     }
 
-    & + .social-link::before {
-      content: "·";
-      margin: 0 12px;
-      color: var(--border-strong);
+    &:hover {
+      color: $theme-color;
     }
   }
 }
