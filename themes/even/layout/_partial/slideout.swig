@@ -2,14 +2,14 @@
   <div class="mobile-header-logo">
     <a href="{{ url_for('.') }}" class="logo">{{ config.title }}</a>
   </div>
-  <div class="mobile-navbar-icon">
+  <div class="mobile-navbar-icon icon-out">
     <span></span>
     <span></span>
     <span></span>
   </div>
 </div>
 
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
+<nav id="mobile-menu" class="mobile-menu">
   <ul class="mobile-menu-list">
     {% for name, path in theme.menu %}
       <a href="{{ url_for(path) }}">

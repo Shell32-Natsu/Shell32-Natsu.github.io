@@ -12,12 +12,7 @@
   background: $white;
   border-bottom: 1px solid $light-gray;
   text-align: center;
-  transition: transform 300ms ease;
   z-index: 99;
-
-  &.fixed-open {
-    transform: translate3d(180px, 0px, 0px);
-  }
 
   .mobile-header-logo {
     display: inline-block;
@@ -41,24 +36,26 @@
     float: left;
     position: relative;
     transition: background 0.5s;
+    cursor: pointer;
 
     @include mobile-menu-icon();
   }
 }
 
 .mobile-menu {
-  background-color: rgba($deputy-color, 0.5);
-
   .mobile-menu-list {
     position: relative;
     list-style: none;
-    margin-top: 50px;
-    padding: 0;
-    border-top: 1px solid $deputy-color;
+    margin: 0;
+    padding: 8px 0;
 
     .mobile-menu-item {
-      padding: 10px 30px;
-      border-bottom: 1px solid $deputy-color;
+      padding: 12px 24px;
+      border-bottom: 1px solid $light-gray;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     a {

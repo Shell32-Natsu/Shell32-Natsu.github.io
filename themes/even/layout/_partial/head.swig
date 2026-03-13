@@ -24,14 +24,6 @@
 {# Theme styling #}
 <link rel="stylesheet" type="text/css" href="{{ url_for('css/style.css') }}?v={{ theme.version }}" />
 
-{# Fancybox styling #}
-{% if theme.theme.fancybox %}
-  <link rel="stylesheet" type="text/css" href="{{ url_for('lib/fancybox/jquery.fancybox.css') }}" />
-{% endif %}
-
-{# Theme Configuration #}
-{% include "../_script/config.swig" %}
-
 {# Analytics #}
 {% if not env.debug %}
   {% include "../_script/analytics.swig" %}

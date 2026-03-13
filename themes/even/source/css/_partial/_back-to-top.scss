@@ -3,17 +3,24 @@
 // =============================
 
 .back-to-top {
-  display: none;
   position: fixed;
   right: 20px;
   bottom: 20px;
-  transition-property: transform;
-  transition-timing-function: ease-out;
-  transition-duration: 0.3s;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, visibility 0.2s, transform 0.2s ease;
   z-index: 10;
 
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
   &:hover {
-    transform: translateY(-5px); 
+    transform: translateY(-5px);
   }
 }
 

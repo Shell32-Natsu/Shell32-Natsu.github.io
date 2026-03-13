@@ -1,7 +1,9 @@
 .post-toc {
-  position: absolute;
+  position: sticky;
+  top: 24px;
+  float: right;
   width: $post-toc-width;
-  margin-left: $global-body-width + 40px;
+  margin-right: -($post-toc-width + 40px);
   padding: 16px;
   font-family: $global-font-family;
   border-radius: 6px;
@@ -9,7 +11,7 @@
   border: 1px solid $light-gray;
   word-wrap: break-word;
   box-sizing: border-box;
-  max-height: calc(100% - 40px);
+  max-height: calc(100vh - 48px);
   overflow-y: auto;
 
   .post-toc-title {
@@ -55,7 +57,7 @@
   }
 }
 
-@include max-screen() {
+@media screen and (max-width: #{$global-body-width + 2 * ($post-toc-width + 40px)}) {
   .post-toc {
     display: none;
   }
