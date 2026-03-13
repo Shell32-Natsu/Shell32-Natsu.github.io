@@ -27,7 +27,7 @@
   a {
     color: $theme-color;
     word-break: break-all;
-    border-bottom: 1px solid rgba($theme-color, 0.3);
+    border-bottom: 1px solid var(--accent-subtle);
     transition: border-color 0.15s ease;
 
     &:hover {
@@ -43,7 +43,7 @@
     margin: 1.5em 0;
     padding: 4px 20px;
     position: relative;
-    color: rgba($global-font-color, 0.75);
+    color: var(--text-secondary);
     background-color: $content-blockquote-backgroud;
     border-left: $content-blockquote-border-left;
     border-radius: 0 4px 4px 0;
@@ -86,7 +86,7 @@
       color: $theme-color;
       font-size: 0.95em;
       font-family: $global-font-family;
-      border-bottom: 1px solid rgba($theme-color, 0.3);
+      border-bottom: 1px solid var(--accent-subtle);
 
       &:hover {
         border-bottom: $post-readMore-border-bottom;

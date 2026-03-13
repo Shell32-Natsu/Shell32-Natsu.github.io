@@ -1,0 +1,85 @@
+// ==============================
+// Homepage — compact post list
+// ==============================
+
+.home-posts {
+  margin-bottom: 32px;
+}
+
+.home-post {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .home-post-title {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: $global-serif-font-family;
+    line-height: 1.35;
+    text-wrap: balance;
+
+    a {
+      color: var(--text);
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  .home-post-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+
+    .sep {
+      margin: 0 6px;
+    }
+
+    .home-post-category {
+      color: var(--text-muted);
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  .home-post-excerpt {
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+}
+
+// ==============================
+// Image zoom (native <dialog>)
+// ==============================
+
+dialog.image-zoom {
+  border: none;
+  padding: 0;
+  background: transparent;
+  max-width: 95vw;
+  max-height: 95vh;
+  cursor: zoom-out;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(2px);
+  }
+
+  img {
+    display: block;
+    max-width: 95vw;
+    max-height: 95vh;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+  }
+}

@@ -2,21 +2,16 @@
   <div class="social-links">
     {% for name, path in theme.social %}
       {% if path %}
-        {% if name != 'email' %}
-          <a href="{{ url_for(path) }}" class="iconfont icon-{{ name }}" title="{{ name }}"></a>
+        {% if name == 'email' %}
+          <a href="mailto:{{ path }}" class="social-link" title="Email">Email</a>
         {% else %}
-          <a href="mailto:{{ path }}" class="iconfont icon-{{ name }}" title="{{ name }}"></a>
+          <a href="{{ url_for(path) }}" class="social-link" title="{{ name }}" target="_blank" rel="noopener">{{ name | capitalize }}</a>
         {% endif %}
       {% endif %}
     {% endfor %}
-    
-    {% if config.feed and config.feed.path and theme.rss === 'default' %}
-      <a href="{{ url_for(config.feed.path) }}" class="iconfont icon-rss" title="rss"></a>
-    {% elif theme.rss === 'default' %}
-      {% set rss_link = config.feed.path || 'atom.xml' %}
-      <a href="{{ url_for(rss_link) }}" class="iconfont icon-rss" title="rss"></a>
-    {% elif theme.rss %}
-      <a href="{{ url_for(theme.rss) }}" class="iconfont icon-rss" title="rss"></a>
+
+    {% if theme.rss %}
+      <a href="{{ url_for('atom.xml') }}" class="social-link" title="RSS">RSS</a>
     {% endif %}
   </div>
 {% endif %}

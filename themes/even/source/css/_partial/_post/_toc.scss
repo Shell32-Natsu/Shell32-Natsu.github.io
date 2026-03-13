@@ -1,15 +1,17 @@
 .post-toc {
-  position: absolute;
+  position: sticky;
+  top: 24px;
+  float: right;
   width: $post-toc-width;
-  margin-left: $global-body-width + 40px;
+  margin-right: -($post-toc-width + 40px);
   padding: 16px;
   font-family: $global-font-family;
   border-radius: 6px;
   background: $post-toc-backgroud;
-  border: 1px solid $light-gray;
+  border: 1px solid var(--border);
   word-wrap: break-word;
   box-sizing: border-box;
-  max-height: calc(100% - 40px);
+  max-height: calc(100vh - 48px);
   overflow-y: auto;
 
   .post-toc-title {
@@ -18,7 +20,7 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: $dark-gray;
+    color: var(--text-muted);
   }
 
   .post-toc-content {
@@ -40,22 +42,22 @@
     }
 
     a {
-      color: rgba($global-font-color, 0.65);
+      color: var(--text-secondary);
       transition: color 0.15s ease;
 
       &:hover {
-        color: $global-font-color;
+        color: var(--text);
       }
     }
 
     .toc-link.active {
-      color: $theme-color;
+      color: var(--accent);
       font-weight: 500;
     }
   }
 }
 
-@include max-screen() {
+@media screen and (max-width: #{$global-body-width + 2 * ($post-toc-width + 40px)}) {
   .post-toc {
     display: none;
   }

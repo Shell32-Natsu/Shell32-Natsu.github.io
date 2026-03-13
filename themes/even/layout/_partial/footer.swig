@@ -21,9 +21,7 @@
     {% endif %}
     {{ current }}
 
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
+    <span class="heart">♡</span>
     <span class="author">{{ config.author }}</span>
   </span>
 </div>

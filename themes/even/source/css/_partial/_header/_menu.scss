@@ -27,7 +27,7 @@
 
     .menu-item-link {
       font-size: $menu-link-font-size;
-      color: rgba($global-font-color, 0.7);
+      color: var(--text-secondary);
       transition: color 0.15s ease;
 
       &:hover {

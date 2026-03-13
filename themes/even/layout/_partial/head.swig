@@ -21,16 +21,19 @@
 {# Open Graph #}
 {{ open_graph() }}
 
+{# Dark mode — set before paint to prevent flash #}
+<script>
+  (function() {
+    try {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+
 {# Theme styling #}
 <link rel="stylesheet" type="text/css" href="{{ url_for('css/style.css') }}?v={{ theme.version }}" />
-
-{# Fancybox styling #}
-{% if theme.theme.fancybox %}
-  <link rel="stylesheet" type="text/css" href="{{ url_for('lib/fancybox/jquery.fancybox.css') }}" />
-{% endif %}
-
-{# Theme Configuration #}
-{% include "../_script/config.swig" %}
 
 {# Analytics #}
 {% if not env.debug %}

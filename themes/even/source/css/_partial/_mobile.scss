@@ -9,15 +9,10 @@
   left: 0;
   width: 100%;
   height: $mobile-navbar-height;
-  background: $white;
-  border-bottom: 1px solid $light-gray;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
   text-align: center;
-  transition: transform 300ms ease;
   z-index: 99;
-
-  &.fixed-open {
-    transform: translate3d(180px, 0px, 0px);
-  }
 
   .mobile-header-logo {
     display: inline-block;
@@ -33,7 +28,7 @@
   }
 
   .mobile-navbar-icon {
-    color: $theme-color;
+    color: var(--accent);
     height: $mobile-navbar-height;
     width: $mobile-navbar-height;
     font-size: 24px;
@@ -41,33 +36,41 @@
     float: left;
     position: relative;
     transition: background 0.5s;
+    cursor: pointer;
 
     @include mobile-menu-icon();
   }
 }
 
 .mobile-menu {
-  background-color: rgba($deputy-color, 0.5);
-
   .mobile-menu-list {
     position: relative;
     list-style: none;
-    margin-top: 50px;
-    padding: 0;
-    border-top: 1px solid $deputy-color;
+    margin: 0;
+    padding: 8px 0;
 
     .mobile-menu-item {
-      padding: 10px 30px;
-      border-bottom: 1px solid $deputy-color;
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--border);
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     a {
-      font-size: 18px;
+      font-size: 16px;
       font-family: $global-font-family;
+      color: var(--text-secondary);
 
       &:hover {
-        color: $theme-color;
+        color: var(--accent);
       }
+    }
+
+    .theme-toggle {
+      font-size: 16px;
+      font-family: $global-font-family;
     }
   }
 }

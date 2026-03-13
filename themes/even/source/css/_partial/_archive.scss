@@ -68,7 +68,7 @@
       transform: $archive-post-hover-transform;
 
       .archive-post-time {
-        color: darken($dark-gray, 10%);
+        color: var(--text);
       }
 
       .archive-post-title .archive-post-link {
