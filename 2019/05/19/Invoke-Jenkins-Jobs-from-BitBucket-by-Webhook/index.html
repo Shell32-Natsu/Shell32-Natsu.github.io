@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Invoke Jenkins Jobs from BitBucket Server by Webhook"/>
+
+
+
+
+  <meta name="keywords" content="Jenkins,BitBucket,配置," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=3.0.0" />
+
+
+
+<link rel="canonical" href="http://blog.xiadong.info/2019/05/19/Invoke-Jenkins-Jobs-from-BitBucket-by-Webhook/"/>
+
+
+<meta name="description" content="I just added unit tests and am planning to add functional test scripts to one of my project. What comes to your mind when you work on a project every day, already have had test scripts and there is a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Invoke Jenkins Jobs from BitBucket Server by Webhook">
+<meta property="og:url" content="http://blog.xiadong.info/2019/05/19/Invoke-Jenkins-Jobs-from-BitBucket-by-Webhook/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="I just added unit tests and am planning to add functional test scripts to one of my project. What comes to your mind when you work on a project every day, already have had test scripts and there is a">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/1aSNdLN.png">
+<meta property="og:image" content="https://i.imgur.com/SuT3V5I.png">
+<meta property="og:image" content="https://i.imgur.com/uRbOz7b.png">
+<meta property="og:image" content="https://i.imgur.com/TWXsFzV.png">
+<meta property="og:image" content="https://i.imgur.com/adNJCz0.png">
+<meta property="article:published_time" content="2019-05-19T13:28:30.000Z">
+<meta property="article:modified_time" content="2026-03-13T20:08:46.124Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="Jenkins">
+<meta property="article:tag" content="BitBucket">
+<meta property="article:tag" content="配置">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/1aSNdLN.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=3.0.0" />
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97442160-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> Invoke Jenkins Jobs from BitBucket Server by Webhook · Shell32 </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Shell32</a>
+  </div>
+  <div class="mobile-navbar-icon icon-out">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+        <li class="mobile-menu-item">
+          
+          
+            Search
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Shell32</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+            
+            
+              Search
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Invoke Jenkins Jobs from BitBucket Server by Webhook
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 19, 2019
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Webhook"><span class="toc-text">Webhook</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jenkins"><span class="toc-text">Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Generic-Webhook-Trigger-Plugin"><span class="toc-text">Generic Webhook Trigger Plugin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bitbucket-Stash-Notifier-Plugin"><span class="toc-text">Bitbucket (Stash) Notifier Plugin</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>I just added unit tests and am planning to add functional test scripts to one of my project. What comes to your mind when you work on a project every day, already have had test scripts and there is a Jenkins server available? Right, automate it!</p>
+<p>My compay uses BitBucket server. However, although there are several BitBucket server plugins <a target="_blank" rel="noopener" href="https://marketplace.atlassian.com/search?product=bitbucket&amp;query=jenkins">available</a>, all of them are not free (and they are even not cheap!). So far, I just want to invoke a Jenkins job when some events happen. Should we pay thousands of dollars for such a easy (relatively) use case? So I decide to find some free alternatives.</p>
+<span id="more"></span>
+<h1 id="Webhook">Webhook</h1>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Webhook">Webhook</a> is a very convenient feature. It’s very simple. Just send a HTTP request to a URL when an event occurs. Fortunately, BitBucket server support Webhook <a target="_blank" rel="noopener" href="https://confluence.atlassian.com/bitbucket/manage-webhooks-735643732.html">natively</a>, which means you don’t need to install a plugin.</p>
+<p><img src="https://i.imgur.com/1aSNdLN.png" alt="Imgur"></p>
+<p>It’s very easy to configure a Webhook. Just follow the documentations.</p>
+<h1 id="Jenkins">Jenkins</h1>
+<p>You need two plug-ins on Jenkins:</p>
+<h2 id="Generic-Webhook-Trigger-Plugin">Generic Webhook Trigger Plugin</h2>
+<p>You need this plug-in to parse the payload in the POST body sent by BitBucket.</p>
+<p>BitBucket will send a POST request to the URL you set. The information is a JSON object in the body. Jenkins cannot parse the JSON object in the body so we need this plug-in.</p>
+<p><img src="https://i.imgur.com/SuT3V5I.png" alt=""></p>
+<p>After intalling <em>Generic Webhook Trigger Plugin</em>, You should set the Webhook URL to <code>&#123;JENKINS SERVER&#125;/generic-webhook-trigger/invoke</code>.</p>
+<p>For more information, see <a target="_blank" rel="noopener" href="https://wiki.jenkins.io/display/JENKINS/Generic+Webhook+Trigger+Plugin">here</a>.</p>
+<h2 id="Bitbucket-Stash-Notifier-Plugin">Bitbucket (Stash) Notifier Plugin</h2>
+<p>After a Jenkins job finishes, you definitely want to get a notification. Sure, you can choose to send an email to the author or the code reviewer of the pull request. But there is a better way. BitBucket can accept the build status by a REST API (well, another Webhook). This plug-in is used to send this request.</p>
+<p><img src="https://i.imgur.com/uRbOz7b.png" alt=""></p>
+<p>Note that this plug-in only supports username/password credentials but you can use <a target="_blank" rel="noopener" href="https://confluence.atlassian.com/bitbucketserver/personal-access-tokens-939515499.html">personal access token</a> to secure your password.</p>
+<p>When a job finishes, a build status icon will show beside the commit message and pull request if there is one.</p>
+<p><img src="https://i.imgur.com/TWXsFzV.png" alt=""></p>
+<p><img src="https://i.imgur.com/adNJCz0.png" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Jenkins/">Jenkins</a>
+            
+              <a href="/tags/BitBucket/">BitBucket</a>
+            
+              <a href="/tags/%E9%85%8D%E7%BD%AE/">配置</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/08/11/LeetCode-1155-Number-of-Dice-Rolls-With-Target-Sum/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">LeetCode 1155. Number of Dice Rolls With Target Sum</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/04/27/LeetCode-1035-Uncrossed-Lines/">
+        <span class="next-text nav-default">LeetCode 1035. Uncrossed Lines</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:xiadong.main@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.facebook.com/xiadong1994" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/dong-xia" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/Shell32-Natsu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="friend-links">
+    <span>Links:&nbsp;</span>
+    
+        <a target="_blank" rel="noopener" href="https://wf94.github.io/" class="friend-links-item">打满鸡血来刷题</a>
+    
+        <a target="_blank" rel="noopener" href="http://tianyuh.com/" class="friend-links-item">塞外麾下炙</a>
+    
+</div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2026
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shell32</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xiadong.info/2019/05/19/Invoke-Jenkins-Jobs-from-BitBucket-by-Webhook/';
+        this.page.identifier = '2019/05/19/Invoke-Jenkins-Jobs-from-BitBucket-by-Webhook/';
+        this.page.title = 'Invoke Jenkins Jobs from BitBucket Server by Webhook';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//www-xiadong-info.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=3.0.0" defer></script>
+
+  </body>
+</html>

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=3.0.0" />
+
+
+
+<link rel="canonical" href="http://blog.xiadong.info/page/21/"/>
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shell32">
+<meta property="og:url" content="http://blog.xiadong.info/page/21/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Shell32">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=3.0.0" />
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97442160-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> Shell32 </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Shell32</a>
+  </div>
+  <div class="mobile-navbar-icon icon-out">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+        <li class="mobile-menu-item">
+          
+          
+            Search
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Shell32</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+            
+            
+              Search
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/13/leetcode-165-compare-version-numbers/">LeetCode 165. Compare Version Numbers</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 13, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Compare two version numbers <em>version1</em> and <em>version2</em>.
+If <em>version1</em> &gt; <em>version2</em> return 1, if <em>version1</em> &lt; <em>version2</em> return -1, otherwise return 0.</p>
+<p>You may assume that the version strings are non-empty and contain only digits and the <code>.</code> character.
+The <code>.</code> character does not represent a decimal point and is used to separate number sequences.
+For instance, <code>2.5</code> is not “two and a half” or “half way to version three”, it is the fifth second-level revision of the second first-level revision.</p>
+<p>Here is an example of version numbers ordering:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.1 &lt; 1.1 &lt; 1.2 &lt; 13.37</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>使用<code>.</code>把字符串分割为数组, 然后再依次比较大小.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">compareVersion</span><span class="params">(string version1, string version2)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; v1 = <span class="built_in">versionVector</span>(version1), v2 = <span class="built_in">versionVector</span>(version2);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; v<span class="number">1.</span><span class="built_in">size</span>() &amp;&amp; i &lt; v<span class="number">2.</span><span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(v1[i] &gt; v2[i]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(v1[i] &lt; v2[i]) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(v<span class="number">1.</span><span class="built_in">size</span>() &gt; v<span class="number">2.</span><span class="built_in">size</span>())&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = v<span class="number">2.</span><span class="built_in">size</span>(); i &lt; v<span class="number">1.</span><span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(v1[i] != <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(v<span class="number">1.</span><span class="built_in">size</span>() &lt; v<span class="number">2.</span><span class="built_in">size</span>())&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = v<span class="number">1.</span><span class="built_in">size</span>(); i &lt; v<span class="number">2.</span><span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(v2[i] != <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">versionVector</span><span class="params">(string &amp;s)</span></span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; version;</span><br><span class="line">        <span class="type">int</span> pos = <span class="number">0</span>, next = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(next = s.<span class="built_in">find</span>(<span class="string">&#x27;.&#x27;</span>, pos))&#123;</span><br><span class="line">            version.<span class="built_in">push_back</span>(<span class="built_in">stoi</span>(s.<span class="built_in">substr</span>(pos, next - pos)));</span><br><span class="line">            <span class="keyword">if</span>(next == string::npos) <span class="keyword">break</span>;</span><br><span class="line">            pos = next + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> version;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/12/leetcode-164-maximum-gap/">LeetCode 164. Maximum Gap</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 12, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Given an unsorted array, find the maximum difference between the successive elements in its sorted form.</p>
+<p>Try to solve it in linear time/space.</p>
+<p>Return 0 if the array contains less than 2 elements.</p>
+<p>You may assume all elements in the array are non-negative integers and fit in the 32-bit signed integer range.</p>
+</blockquote>
+<p>这道题就是一个排序问题, 但是要求O(n)时间复杂度, 可用的办法有桶排序(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bucket_sort">bucket sort</a>)和基数排序(<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Radix_sort">radix sort</a>), 但是虽然说这两种算法有近似O(n)的复杂度, 但是它们并不一定真的比快排之类的算法快, 因为虽然快排, 堆排的时间复杂度是O(nlogn), 但即使n达到2<sup>32</sup>, logn也只有32而已, 实际中要排序的数据达到这个数量级时我觉得应该考虑外部排序了, 因为很可能数据已经无法完全装入内存了. 而桶排序和基数排序的O(n)算法系数也并不小, 所以这道题直接用快排或者STL的sort函数也是能过的.</p>
+<p>更进一步来说, 基于比较的排序算法时间复杂度下界是O(nlogn), 而能到达O(n)复杂度的算法是非比较的排序算法(计数排序, 基数排序, 桶排序).(<a target="_blank" rel="noopener" href="http://blog.csdn.net/zouliping123/article/details/8934856">http://blog.csdn.net/zouliping123/article/details/8934856</a>)</p>
+<p>桶排序:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumGap</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (length &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> max_item = nums[<span class="number">0</span>], min_item = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; length; i++)&#123;</span><br><span class="line">            max_item = <span class="built_in">max</span>(max_item, nums[i]);</span><br><span class="line">            min_item = <span class="built_in">min</span>(min_item, nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> bucket_gap = ( max_item - min_item ) / length &gt;= <span class="number">1</span> ? ( max_item - min_item ) / length : <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> bucket_size = ( max_item - min_item ) / bucket_gap + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">bucket</span>(bucket_size);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++)&#123;</span><br><span class="line">            bucket[(nums[i] - min_item) / bucket_gap].<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> max_gap = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; bucket_size; i++)&#123;</span><br><span class="line">            <span class="built_in">sort</span>(bucket[i].<span class="built_in">begin</span>(), bucket[i].<span class="built_in">end</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> lastNoneEmptyIndex = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; bucket.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!bucket[i].<span class="built_in">empty</span>() &amp;&amp; i != <span class="number">0</span> &amp;&amp; lastNoneEmptyIndex != <span class="number">-1</span>)&#123;</span><br><span class="line">                max_gap =<span class="built_in">max</span>(max_gap, bucket[i][<span class="number">0</span>] - bucket[lastNoneEmptyIndex].<span class="built_in">back</span>());</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(!bucket[i].<span class="built_in">empty</span>())&#123;</span><br><span class="line">                lastNoneEmptyIndex = i;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt; bucket[i].<span class="built_in">size</span>() &amp;&amp; max_gap &lt; bucket_gap; j++)&#123;</span><br><span class="line">                    max_gap = <span class="built_in">max</span>(max_gap, bucket[i][j] - bucket[i][j - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max_gap;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>基数排序:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maximumGap</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> length = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span> (length &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> max_gap = <span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">radix</span><span class="params">(<span class="number">10</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">tmp</span><span class="params">(length)</span></span>;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>, r = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; <span class="number">10</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++)&#123;</span><br><span class="line">                radix[j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> j : nums)&#123;</span><br><span class="line">                radix[(j / r) % <span class="number">10</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt; <span class="number">10</span>; j++)&#123;</span><br><span class="line">                radix[j] += radix[j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--)&#123;</span><br><span class="line">                <span class="type">int</span> k = (nums[j] / r) % <span class="number">10</span>;</span><br><span class="line">                tmp[--radix[k]] = nums[j];</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            r *= <span class="number">10</span>;</span><br><span class="line">            nums = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            max_gap = <span class="built_in">max</span>(max_gap, nums[i + <span class="number">1</span>] - nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max_gap;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/12/leetcode-162-find-peak-element/">LeetCode 162. Find Peak Element</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 12, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>A peak element is an element that is greater than its neighbors.</p>
+<p>Given an input array where <code>num[i] ≠ num[i+1]</code>, find a peak element and return its index.</p>
+<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
+<p>You may imagine that <code>num[-1] = num[n] = -∞</code>.</p>
+<p>For example, in array <code>[1, 2, 3, 1]</code>, 3 is a peak element and your function should return the index number 2.</p>
+<p>**Note:**Your solution should be in logarithmic complexity.</p>
+</blockquote>
+<p>二分搜索，每次比较找到的nums[mid]与邻居的大小来决定向哪边搜索,注意对于边界的处理,下标不能越界.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findPeakElement</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.<span class="built_in">size</span>() == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums.<span class="built_in">size</span>() == <span class="number">2</span>) <span class="keyword">return</span> nums[<span class="number">0</span>] &gt; nums[<span class="number">1</span>] ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> start = <span class="number">0</span>, end = nums.<span class="built_in">size</span>(), mid, len = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">while</span>(start &lt; end)&#123;</span><br><span class="line">            mid = (start + end) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(mid == <span class="number">0</span>) <span class="keyword">return</span> nums[<span class="number">0</span>] &gt; nums[<span class="number">1</span>] ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(mid == nums.<span class="built_in">size</span>() - <span class="number">1</span>) <span class="keyword">return</span> nums[len - <span class="number">2</span>] &gt; nums[len - <span class="number">1</span>] ? len - <span class="number">2</span> : len - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; nums[mid - <span class="number">1</span>] &amp;&amp; nums[mid] &gt; nums[mid + <span class="number">1</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt; nums[mid - <span class="number">1</span>] &amp;&amp; nums[mid + <span class="number">1</span>] &gt; nums[mid])&#123;</span><br><span class="line">                start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                end = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/12/leetcode-160-intersection-of-two-linked-lists/">LeetCode 160. Intersection of Two Linked Lists</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 12, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Write a program to find the node at which the intersection of two singly linked lists begins.</p>
+<p>For example, the following two linked lists:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A:          a1 → a2</span><br><span class="line">                   ↘</span><br><span class="line">                     c1 → c2 → c3</span><br><span class="line">                   ↗            </span><br><span class="line">B:     b1 → b2 → b3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>begin to intersect at node c1.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>If the two linked lists have no intersection at all, return <code>null</code>.</li>
+<li>The linked lists must retain their original structure after the function returns.</li>
+<li>You may assume there are no cycles anywhere in the entire linked structure.</li>
+<li>Your code should preferably run in O(n) time and use only O(1) memory.</li>
+</ul>
+</blockquote>
+<p>这是一道我遇到过的面试题. 解题方法就是先遍历得到两个链表的长度, 然后再跳过较长的链表的前面几个节点, 直到两个链表剩下的部分长度相等, 再同步移动指针来找到相交的节点.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> lenA = <span class="number">0</span>, lenB = <span class="number">0</span>;</span><br><span class="line">        ListNode *pa = headA, *pb = headB;</span><br><span class="line">        <span class="keyword">while</span>(pa)&#123;</span><br><span class="line">            lenA++;</span><br><span class="line">            pa = pa-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(pb)&#123;</span><br><span class="line">            lenB++;</span><br><span class="line">            pb = pb-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        pa = headA, pb = headB;</span><br><span class="line">        <span class="keyword">if</span>(lenA &gt; lenB)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; lenA - lenB; i++) pa = pa-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(lenA &lt; lenB)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; lenB - lenA; i++) pb = pb-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(pa &amp;&amp; pb)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pa == pb &amp;&amp; pa != <span class="literal">nullptr</span>) <span class="keyword">return</span> pa;</span><br><span class="line">            pa = pa-&gt;next;</span><br><span class="line">            pb = pb-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/11/leetcode-155-min-stack/">LeetCode 155. Min Stack</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 11, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+<ul>
+<li>push(x) – Push element x onto stack.</li>
+<li>pop() – Removes the element on top of the stack.</li>
+<li>top() – Get the top element.</li>
+<li>getMin() – Retrieve the minimum element in the stack.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = new MinStack();</span><br><span class="line">minStack.push(-2);</span><br><span class="line">minStack.push(0);</span><br><span class="line">minStack.push(-3);</span><br><span class="line">minStack.getMin();   --&gt; Returns -3.</span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; Returns 0.</span><br><span class="line">minStack.getMin();   --&gt; Returns -2.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>实现一个栈的同时能在常数时间内取得栈内的最小值. 使用两个栈即可, 一个栈用来保存元素, 另一个栈用来保存对应元素时栈内的最小值.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MinStack</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; stack;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; min;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        stack.<span class="built_in">push_back</span>(x);</span><br><span class="line">        <span class="keyword">if</span>(min.<span class="built_in">empty</span>() || min.<span class="built_in">back</span>() &gt; x) min.<span class="built_in">push_back</span>(x);</span><br><span class="line">        <span class="keyword">else</span> min.<span class="built_in">push_back</span>(min.<span class="built_in">back</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack.<span class="built_in">pop_back</span>();</span><br><span class="line">        min.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">return</span> stack.<span class="built_in">back</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> min.<span class="built_in">back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/11/leetcode-154-find-minimum-in-rotated-sorted-array-ii/">LeetCode 154. Find Minimum in Rotated Sorted Array II</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 11, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
+<p>Find the minimum element.</p>
+<p>The array may contain duplicates.</p>
+</blockquote>
+<p>与上一题类似, 但是有重复元素, 所以要用遍历的方法跳过这些元素.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>, mid = (right + left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; nums[right]) left = mid + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] == nums[right]) right--;</span><br><span class="line">            <span class="keyword">else</span> right = mid;</span><br><span class="line">            mid = (right + left) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[left];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/11/leetcode-153-find-minimum-in-rotated-sorted-array/">LeetCode 153. Find Minimum in Rotated Sorted Array</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 11, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>0 1 2 4 5 6 7</code> might become <code>4 5 6 7 0 1 2</code>).</p>
+<p>Find the minimum element.</p>
+<p>You may assume no duplicate exists in the array.</p>
+</blockquote>
+<p>这道题虽然使用线性遍历的方法也能过, 但是是可以使用二分搜索的.</p>
+<p>一个经过了循环左移的有序数组相当于被分成了两部分, 我们要找的是这两部分的分界点, 判断一个点是在哪一部分是看它与两端的元素的大小关系, 如果比两端的元素大, 那么它是在左半部分; 如果比两端的元素小, 那么它是在右半部分; 如果它比左端元素小比右边元素大, 那么从左端到右端整体是有序的, 在这种情况下最左端元素就是最小值; 不可能出现比左端元素大而比右端元素小的情况.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">findMin</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> left = <span class="number">0</span>, right = nums.<span class="built_in">size</span>() - <span class="number">1</span>, mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &lt; nums[left] &amp;&amp; nums[mid] &lt; nums[right])&#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(nums[mid] &gt;= nums[left] &amp;&amp; nums[mid] &gt; nums[right])&#123;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> nums[left];</span><br><span class="line">            &#125;</span><br><span class="line">            mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/10/leetcode-152-maximum-product-subarray/">LeetCode 152. Maximum Product Subarray</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 10, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p>For example, given the array <code>[2,3,-2,4]</code>,
+the contiguous subarray <code>[2,3]</code> has the largest product = <code>6</code>.</p>
+</blockquote>
+<p>DP问题, 主要问题在于数组中可能会出现负数, 所以要在维护最大值的同时维护一个最小值, 因为如果一个元素为负, 那么最小值也有可能变为最大值.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxProduct</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxPrevP = nums[<span class="number">0</span>], minPrevP = nums[<span class="number">0</span>], maxP = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="type">int</span> maxCurP = <span class="built_in">max</span>(maxPrevP * nums[i], <span class="built_in">max</span>(nums[i], minPrevP * nums[i]));</span><br><span class="line">            <span class="type">int</span> minCurP = <span class="built_in">min</span>(maxPrevP * nums[i], <span class="built_in">min</span>(nums[i], minPrevP * nums[i]));</span><br><span class="line">            <span class="keyword">if</span>(maxP &lt; maxCurP) maxP = maxCurP;</span><br><span class="line">            maxPrevP = maxCurP, minPrevP = minCurP;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxP;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/10/leetcode-151-reverse-words-in-a-string/">LeetCode 151. Reverse Words in a String</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 10, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Given an input string, reverse the string word by word.</p>
+<p>For example,
+Given s = “<code>the sky is blue</code>”,
+return “<code>blue is sky the</code>”.</p>
+<p><strong>Clarification:</strong></p>
+<ul>
+<li>What constitutes a word?
+A sequence of non-space characters constitutes a word.</li>
+<li>Could the input string contain leading or trailing spaces?
+Yes. However, your reversed string should not contain leading or trailing spaces.</li>
+<li>How about multiple spaces between two words?
+Reduce them to a single space in the reversed string.</li>
+</ul>
+</blockquote>
+<p>翻转一个字符串中的单词, 先翻转整个字符串然后再把每一个单词都翻转一次即可. 但是要考虑输入字符串前后的空格和单词间多余空格.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">reverseWords</span><span class="params">(string &amp;s)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">trimString</span>(s);</span><br><span class="line">        <span class="built_in">reverse</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="type">int</span> j;</span><br><span class="line">            <span class="keyword">for</span>(j = i + <span class="number">1</span>; j &lt; s.<span class="built_in">size</span>() &amp;&amp; s[j] != <span class="string">&#x27; &#x27;</span>; j++);</span><br><span class="line">            <span class="built_in">reverse</span>(s.<span class="built_in">begin</span>() + i, s.<span class="built_in">begin</span>() + j);</span><br><span class="line">            <span class="keyword">if</span>(j == s.<span class="built_in">size</span>())&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(j + <span class="number">1</span> &lt; s.<span class="built_in">size</span>() &amp;&amp; s[j + <span class="number">1</span>] == <span class="string">&#x27; &#x27;</span>) s.<span class="built_in">erase</span>(j + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">                i = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">trimString</span><span class="params">(string &amp;s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(s.<span class="built_in">front</span>() == <span class="string">&#x27; &#x27;</span>) s.<span class="built_in">erase</span>(s.<span class="built_in">begin</span>());</span><br><span class="line">        <span class="keyword">while</span>(s.<span class="built_in">back</span>() == <span class="string">&#x27; &#x27;</span>) s.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/10/10/leetcode-417-pacific-atlantic-water-flow/">LeetCode 417. Pacific Atlantic Water Flow</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Oct 10, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <p>题目描述:</p>
+<blockquote>
+<p>Given an <code>m x n</code> matrix of non-negative integers representing the height of each unit cell in a continent, the “Pacific ocean” touches the left and top edges of the matrix and the “Atlantic ocean” touches the right and bottom edges.</p>
+<p>Water can only flow in four directions (up, down, left, or right) from a cell to another one with height equal or lower.</p>
+<p>Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.</p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>The order of returned grid coordinates does not matter.</li>
+<li>Both <em>m</em> and <em>n</em> are less than 150.</li>
+</ol>
+<p><strong>Example:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Given the following 5x5 matrix:</span><br><span class="line"></span><br><span class="line">  Pacific ~   ~   ~   ~   ~ </span><br><span class="line">       ~  1   2   2   3  (5) *</span><br><span class="line">       ~  3   2   3  (4) (4) *</span><br><span class="line">       ~  2   4  (5)  3   1  *</span><br><span class="line">       ~ (6) (7)  1   4   5  *</span><br><span class="line">       ~ (5)  1   1   2   4  *</span><br><span class="line">          *   *   *   *   * Atlantic</span><br><span class="line"></span><br><span class="line">Return:</span><br><span class="line"></span><br><span class="line">[[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>比较直接的搜索题, 用BFS或者DFS分别找出所有与Pacific连接的位置和与Atlantic连接的位置, 然后求它们的交集.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">int</span> col, row;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; <span class="built_in">pacificAtlantic</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">if</span>(matrix.<span class="built_in">empty</span>()) <span class="keyword">return</span> ans;</span><br><span class="line">        <span class="keyword">if</span>(matrix[<span class="number">0</span>].<span class="built_in">empty</span>()) <span class="keyword">return</span> ans;</span><br><span class="line">        row = matrix.<span class="built_in">size</span>(), col = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">pacificVisited</span>(row, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(col, <span class="number">0</span>)), <span class="built_in">atlanticVisited</span>(row, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(col, <span class="number">0</span>));</span><br><span class="line">        unordered_set&lt;<span class="type">long</span> <span class="type">long</span>&gt; pacific, atlantic;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; col; i++)&#123;</span><br><span class="line">            <span class="built_in">BFS</span>(matrix, <span class="number">0</span>, i, pacificVisited, pacific);</span><br><span class="line">            <span class="built_in">BFS</span>(matrix, row - <span class="number">1</span>, i, atlanticVisited, atlantic);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; row; i++)&#123;</span><br><span class="line">            <span class="built_in">BFS</span>(matrix, i, <span class="number">0</span>, pacificVisited, pacific);</span><br><span class="line">            <span class="built_in">BFS</span>(matrix, i, col - <span class="number">1</span>, atlanticVisited, atlantic);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> i : pacific)&#123;</span><br><span class="line">            <span class="keyword">if</span>(atlantic.<span class="built_in">count</span>(i))</span><br><span class="line">                ans.<span class="built_in">push_back</span>(<span class="built_in">pair</span>&lt;<span class="type">int</span>, <span class="type">int</span>&gt;(i &gt;&gt; <span class="number">32</span>, i &amp; <span class="number">-1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">BFS</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; matrix, <span class="type">int</span> x, <span class="type">int</span> y, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; &amp;visited, unordered_set&lt;<span class="type">long</span> <span class="type">long</span>&gt; &amp;ocean)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(visited[x][y]) <span class="keyword">return</span>;</span><br><span class="line">        queue&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; q;</span><br><span class="line">        q.<span class="built_in">push</span>(<span class="built_in">pair</span>&lt;<span class="type">int</span>, <span class="type">int</span>&gt;(x, y));</span><br><span class="line">        ocean.<span class="built_in">insert</span>((<span class="type">long</span> <span class="type">long</span>)x &lt;&lt; <span class="number">32</span> | (<span class="type">long</span> <span class="type">long</span>)y);</span><br><span class="line">        visited[x][y] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; p = q.<span class="built_in">front</span>();</span><br><span class="line">            <span class="keyword">if</span>(p.first &gt; <span class="number">0</span> &amp;&amp; !visited[p.first - <span class="number">1</span>][p.second] &amp;&amp; matrix[p.first][p.second] &lt;= matrix[p.first - <span class="number">1</span>][p.second])&#123;</span><br><span class="line">                visited[p.first - <span class="number">1</span>][p.second] = <span class="number">1</span>;</span><br><span class="line">                pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; nextP = <span class="built_in">pair</span>&lt;<span class="type">int</span>, <span class="type">int</span>&gt;(p.first - <span class="number">1</span>, p.second);</span><br><span class="line">                ocean.<span class="built_in">insert</span>((<span class="type">long</span> <span class="type">long</span>)nextP.first &lt;&lt; <span class="number">32</span> | (<span class="type">long</span> <span class="type">long</span>)nextP.second);</span><br><span class="line">                q.<span class="built_in">push</span>(nextP);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p.first &lt; row - <span class="number">1</span> &amp;&amp; !visited[p.first + <span class="number">1</span>][p.second] &amp;&amp; matrix[p.first][p.second] &lt;= matrix[p.first + <span class="number">1</span>][p.second])&#123;</span><br><span class="line">                visited[p.first + <span class="number">1</span>][p.second] = <span class="number">1</span>;</span><br><span class="line">                pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; nextP = <span class="built_in">pair</span>&lt;<span class="type">int</span>, <span class="type">int</span>&gt;(p.first + <span class="number">1</span>, p.second);</span><br><span class="line">                ocean.<span class="built_in">insert</span>((<span class="type">long</span> <span class="type">long</span>)nextP.first &lt;&lt; <span class="number">32</span> | (<span class="type">long</span> <span class="type">long</span>)nextP.second);</span><br><span class="line">                q.<span class="built_in">push</span>(nextP);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p.second &gt; <span class="number">0</span> &amp;&amp; !visited[p.first][p.second - <span class="number">1</span>] &amp;&amp; matrix[p.first][p.second] &lt;= matrix[p.first][p.second - <span class="number">1</span>])&#123;</span><br><span class="line">                visited[p.first][p.second - <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; nextP = <span class="built_in">pair</span>&lt;<span class="type">int</span>, <span class="type">int</span>&gt;(p.first, p.second - <span class="number">1</span>);</span><br><span class="line">                ocean.<span class="built_in">insert</span>((<span class="type">long</span> <span class="type">long</span>)nextP.first &lt;&lt; <span class="number">32</span> | (<span class="type">long</span> <span class="type">long</span>)nextP.second);</span><br><span class="line">                q.<span class="built_in">push</span>(nextP);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(p.second &lt; col - <span class="number">1</span> &amp;&amp; !visited[p.first][p.second + <span class="number">1</span>] &amp;&amp; matrix[p.first][p.second] &lt;= matrix[p.first][p.second + <span class="number">1</span>])&#123;</span><br><span class="line">                visited[p.first][p.second + <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">                pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; nextP = <span class="built_in">pair</span>&lt;<span class="type">int</span>, <span class="type">int</span>&gt;(p.first, p.second + <span class="number">1</span>);</span><br><span class="line">                ocean.<span class="built_in">insert</span>((<span class="type">long</span> <span class="type">long</span>)nextP.first &lt;&lt; <span class="number">32</span> | (<span class="type">long</span> <span class="type">long</span>)nextP.second);</span><br><span class="line">                q.<span class="built_in">push</span>(nextP);</span><br><span class="line">            &#125;</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+      <a class="prev" href="/page/20/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/page/22/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:xiadong.main@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.facebook.com/xiadong1994" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/dong-xia" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/Shell32-Natsu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="friend-links">
+    <span>Links:&nbsp;</span>
+    
+        <a target="_blank" rel="noopener" href="https://wf94.github.io/" class="friend-links-item">打满鸡血来刷题</a>
+    
+        <a target="_blank" rel="noopener" href="http://tianyuh.com/" class="friend-links-item">塞外麾下炙</a>
+    
+</div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2026
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shell32</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=3.0.0" defer></script>
+
+  </body>
+</html>

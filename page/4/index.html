@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=3.0.0" />
+
+
+
+<link rel="canonical" href="http://blog.xiadong.info/page/4/"/>
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shell32">
+<meta property="og:url" content="http://blog.xiadong.info/page/4/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Shell32">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=3.0.0" />
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97442160-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> Shell32 </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Shell32</a>
+  </div>
+  <div class="mobile-navbar-icon icon-out">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+        <li class="mobile-menu-item">
+          
+          
+            Search
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Shell32</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+            
+            
+              Search
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/05/21/LeetCode-836-Rectangle-Overlap/">LeetCode 836. Rectangle Overlap</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 21, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>A rectangle is represented as a list <code>[x1, y1, x2, y2]</code>, where <code>(x1, y1)</code> are the coordinates of its bottom-left corner, and <code>(x2, y2)</code> are the coordinates of its top-right corner.</p>
+<p>Two rectangles overlap if the area of their intersection is positive.  To be clear, two rectangles that only touch at the corner or edges do not overlap.</p>
+<p>Given two rectangles, return whether they overlap.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: rec1 = [0,0,2,2], rec2 = [1,1,3,3]</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: rec1 = [0,0,1,1], rec2 = [1,0,2,1]</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+<p><strong>Notes:</strong></p>
+<ol>
+<li>Both rectangles <code>rec1</code> and <code>rec2</code> are lists of 4 integers.</li>
+<li>All coordinates in rectangles will be between <code>-10^9 </code>and<code> 10^9</code>.</li>
+</ol>
+          <div class="read-more">
+            <a href="/2018/05/21/LeetCode-836-Rectangle-Overlap/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/05/17/%E5%9C%A8CMU-solo-OS%E6%98%AF%E4%B8%80%E7%A7%8D%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BD%93%E9%AA%8C/">在CMU Solo OS是一种怎样的体验？</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          May 17, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>我想很多CMU的同学在选课的时候都搜到过关于<a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~410/">15410/15605 Operating System Design and Implementation</a>这门课的传说，比如<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/28249230/answer/131257766">这篇</a>，比如<a target="_blank" rel="noopener" href="http://www.1point3acres.com/bbs/thread-198949-1-1.html">这篇</a>。BTW，我是从前面那篇介绍知道的这门课。以前学长们的介绍都挺详细了，我在这里就是记录一下我这个学期上这门课的体会吧，有很多地方与前人的介绍会有重复，毕竟这门课应该好久没有改过了😑。</p>
+          <div class="read-more">
+            <a href="/2018/05/17/%E5%9C%A8CMU-solo-OS%E6%98%AF%E4%B8%80%E7%A7%8D%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BD%93%E9%AA%8C/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/04/07/%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%EF%BC%88%E8%92%99%E6%8F%90%E9%9C%8D%E5%B0%94%E9%97%AE%E9%A2%98%EF%BC%89/">三门问题（蒙提霍尔问题）</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Apr 7, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>三门问题，又称<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/%E8%92%99%E6%8F%90%E9%9C%8D%E7%88%BE%E5%95%8F%E9%A1%8C">蒙提霍尔问题</a>我很久以前就在网上看到过，但是一直对于网上流传的各种复杂的概率解释没什么兴趣，也一直没有想明白。昨天跟朋友突然说起这个问题，起因是虎扑的这个<a target="_blank" rel="noopener" href="https://bbs.hupu.com/21882854.html">帖子</a>试图用蒙特卡罗模拟来实验一下（可惜的是，这个程序写的有点小错误，不知道你发现没有），也激发了我想来用程序模拟一下的想法，没想到思考了一会之后发现从逻辑的角度来说可以非常简单的解释和理解，不需要任何概率统计的知识（或者说，小学水平？）。</p>
+          <div class="read-more">
+            <a href="/2018/04/07/%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%EF%BC%88%E8%92%99%E6%8F%90%E9%9C%8D%E5%B0%94%E9%97%AE%E9%A2%98%EF%BC%89/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/03/18/LeetCode-803-Bricks-Falling-When-Hit/">LeetCode 803. Bricks Falling When Hit</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 18, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>We have a grid of 1s and 0s; the 1s in a cell represent bricks. A brick will not drop if and only if it is directly connected to the top of the grid, or at least one of its (4-way) adjacent bricks will not drop.</p>
+<p>We will do some erasures sequentially. Each time we want to do the erasure at the location (i, j), the brick (if it exists) on that location will disappear, and then some other bricks may drop because of that erasure.</p>
+<p>Return an array representing the number of bricks that will drop after each erasure in sequence.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line">Input: </span><br><span class="line">grid = [[1,0,0,0],[1,1,1,0]]</span><br><span class="line">hits = [[1,0]]</span><br><span class="line">Output: [2]</span><br><span class="line">Explanation: </span><br><span class="line">If we erase the brick at (1, 0), the brick at (1, 1) and (1, 2) will drop. So we should return 2.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Example 2:</span><br><span class="line">Input: </span><br><span class="line">grid = [[1,0,0,0],[1,1,0,0]]</span><br><span class="line">hits = [[1,1],[1,0]]</span><br><span class="line">Output: [0,0]</span><br><span class="line">Explanation: </span><br><span class="line">When we erase the brick at (1, 0), the brick at (1, 1) has already disappeared due to the last move. So each erasure will cause no bricks dropping.  Note that the erased brick (1, 0) will not be counted as a dropped brick.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The number of rows and columns in the grid will be in the range [1, 200].</li>
+<li>The number of erasures will not exceed the area of the grid.</li>
+<li>It is guaranteed that each erasure will be located inside the grid.</li>
+<li>An erasure may refer to a location with no brick - if it does, no bricks drop.</li>
+</ul>
+          <div class="read-more">
+            <a href="/2018/03/18/LeetCode-803-Bricks-Falling-When-Hit/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/03/18/LeetCode-802-Find-Eventual-Safe-States/">LeetCode 802. Find Eventual Safe States</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 18, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>In a directed graph, we start at some node and every turn, walk along a directed edge of the graph. If we reach a node that is terminal (that is, it has no outgoing directed edges), we stop.</p>
+<p>Now, say our starting node is *eventually safe *if and only if we must eventually walk to a terminal node. More specifically, there exists a natural number <code>K</code> so that for any choice of where to walk, we must have stopped at a terminal node in less than <code>K</code> steps.</p>
+<p>Which nodes are eventually safe? Return them as an array in sorted order.</p>
+<p>The directed graph has <code>N</code> nodes with labels <code>0, 1, ..., N-1</code>, where <code>N</code> is the length of <code>graph</code>. The graph is given in the following form: <code>graph[i]</code> is a list of labels <code>j</code> such that <code>(i, j)</code> is a directed edge of the graph.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">Input: graph = [[1,2],[2,3],[5],[0],[5],[],[]]</span><br><span class="line">Output: [2,4,5,6]</span><br><span class="line">Here is a diagram of the above graph.</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/17/picture1.png"><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/03/17/picture1.png" alt="Illustration of graph"></a></p>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>graph</code> will have length at most <code>10000</code>.</li>
+<li>The number of edges in the graph will not exceed <code>32000</code>.</li>
+<li>Each <code>graph[i]</code> will be a sorted list of different integers, chosen within the range <code>[0, graph.length - 1]</code>.</li>
+</ul>
+          <div class="read-more">
+            <a href="/2018/03/18/LeetCode-802-Find-Eventual-Safe-States/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/03/18/LeetCode-801-Minimum-Swaps-To-Make-Sequences-Increasing/">LeetCode 801. Minimum Swaps To Make Sequences Increasing</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 18, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>We have two integer sequences <code>A</code> and <code>B</code> of the same non-zero length.</p>
+<p>We are allowed to swap elements <code>A[i]</code> and <code>B[i]</code>. Note that both elements are in the same index position in their respective sequences.</p>
+<p>At the end of some number of swaps, <code>A</code> and <code>B</code> are both strictly increasing. (A sequence is <em>strictly increasing</em> if and only if <code>A[0] &lt; A[1] &lt; A[2] &lt; ... &lt; A[A.length - 1]</code>.)</p>
+<p>Given A and B, return the minimum number of swaps to make both sequences strictly increasing. It is guaranteed that the given input always makes it possible.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">Input: A = [1,3,5,4], B = [1,2,3,7]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: </span><br><span class="line">Swap A[3] and B[3].  Then the sequences are:</span><br><span class="line">A = [1, 3, 5, 7] and B = [1, 2, 3, 4]</span><br><span class="line">which are both strictly increasing.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>A, B</code> are arrays with the same length, and that length will be in the range <code>[1, 1000]</code>.</li>
+<li><code>A[i], B[i]</code> are integer values in the range <code>[0, 2000]</code>.</li>
+</ul>
+          <div class="read-more">
+            <a href="/2018/03/18/LeetCode-801-Minimum-Swaps-To-Make-Sequences-Increasing/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/03/18/LeetCode-800-Similar-RGB-Color/">LeetCode 800. Similar RGB Color</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Mar 18, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>In the following, every capital letter represents some hexadecimal digit from <code>0</code> to <code>f</code>.</p>
+<p>The red-green-blue color <code>&quot;#AABBCC&quot;</code> can be written as <code>&quot;#ABC&quot;</code> in shorthand. For example, <code>&quot;#15c&quot;</code> is shorthand for the color <code>&quot;#1155cc&quot;</code>.</p>
+<p>Now, say the similarity between two colors <code>&quot;#ABCDEF&quot;</code> and <code>&quot;#UVWXYZ&quot;</code> is <code>-(AB - UV)^2 - (CD - WX)^2 - (EF - YZ)^2</code>.</p>
+<p>Given the color <code>&quot;#ABCDEF&quot;</code>, return a 7 character color that is most similar to <code>#ABCDEF</code>, and has a shorthand (that is, it can be represented as some <code>&quot;#XYZ&quot;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Example 1:</span><br><span class="line">Input: color = &quot;#09f166&quot;</span><br><span class="line">Output: &quot;#11ee66&quot;</span><br><span class="line">Explanation:  </span><br><span class="line">The similarity is -(0x09 - 0x11)^2 -(0xf1 - 0xee)^2 - (0x66 - 0x66)^2 = -64 -9 -0 = -73.</span><br><span class="line">This is the highest among any shorthand color.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li><code>color</code> is a string of length <code>7</code>.</li>
+<li><code>color</code> is a valid RGB color: for <code>i &gt; 0</code>, <code>color[i]</code> is a hexadecimal digit from <code>0</code> to <code>f</code></li>
+<li>Any answer which has the same (highest) similarity as the best answer will be accepted.</li>
+<li>All inputs and outputs should use lowercase letters, and the output is 7 characters.</li>
+</ul>
+          <div class="read-more">
+            <a href="/2018/03/18/LeetCode-800-Similar-RGB-Color/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/01/14/LeetCode-765-Couples-Holding-Hands/">LeetCode 765. Couples Holding Hands</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jan 14, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>N couples sit in 2N seats arranged in a row and want to hold hands. We want to know the minimum number of swaps so that every couple is sitting side by side. A <em>swap</em> consists of choosing <strong>any</strong> two people, then they stand up and switch seats.</p>
+<p>The people and seats are represented by an integer from <code>0</code> to <code>2N-1</code>, the couples are numbered in order, the first couple being <code>(0, 1)</code>, the second couple being <code>(2, 3)</code>, and so on with the last couple being <code>(2N-2, 2N-1)</code>.</p>
+<p>The couples’ initial seating is given by <code>row[i]</code> being the value of the person who is initially sitting in the i-th seat.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: row = [0, 2, 1, 3]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: We only need to swap the second (row[1]) and third (row[2]) person.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: row = [3, 2, 0, 1]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: All couples are already seated side by side.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>len(row)</code> is even and in the range of <code>[4, 60]</code>.</li>
+<li><code>row</code> is guaranteed to be a permutation of <code>0...len(row)-1</code>.</li>
+</ol>
+          <div class="read-more">
+            <a href="/2018/01/14/LeetCode-765-Couples-Holding-Hands/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/01/14/LeetCode-764-Largest-Plus-Sign/">LeetCode 764. Largest Plus Sign</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jan 14, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>In a 2D <code>grid</code> from (0, 0) to (N-1, N-1), every cell contains a <code>1</code>, except those cells in the given list <code>mines</code> which are <code>0</code>. What is the largest axis-aligned plus sign of <code>1</code>s contained in the grid? Return the order of the plus sign. If there is none, return 0.</p>
+<p>An “<em>axis-aligned plus sign of 1s</em> of order <strong>k</strong>” has some center <code>grid[x][y] = 1</code> along with 4 arms of length <code>k-1</code> going up, down, left, and right, and made of <code>1</code>s. This is demonstrated in the diagrams below. Note that there could be <code>0</code>s or <code>1</code>s beyond the arms of the plus sign, only the relevant area of the plus sign is checked for 1s.</p>
+<p><strong>Examples of Axis-Aligned Plus Signs of Order k:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Order 1:</span><br><span class="line">000</span><br><span class="line">010</span><br><span class="line">000</span><br><span class="line"></span><br><span class="line">Order 2:</span><br><span class="line">00000</span><br><span class="line">00100</span><br><span class="line">01110</span><br><span class="line">00100</span><br><span class="line">00000</span><br><span class="line"></span><br><span class="line">Order 3:</span><br><span class="line">0000000</span><br><span class="line">0001000</span><br><span class="line">0001000</span><br><span class="line">0111110</span><br><span class="line">0001000</span><br><span class="line">0001000</span><br><span class="line">0000000</span><br></pre></td></tr></table></figure>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 5, mines = [[4, 2]]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation:</span><br><span class="line">11111</span><br><span class="line">11111</span><br><span class="line">11111</span><br><span class="line">11111</span><br><span class="line">11011</span><br><span class="line">In the above grid, the largest plus sign can only be order 2.  One of them is marked in bold.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 2, mines = []</span><br><span class="line">Output: 1</span><br><span class="line">Explanation:</span><br><span class="line">There is no plus sign of order 2, but there is of order 1.</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: N = 1, mines = [[0, 0]]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation:</span><br><span class="line">There is no plus sign, so return 0.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>N</code> will be an integer in the range <code>[1, 500]</code>.</li>
+<li><code>mines</code> will have length at most <code>5000</code>.</li>
+<li><code>mines[i]</code> will be length 2 and consist of integers in the range <code>[0, N-1]</code>.</li>
+<li><em>(Additionally, programs submitted in C, C++, or C# will be judged with a slightly smaller time limit.)</em></li>
+</ol>
+          <div class="read-more">
+            <a href="/2018/01/14/LeetCode-764-Largest-Plus-Sign/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/01/14/LeetCode-763-Partition-Labels/">LeetCode 763. Partition Labels</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jan 14, 2018
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>A string <code>S</code> of lowercase letters is given. We want to partition this string into as many parts as possible so that each letter appears in at most one part, and return a list of integers representing the size of these parts.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: S = &quot;ababcbacadefegdehijhklij&quot;</span><br><span class="line">Output: [9,7,8]</span><br><span class="line">Explanation:</span><br><span class="line">The partition is &quot;ababcbaca&quot;, &quot;defegde&quot;, &quot;hijhklij&quot;.</span><br><span class="line">This is a partition so that each letter appears in at most one part.</span><br><span class="line">A partition like &quot;ababcbacadefegde&quot;, &quot;hijhklij&quot; is incorrect, because it splits S into less parts.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>S</code> will have length in range <code>[1, 500]</code>.</li>
+<li><code>S</code> will consist of lowercase letters (<code>'a'</code> to <code>'z'</code>) only.</li>
+</ol>
+          <div class="read-more">
+            <a href="/2018/01/14/LeetCode-763-Partition-Labels/" class="read-more-link">Read more..</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+      <a class="prev" href="/page/3/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/page/5/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:xiadong.main@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.facebook.com/xiadong1994" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/dong-xia" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/Shell32-Natsu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="friend-links">
+    <span>Links:&nbsp;</span>
+    
+        <a target="_blank" rel="noopener" href="https://wf94.github.io/" class="friend-links-item">打满鸡血来刷题</a>
+    
+        <a target="_blank" rel="noopener" href="http://tianyuh.com/" class="friend-links-item">塞外麾下炙</a>
+    
+</div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2026
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shell32</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=3.0.0" defer></script>
+
+  </body>
+</html>

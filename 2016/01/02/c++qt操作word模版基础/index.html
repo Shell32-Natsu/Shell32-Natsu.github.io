@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="C++&Qt操作Word模版基础"/>
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=3.0.0" />
+
+
+
+<link rel="canonical" href="http://blog.xiadong.info/2016/01/02/c++qt操作word模版基础/"/>
+
+
+<meta name="description" content="项目中要对Word模版进行操作, 使用C++&amp;Qt进行开发, 将学到的东西记录如下. 0 参考链接   https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;OLE_Automation   http:&#x2F;&#x2F;www.cgoakley.org&#x2F;prog&#x2F;oleaut.html   https:&#x2F;&#x2F;zh.wikipedia.org&#x2F;wiki&#x2F;ActiveX   http:&#x2F;&#x2F;www.osc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++&amp;Qt操作Word模版基础">
+<meta property="og:url" content="http://blog.xiadong.info/2016/01/02/c++qt%E6%93%8D%E4%BD%9Cword%E6%A8%A1%E7%89%88%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="项目中要对Word模版进行操作, 使用C++&amp;Qt进行开发, 将学到的东西记录如下. 0 参考链接   https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;OLE_Automation   http:&#x2F;&#x2F;www.cgoakley.org&#x2F;prog&#x2F;oleaut.html   https:&#x2F;&#x2F;zh.wikipedia.org&#x2F;wiki&#x2F;ActiveX   http:&#x2F;&#x2F;www.osc">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-Vh0Ca5Homwc/VofF7M2vCwI/AAAAAAAAD0M/BazOwEELCWwZjizGLApPj9JHnXGzQARrACCo/s800/20160102200655.png">
+<meta property="og:image" content="https://lh3.googleusercontent.com/-dAT5kINBxfQ/VofF7O-Oo7I/AAAAAAAAA18/iiKZDWcC8wo/s800-Ic42/20160102204208.png">
+<meta property="article:published_time" content="2016-01-02T21:03:40.000Z">
+<meta property="article:modified_time" content="2026-03-13T20:08:46.126Z">
+<meta property="article:author" content="Shell32">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lh3.googleusercontent.com/-Vh0Ca5Homwc/VofF7M2vCwI/AAAAAAAAD0M/BazOwEELCWwZjizGLApPj9JHnXGzQARrACCo/s800/20160102200655.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=3.0.0" />
+
+
+
+  
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-97442160-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> C++&Qt操作Word模版基础 · Shell32 </title>
+  <meta name="generator" content="Hexo 7.3.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Shell32</a>
+  </div>
+  <div class="mobile-navbar-icon icon-out">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            Tags
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            Categories
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            About
+          
+        </li>
+      </a>
+    
+      <a target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+        <li class="mobile-menu-item">
+          
+          
+            Search
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Shell32</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              Tags
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              Categories
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              About
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" target="_blank" rel="noopener" href="https://cse.google.com/cse/publicurl?cx=007205548471419455342:wndla_xl_3e">
+            
+            
+              Search
+            
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          C++&Qt操作Word模版基础
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          Jan 2, 2016
+        </span>
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-text">0 参考链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">1 基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-OLE-Automation"><span class="toc-text">1.1 OLE Automation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-ActiveX"><span class="toc-text">1.2 ActiveX</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Qt%E4%B8%AD%E7%9A%84ActiveX-5"><span class="toc-text">2 Qt中的ActiveX[5]</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Qt%E4%B8%AD%E4%BD%BF%E7%94%A8ActiveX-4"><span class="toc-text">3 Qt中使用ActiveX[4]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">3.1 准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%9C%A8%E9%A1%B9%E7%9B%AE%E7%9A%84-pro%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A2%9E%E5%8A%A0%E5%A6%82%E4%B8%8B%E4%B8%80%E8%A1%8C"><span class="toc-text">3.2 在项目的.pro文件中增加如下一行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%96%B0%E5%BB%BAQt%E9%A1%B9%E7%9B%AE-%E8%BE%93%E5%85%A5%E5%A6%82%E4%B8%8B%E4%BB%A3%E7%A0%81"><span class="toc-text">3.3 新建Qt项目,输入如下代码:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="toc-text">3.4 运行结果</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>项目中要对Word模版进行操作, 使用C++&amp;Qt进行开发, 将学到的东西记录如下.</p>
+<h2 id="0-参考链接">0 参考链接</h2>
+<ol>
+<li>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/OLE_Automation">https://en.wikipedia.org/wiki/OLE_Automation</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://www.cgoakley.org/prog/oleaut.html">http://www.cgoakley.org/prog/oleaut.html</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/ActiveX">https://zh.wikipedia.org/wiki/ActiveX</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://www.oschina.net/question/1243014_120926">http://www.oschina.net/question/1243014_120926</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/csxiaoshui/article/details/47333989">http://blog.csdn.net/csxiaoshui/article/details/47333989</a></p>
+</li>
+</ol>
+<h2 id="1-基础知识">1 基础知识</h2>
+<h3 id="1-1-OLE-Automation">1.1 OLE Automation</h3>
+<p>在Windows应用开发中, OLE Automation是一种进程间通信机制. 它基于COM和MFC, 因此在我的项目中并不适用.<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/OLE_Automation">[1]</a><a target="_blank" rel="noopener" href="http://www.cgoakley.org/prog/oleaut.html">[2]</a></p>
+<blockquote>
+<p>OLE（Object Linking and Embedding，对象链接与嵌入），是能让应用程序创建包含不同来源的复合文档的一项技术。OLE不仅是桌面应用程序集成，而且还定义和实现了一种允许应用程序作为软件“对象”（数据集合和操作数据的函数）彼此进行“链接”的机制，这种链接机制和协议称为部件对象模型(Component Object Model),简称COM。OLE可以用来创建复合文档，复合文档包含了创建于不同源应用程序，有着不同类型的数据，因此它可以把文字、声音、图像、表格、应用程序等组合在一起。</p>
+</blockquote>
+<h3 id="1-2-ActiveX">1.2 ActiveX</h3>
+<p>根据Wikipedia<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/ActiveX">[3]</a>, ActiveX的含义是:</p>
+<blockquote>
+<p>ActiveX在广义上是指微软公司的整个COM架构，但是现在通常用来称呼基于标准COM接口来实现对象链接与嵌入（OLE）的ActiveX控件。[1]后者是指从VBX发展而来的，面向微软的Internet Explorer技术而设计的以OCX为扩展名的OLE控件。通过定义容器和组件之间的接口规范，如果编写了一个遵循规范的控件，那么可以很方便地在多种容器中使用而不用修改控件的代码。同样，通过实现标准接口调用，一个遵循规范的容器可以很容易地嵌入任何遵循规范的控件。由于OLE在ActiveX控件中的应用的普及，现在OLE技术中只有少数独立于ActiveX技术，例如复合文档。</p>
+</blockquote>
+<h2 id="2-Qt中的ActiveX-5">2 Qt中的ActiveX<a target="_blank" rel="noopener" href="http://blog.csdn.net/csxiaoshui/article/details/47333989">[5]</a></h2>
+<p>Qt中提供QtActiveX模块来支持ActiveX, 有两种开发方式:</p>
+<ol>
+<li>将已有的COM或者ActiveX空间引入到Qt的应用程序中</li>
+<li>将Qt应用程序或者Qt的对象导出成COM对象或者ActiveX控件供他人使用</li>
+</ol>
+<p>Qt是通过两个模块来支持上述所说的两种方式的:</p>
+<ol>
+<li>使用QAxContainer模块, 通过QAxObject和QAxWidget分别支持COM对象和ActiveX控件的开发, 可以通过这两个对象将外部的COM或者ActiveX组件接入到Qt应用程序.</li>
+<li>使用QAxServer模块, 通过QAxAggregated, QAxBindable和QAxFactory类, 通过了进程内和可执行程序exe两种方式的COM Server模式, 用来将Qt写的内容导出为COM或者ActiveX供他人使用.</li>
+</ol>
+<h2 id="3-Qt中使用ActiveX-4">3 Qt中使用ActiveX<a target="_blank" rel="noopener" href="http://www.oschina.net/question/1243014_120926">[4]</a></h2>
+<p>Qt版本5.4.2, 编译器: MinGW 4.9.1 32-bit.</p>
+<h3 id="3-1-准备工作">3.1 准备工作</h3>
+<p>创建一个Word模版, 插入一个表格和三个书签: pos1, pos2, pos3. 保存为Doc1.dot.</p>
+<p><img src="https://lh3.googleusercontent.com/-Vh0Ca5Homwc/VofF7M2vCwI/AAAAAAAAD0M/BazOwEELCWwZjizGLApPj9JHnXGzQARrACCo/s800/20160102200655.png" alt=""></p>
+<h3 id="3-2-在项目的-pro文件中增加如下一行">3.2 在项目的.pro文件中增加如下一行</h3>
+<pre><code>QT   += axcontainer`&lt;/pre&gt;
+</code></pre>
+<h3 id="3-3-新建Qt项目-输入如下代码">3.3 新建Qt项目,输入如下代码:</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mainwindow.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QAxWidget&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QAxObject&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="function">QApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line">  MainWindow w;</span><br><span class="line">  w.<span class="built_in">show</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//新建一个word应用程序</span></span><br><span class="line">  QAxWidget *word = <span class="keyword">new</span> <span class="built_in">QAxWidget</span>(<span class="string">&quot;Word.Application&quot;</span>, <span class="number">0</span>, Qt::MSWindowsOwnDC);</span><br><span class="line">  <span class="comment">//设置为不可见</span></span><br><span class="line">  word-&gt;<span class="built_in">setProperty</span>(<span class="string">&quot;Visible&quot;</span>, <span class="literal">false</span>);</span><br><span class="line">  <span class="comment">//获取所有工作文档</span></span><br><span class="line">  QAxObject *docs = word-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;Documents&quot;</span>);</span><br><span class="line">  <span class="comment">//新建一个文档</span></span><br><span class="line">  docs-&gt;<span class="built_in">dynamicCall</span>(<span class="string">&quot;Add(QString)&quot;</span>, QString::<span class="built_in">fromLocal8Bit</span>(<span class="string">&quot;E:\\Study\\Design\\WordTempTest\\Doc1.dot&quot;</span>));</span><br><span class="line">  <span class="comment">//获取激活文档</span></span><br><span class="line">  QAxObject *activeDoc = word-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;ActiveDocument&quot;</span>);</span><br><span class="line">  <span class="comment">//获取pos1标签</span></span><br><span class="line">  QAxObject *bookmarkPos1 = activeDoc-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;Bookmarks(QVariant)&quot;</span>, <span class="string">&quot;pos1&quot;</span>);</span><br><span class="line">  <span class="comment">//选中并插入字符</span></span><br><span class="line">  <span class="keyword">if</span>(!bookmarkPos1-&gt;<span class="built_in">isNull</span>())&#123;</span><br><span class="line">    bookmarkPos1-&gt;<span class="built_in">dynamicCall</span>(<span class="string">&quot;Select(void)&quot;</span>);</span><br><span class="line">    bookmarkPos1-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;Range&quot;</span>)-&gt;<span class="built_in">setProperty</span>(<span class="string">&quot;Text&quot;</span>, <span class="string">&quot;pos1&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//获取pos2标签</span></span><br><span class="line">  QAxObject *bookmarkPos2 = activeDoc-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;Bookmarks(QVariant)&quot;</span>, <span class="string">&quot;pos2&quot;</span>);</span><br><span class="line">  <span class="comment">//选中并插入字符</span></span><br><span class="line">  <span class="keyword">if</span>(!bookmarkPos2-&gt;<span class="built_in">isNull</span>())&#123;</span><br><span class="line">    bookmarkPos2-&gt;<span class="built_in">dynamicCall</span>(<span class="string">&quot;Select(void)&quot;</span>);</span><br><span class="line">    bookmarkPos2-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;Range&quot;</span>)-&gt;<span class="built_in">setProperty</span>(<span class="string">&quot;Text&quot;</span>, <span class="string">&quot;pos2&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//获取pos3标签</span></span><br><span class="line">  QAxObject *bookmarkPos3 = activeDoc-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;Bookmarks(QVariant)&quot;</span>, <span class="string">&quot;pos3&quot;</span>);</span><br><span class="line">  <span class="comment">//选中并插入字符</span></span><br><span class="line">  <span class="keyword">if</span>(!bookmarkPos3-&gt;<span class="built_in">isNull</span>())&#123;</span><br><span class="line">    bookmarkPos3-&gt;<span class="built_in">dynamicCall</span>(<span class="string">&quot;Select(void)&quot;</span>);</span><br><span class="line">    bookmarkPos3-&gt;<span class="built_in">querySubObject</span>(<span class="string">&quot;Range&quot;</span>)-&gt;<span class="built_in">setProperty</span>(<span class="string">&quot;Text&quot;</span>, <span class="string">&quot;pos3&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//文档另存为Doc1.doc</span></span><br><span class="line">  activeDoc-&gt;<span class="built_in">dynamicCall</span>(<span class="string">&quot;SaveAs (const QString&amp;)&quot;</span>, <span class="built_in">QString</span>(<span class="string">&quot;E:\\Study\\Design\\WordTempTest\\Doc1.doc&quot;</span>));</span><br><span class="line">  activeDoc-&gt;<span class="built_in">dynamicCall</span>(<span class="string">&quot;Close (boolean)&quot;</span>, <span class="literal">false</span>);</span><br><span class="line">  word-&gt;<span class="built_in">dynamicCall</span>(<span class="string">&quot;Quit()&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> a.<span class="built_in">exec</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-运行结果">3.4 运行结果</h2>
+<p>程序运行后Doc1.doc文件的内容:</p>
+<p><img src="https://lh3.googleusercontent.com/-dAT5kINBxfQ/VofF7O-Oo7I/AAAAAAAAA18/iiKZDWcC8wo/s800-Ic42/20160102204208.png" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/03/16/windows%E5%B9%B3%E5%8F%B0poppler-qt5%E9%A2%84%E7%BC%96%E8%AF%91%E5%BA%93/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Windows平台poppler-qt5预编译库</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+      <a class="next" href="/2015/12/30/windows-10-%E8%87%AA%E5%8A%A8%E9%94%81%E5%B1%8F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+        <span class="next-text nav-default">Windows 10 自动锁屏问题解决</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:xiadong.main@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.facebook.com/xiadong1994" class="iconfont icon-facebook" title="facebook"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/dong-xia" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/Shell32-Natsu" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="friend-links">
+    <span>Links:&nbsp;</span>
+    
+        <a target="_blank" rel="noopener" href="https://wf94.github.io/" class="friend-links-item">打满鸡血来刷题</a>
+    
+        <a target="_blank" rel="noopener" href="http://tianyuh.com/" class="friend-links-item">塞外麾下炙</a>
+    
+</div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+  </span>
+  
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2026
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shell32</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://blog.xiadong.info/2016/01/02/c++qt%E6%93%8D%E4%BD%9Cword%E6%A8%A1%E7%89%88%E5%9F%BA%E7%A1%80/';
+        this.page.identifier = '2016/01/02/c++qt操作word模版基础/';
+        this.page.title = 'C++&Qt操作Word模版基础';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//www-xiadong-info.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=3.0.0" defer></script>
+
+  </body>
+</html>
