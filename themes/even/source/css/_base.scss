@@ -16,18 +16,11 @@ body {
   color: $global-font-color;
   background: $global-background;
   scroll-behavior: smooth;
-  border-top: 3px solid $theme-color;
-}
-
-@include max-screen() {
-  body {
-    border-top: 0;
-  }
 }
 
 ::selection {
-  background: $theme-color;
-  color: #fff; 
+  background: rgba($theme-color, 0.2);
+  color: $global-font-color;
 }
 
 // ::-webkit-scrollbar {
@@ -60,7 +53,9 @@ a {
 @each $header, $size in $global-headings {
   #{$header} {
     font-size: $size;
-    font-family: $global-serif-font-family;
+    font-family: $global-font-family;
+    font-weight: 600;
+    line-height: 1.3;
   }
 }
 
@@ -72,7 +67,6 @@ a {
 @include max-screen() {
   .container {
     width: 100%;
-    box-shadow: -1px -5px 5px $gray;
   }
 }
 

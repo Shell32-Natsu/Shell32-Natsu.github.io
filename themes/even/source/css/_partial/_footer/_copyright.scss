@@ -6,18 +6,25 @@
   margin: $copyright-margin;
   color: $dark-gray;
   text-align: center;
-  font-family: $global-serif-font-family;
+  font-family: $global-font-family;
+  font-size: 13px;
 
   .hexo-link,
   .theme-link {
-    color: $theme-color;
+    color: $dark-gray;
+    border-bottom: 1px solid $light-gray;
+
+    &:hover {
+      color: $theme-color;
+    }
   }
 
   .copyright-year {
     display: block;
+    margin-top: 4px;
 
     .heart {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 }

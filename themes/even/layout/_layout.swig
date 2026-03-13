@@ -35,6 +35,5 @@
     {% include '_script/libs.swig' %}
     {% include '_script/theme.swig' %}
     {% include '_script/search.swig' %}
-    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58f2179bf0859c32"></script> 
   </body>
 </html>

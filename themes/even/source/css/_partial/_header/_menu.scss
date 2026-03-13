@@ -9,8 +9,9 @@
     display: inline-block;
     position: relative;
     padding-left: 0;
-    padding-right: 25px;
-    font-family: 'Bree Serif', $global-serif-font-family;
+    padding-right: 0;
+    font-family: $global-font-family;
+    margin-top: 12px;
 
     .menu-item {
       display: inline-block;
@@ -26,6 +27,12 @@
 
     .menu-item-link {
       font-size: $menu-link-font-size;
+      color: rgba($global-font-color, 0.7);
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: $global-font-color;
+      }
     }
   }
 }

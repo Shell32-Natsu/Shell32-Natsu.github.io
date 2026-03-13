@@ -2,33 +2,33 @@
 .categories {
   margin: 2em 0 3em;
   text-align: center;
-  font-family: $global-serif-font-family;
+  font-family: $global-font-family;
 
   .categories-title {
     display: inline-block;
     font-size: $categories-title-size;
-    color: $theme-color;
+    font-weight: 600;
+    color: $global-font-color;
     border-bottom: $categories-title-border-bottom;
   }
 
   .categories-tags {
-    margin: 10px 0;
+    margin: 20px 0;
 
     .category-link {
       display: inline-block;
       position: relative;
       margin: $categories-tags-link-margin;
       word-wrap: break-word;
-      transition-duration: 0.2s;
-      transition-property: transform;
-      transition-timing-function: ease-out;
+      color: rgba($global-font-color, 0.7);
+      transition: color 0.15s ease;
 
       .category-count {
         display: inline-block;
         position: relative;
-        top: -8px;
+        top: -6px;
         right: -2px;
-        color: $theme-color;
+        color: $dark-gray;
         font-size: $category-count-font-size;
       }
 
@@ -36,7 +36,6 @@
       &:focus,
       &:hover {
         color: $theme-color;
-        transform: scale(1.1);
       }
     }
   }

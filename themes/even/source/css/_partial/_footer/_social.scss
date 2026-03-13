@@ -7,10 +7,12 @@
 
   .iconfont {
     font-size: $social-icon-font-size;
+    color: $dark-gray;
+    transition: color 0.15s ease;
 
     & + .iconfont {
       margin-left: $social-link-margin-left;
-    } 
+    }
 
     &:hover {
       color: $theme-color;

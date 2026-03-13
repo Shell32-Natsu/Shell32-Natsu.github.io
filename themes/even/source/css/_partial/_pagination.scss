@@ -8,12 +8,13 @@
 
   .prev,
   .next {
-    font-weight: 600;
+    font-weight: 500;
     font-size: $pagination-font-size;
-    font-family: $global-serif-font-family;
-    transition-property: transform;
+    font-family: $global-font-family;
+    color: rgba($global-font-color, 0.7);
+    transition-property: transform, color;
     transition-timing-function: ease-out;
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
   }
 
   .prev {

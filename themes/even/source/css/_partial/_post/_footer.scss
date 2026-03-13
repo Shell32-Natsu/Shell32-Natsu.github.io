@@ -11,12 +11,22 @@
     padding: $post-tags-padding;
 
     a {
-      margin-right: 5px;
+      display: inline-block;
+      margin: 4px 8px 4px 0;
+      padding: 2px 10px;
       color: $theme-color;
+      background: $deputy-color;
+      border-radius: 12px;
+      font-size: 13px;
       word-break: break-all;
+      transition: background 0.15s ease;
 
       &::before {
         content: '#';
+      }
+
+      &:hover {
+        background: darken($deputy-color, 3%);
       }
     }
   }
@@ -27,12 +37,13 @@
 
     .prev,
     .next {
-      font-weight: 600;
+      font-weight: 500;
       font-size: $post-nav-font-size;
       font-family: $global-font-family;
-      transition-property: transform;
+      color: rgba($global-font-color, 0.7);
+      transition-property: transform, color;
       transition-timing-function: ease-out;
-      transition-duration: 0.3s;
+      transition-duration: 0.2s;
     }
 
     .prev {

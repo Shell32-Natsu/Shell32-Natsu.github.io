@@ -1,9 +1,13 @@
 .post-header {
+  margin-bottom: 1.5em;
+
   .post-title {
     margin: 0;
     font-size: $post-title-font-size;
     font-weight: $post-title-font-weight;
     font-family: $global-font-family;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   .post-link {
@@ -12,6 +16,7 @@
 
   .post-meta {
     margin-top: $post-meta-margin-top;
+    font-size: 14px;
 
     .post-time {
       color: $post-time-font-color;

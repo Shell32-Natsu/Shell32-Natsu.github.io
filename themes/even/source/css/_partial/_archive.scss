@@ -7,7 +7,7 @@
   max-width: $archive-max-width;
 
   .archive-title {
-    font-family: $global-serif-font-family;
+    font-family: $global-font-family;
 
     &.tag,
     &.category {
@@ -29,13 +29,14 @@
   }
 
   .collection-title {
-    font-family: $global-serif-font-family;
-  
+    font-family: $global-font-family;
+
     .archive-year {
-      margin: 15px 0;
-      font-weight: 400;
+      margin: 24px 0 8px;
+      font-weight: 600;
       font-size: $collection-title-font-size;
       line-height: $collection-title-font-size + 2px;
+      color: $dark-gray;
     }
   }
 
@@ -44,14 +45,16 @@
     border-left: $archive-post-border-left;
 
     .archive-post-time {
-      margin-right: 10px;
+      margin-right: 12px;
       color: $dark-gray;
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
     }
 
     .archive-post-title {
-      
+
       .archive-post-link {
-        color: $theme-color;
+        color: $global-font-color;
       }
     }
 
@@ -69,7 +72,7 @@
       }
 
       .archive-post-title .archive-post-link {
-        color: darken($theme-color, 10%);
+        color: $theme-color;
       }
     }
   }

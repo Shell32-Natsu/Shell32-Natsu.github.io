@@ -2,31 +2,15 @@
 // Variables
 // ==============================
 
-@mixin fontFace($family,$src,$style: normal,$weight: normal) {
-	@font-face {
-		font-family: $family;
-		src: url('#{$src}.eot'); // IE9 compat
-		src: url('#{$src}.eot?#iefix') format('embedded-opentype'), // IE8 and below
-			url('#{$src}.woff') format('woff'), // standards
-			url('#{$src}.ttf') format('truetype'), // Safari, Android, iOS
-			url('#{$src}.svg##{$family}') format('svg'); // legacy iOS
-
-		font-style: $style;
-		font-weight: $weight;
-	}
-}
-
-@include fontFace('MyFont','font/myfont');
-
 // ========== Theme Color ========== //
 // Theme color config from `even/_config.yml`
 $theme-color-config: hexo-theme-config('theme.color');
 
-// Default theme color map
+// Low-saturation, modern color palette
 $theme-color-map: (
   'Default': #c05b4d #f8f5ec,
   'Mint Green': #16982B #f5f5f5,
-  'Cobalt Blue': #0047AB #f0f2f5,
+  'Cobalt Blue': #6b7b8c #f7f6f3,
   'Hot Pink': #FF69B4 #f8f5f5,
   'Dark Violet': #9932CC #f5f4fa
 );
@@ -38,111 +22,97 @@ $theme-color-map: (
 }
 $theme-color-list: map-get($theme-color-map, $theme-color-config);
 
-// Default theme color of the site.
+// Primary accent color — muted slate
 $theme-color: nth($theme-color-list, 1) !default;
 
-// Deputy theme color of the site.
+// Deputy color — warm off-white for code/toc backgrounds
 $deputy-color: nth($theme-color-list, 2) !default;
 
 
 // ========== Color ========== //
-$black: #0a0a0a !default;
-$white: #fefefe !default;
-$light-gray: #e6e6e6 !default;
-$gray: #cacaca !default;
-$dark-gray: #8a8a8a !default;
+$black: #1a1a1a !default;
+$white: #ffffff !default;
+$light-gray: #e9e9e7 !default;
+$gray: #d0d0ce !default;
+$dark-gray: #9b9a97 !default;
 
 
 // ========== Global ========== //
-// Text color of the body.
-$global-font-color: #34495e !default;
+// Text color of the body — warm dark gray, easier on eyes than pure black
+$global-font-color: #37352f !default;
 
 // Font size attribute applied to '<html>' and '<body>'.
 $global-font-size: 16px !default;
 
 // Global width of '<body>'.
-$global-body-width: 800px !default;
+$global-body-width: 720px !default;
 
 // Padding of container main
-$global-container-padding: 0 20px !default;
+$global-container-padding: 0 24px !default;
 
-// Default line height for all type. `$global-lineheight` is 24px while `$global-font-size` is 16px.
-$global-lineheight: 1.5 !default;
+// Default line height — more generous for readability
+$global-lineheight: 1.7 !default;
 
-// Font family of the site.
-$global-font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !default;
-// $global-font-family: 'Noto Serif', 'Noto Serif CJK SC', 'Noto Serif CJK', 'Source Han Serif SC', 'Source Han Serif CN', 'Source Han Serif', 'source-han-serif-sc', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif !default;
+// System font stack — fast, modern, no FOUT
+$global-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif !default;
 
-// Serif font family of the site.
-$global-serif-font-family: Athelas, STHeiti, Microsoft Yahei, serif !default;
+// Serif font family — kept for backwards compat, but mostly unused now
+$global-serif-font-family: $global-font-family !default;
 
 // Background color of the site.
 $global-background: $white !default;
 
 // Headings font size of the site.
 $global-headings: (
-  h1: 2em,
-  h2: 1.5em,
+  h1: 1.8em,
+  h2: 1.45em,
   h3: 1.2em,
-  h4: 1em,
-  h5: 0.8em,
-  h6: 0.6em
+  h4: 1.05em,
+  h5: 0.95em,
+  h6: 0.85em
 ) !default;
 
 
 // ========== Header ========== //
 // Padding of the site header.
-$header-padding: 20px 20px !default;
-
-// Font family: Chancery 
-@font-face {
-  font-family: 'Chancery';
-  src: url('../fonts/chancery/apple-chancery-webfont.eot');
-  src: local('Apple Chancery'), url('../fonts/chancery/apple-chancery-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/chancery/apple-chancery-webfont.woff2') format('woff2'),
-  url('../fonts/chancery/apple-chancery-webfont.woff') format('woff'),
-  url('../fonts/chancery/apple-chancery-webfont.ttf') format('truetype'),
-  url('../fonts/chancery/apple-chancery-webfont.svg#apple-chancery') format('svg');
-  font-weight: lighter;
-  font-style: normal;
-}
+$header-padding: 48px 24px 24px !default;
 
 // Font size of the logo.
-$logo-font-size: 48px !default;
+$logo-font-size: 32px !default;
 
-// Font family of the logo.
-$logo-font-family: 'Chancery', cursive, LiSu, sans-serif !default;
+// Font family of the logo — system font, bold
+$logo-font-family: $global-font-family !default;
 
 // Margin of menu item.
-$menu-item-margin-left: 10px !default;
+$menu-item-margin-left: 24px !default;
 
 // Margin of menu item in mobile.
 $menu-item-mobile-margin: 5px !default;
 
 // Font size of menu item link.
-$menu-link-font-size: 18px !default;
+$menu-link-font-size: 15px !default;
 
 // Height of the mobile header.
-$mobile-navbar-height: 50px !default;
+$mobile-navbar-height: 56px !default;
 
 // ========== Post ========== //
 // Margin bottom of post list.
-$post-list-margin-bottom: 20px !default;
+$post-list-margin-bottom: 32px !default;
 
 // Padding of the post.
-$post-padding: 1em 0 2em !default;
+$post-padding: 2em 0 2.5em !default;
 
 // Border top of the post + post.
 $post-border: 1px solid $light-gray !default;
 
 // Font size of post title.
-$post-title-font-size: 27px !default;
+$post-title-font-size: 26px !default;
 
 // Font weight of post title.
-$post-title-font-weight: 400 !default;
+$post-title-font-weight: 600 !default;
 
 // Margin top of the post meta (post time).
-$post-meta-margin-top: 5px !default;
+$post-meta-margin-top: 8px !default;
 
 // Font color of the post time.
 $post-time-font-color: $dark-gray !default;
@@ -151,16 +121,16 @@ $post-time-font-color: $dark-gray !default;
 $post-readMore-border-bottom: 1px solid $theme-color !default;
 
 // Margin top of the post footer.
-$post-footer-margin-top: 20px !default;
+$post-footer-margin-top: 32px !default;
 
 // Border top of post footer.
 $post-footer-border-top: 1px solid $light-gray !default;
 
 // Padding of the post tags.
-$post-tags-padding: 15px 0 !default;
+$post-tags-padding: 20px 0 !default;
 
 // Font size of post pagination.
-$post-nav-font-size: 18px !default;
+$post-nav-font-size: 16px !default;
 
 
 // ========== TOC ========== //
@@ -171,49 +141,49 @@ $post-toc-width: 200px !default;
 $post-toc-backgroud: rgba($deputy-color, 0.6) !default;
 
 // Font size of the post toc title.
-$post-toc-title-size: 20px !default;
+$post-toc-title-size: 16px !default;
 
 // Font size of the post toc content.
-$post-toc-content: 15px !default;
+$post-toc-content: 13px !default;
 
 // List style of the post toc list.
-$post-toc-list-style: square !default;
+$post-toc-list-style: none !default;
 
 // ========== Content ========== //
 // Headings anchor.
-$content-headings-anchor: "§" !default;
+$content-headings-anchor: "#" !default;
 
 // Border bottom of the link when hover it.
 $content-link-border: 1px solid $theme-color !default;
 
 // Background color of the blockquote.
-$content-blockquote-backgroud: rgba($theme-color, 0.05) !default;
+$content-blockquote-backgroud: $deputy-color !default;
 
 // Border left of the blockquote.
-$content-blockquote-border-left: 3px solid rgba($theme-color, 0.3) !default;
+$content-blockquote-border-left: 3px solid $gray !default;
 
 // Border color of the table.
-$content-table-border-color: darken($deputy-color, 3%) !default;
+$content-table-border-color: $light-gray !default;
 
 // ========== Code ========== //
-// Color of the code.
-$code-color: #c7254e !default;
+// Color of the inline code — desaturated plum
+$code-color: #a05a6c !default;
 
 // Font size of code.
-$code-font-size: 13px !default;
+$code-font-size: 14px !default;
 
-// Font family of the code.
-$code-font-family: Consolas, Monaco, Menlo, Consolas, monospace !default;
+// Font family of the code — modern system mono stack
+$code-font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace !default;
 
-// Color of code highlight, solarized.
+// Color of code highlight — low saturation syntax palette
 $code-highlight-color: (
-  comment: #93a1a1,
-  keyword: #859900,
-  number: #2aa198,
-  name: #268bd2,
-  attribute: #b58900,
-  symbol: #cb4b16,
-  built_in: #dc322f
+  comment: #9b9a97,
+  keyword: #7a8b7f,
+  number: #6b8a99,
+  title: #5b7a99,
+  attribute: #a08a5b,
+  symbol: #a0765b,
+  built_in: #a05a6c
 ) !default;
 
 // Code type list.
@@ -237,7 +207,11 @@ $code-type-list: (
   yml: "YAML",
   stylus: "Stylus",
   sql: "SQL",
-  http: "HTTP"
+  http: "HTTP",
+  go: "Go",
+  rust: "Rust",
+  kotlin: "Kotlin",
+  typescript: "TypeScript"
 ) !default;
 
 // Color of the code background.
@@ -246,24 +220,24 @@ $code-background: $deputy-color !default;
 
 // ========== Pagination ========== //
 // Margin of the pagination.
-$pagination-margin: 2em 0 !default;
+$pagination-margin: 2.5em 0 !default;
 
 // Font size of the pagination (Without post, post pagination see line 140).
-$pagination-font-size: 20px !default;
+$pagination-font-size: 16px !default;
 
 
 // ========== Footer ========== //
 // Margin top of the footer.
-$footer-margin-top: 2em !default;
+$footer-margin-top: 4em !default;
 
-// Margin left of the social link. 
-$social-link-margin-left: 10px !default;
+// Margin left of the social link.
+$social-link-margin-left: 16px !default;
 
 // Font size of the social icon.
-$social-icon-font-size: 30px !default;
+$social-icon-font-size: 24px !default;
 
 // Margin of the copyright.
-$copyright-margin: 10px 0 !default;
+$copyright-margin: 16px 0 32px !default;
 
 
 // ========== Archive ========== //
@@ -271,32 +245,32 @@ $copyright-margin: 10px 0 !default;
 $archive-margin: 2em 0px !default;
 
 // Max width of the archive.
-$archive-max-width: 550px !default;
+$archive-max-width: 600px !default;
 
 // Font size of the archive name.
-$archive-name-font-size: 30px !default;
+$archive-name-font-size: 26px !default;
 
 // Font size of the collection title.
-$collection-title-font-size: 28px !default;
+$collection-title-font-size: 22px !default;
 
 // Padding of the archive post.
-$archive-post-padding: 3px 20px !default;
+$archive-post-padding: 6px 20px !default;
 
 // Padding of the archive post in mobile.
-$archive-post-mobile-padding: 5px 10px !default;
+$archive-post-mobile-padding: 6px 12px !default;
 
 // Font size of the archive post time in mobile.
 $archive-post-mobile-time-font-size: 13px !default;
 
 // Border left of the archive post, use $archive-post-hover-border-left when hover it.
-$archive-post-border-left: 1px solid $gray !default;
-$archive-post-hover-border-left: 3px solid $theme-color !default;
+$archive-post-border-left: 1px solid $light-gray !default;
+$archive-post-hover-border-left: 2px solid $theme-color !default;
 
 // Transition of the archive post when hover it.
-$archive-post-hover-transition: 0.2s ease-out !default;
+$archive-post-hover-transition: 0.15s ease-out !default;
 
 // Transform of the archive post when hover it.
-$archive-post-hover-transform: translateX(4px) !default;
+$archive-post-hover-transform: translateX(2px) !default;
 
 
 // ========== Tags ========== //
@@ -307,7 +281,7 @@ $tag-cloud-title-size: 18px !default;
 $tag-cloud-title-border-bottom: 2px solid $theme-color !default;
 
 // Margin of the tag cloud tags link.
-$tag-cloud-tags-link-margin: 5px 10px !default;
+$tag-cloud-tags-link-margin: 6px 12px !default;
 
 
 // ========== Categories ========== //
@@ -318,7 +292,7 @@ $categories-title-size: 18px !default;
 $categories-title-border-bottom: 2px solid $theme-color !default;
 
 // Margin of the categories tags link.
-$categories-tags-link-margin: 5px 10px !default;
+$categories-tags-link-margin: 6px 12px !default;
 
 // Font size of the category count
 $category-count-font-size: 12px !default;

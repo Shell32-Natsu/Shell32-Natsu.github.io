@@ -5,32 +5,31 @@
 .tag-cloud {
   margin: 2em 0 3em;
   text-align: center;
-  font-family: $global-serif-font-family;
+  font-family: $global-font-family;
 
   .tag-cloud-title {
     display: inline-block;
     font-size: $tag-cloud-title-size;
-    color: $theme-color;
+    font-weight: 600;
+    color: $global-font-color;
     border-bottom: $tag-cloud-title-border-bottom;
   }
 
   .tag-cloud-tags {
-    margin: 10px 0;
+    margin: 20px 0;
 
     a {
       display: inline-block;
       position: relative;
       margin: $tag-cloud-tags-link-margin;
       word-wrap: break-word;
-      transition-duration: 0.2s;
-      transition-property: transform;
-      transition-timing-function: ease-out;
+      color: rgba($global-font-color, 0.7) !important;
+      transition: color 0.15s ease;
 
       &:active,
       &:focus,
       &:hover {
-        color: $theme-color;
-        transform: scale(1.1);
+        color: $theme-color !important;
       }
     }
   }
