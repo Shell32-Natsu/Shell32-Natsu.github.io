@@ -73,9 +73,9 @@ disqus_shortname: www-xiadong-info
 # netease_key: 8c89124062934daf963154d81c305348
 
 # ===========================================
-# Version
+# Version (used as CSS/JS cache-buster query string)
 # ===========================================
-version: 2.3.x
+version: 3.0.0
 
 # ===========================================
 # Friend Links
