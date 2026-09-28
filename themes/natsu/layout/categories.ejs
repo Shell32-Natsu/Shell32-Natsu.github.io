@@ -1,0 +1,17 @@
+<% const cats = site.categories.sort('-length').filter(c => c.length); %>
+<section class="list-page container">
+  <header class="list-header">
+    <p class="eyebrow">分类</p>
+    <h1 class="list-title">所有分类</h1>
+    <p class="list-count">共 <%= cats.length %> 个</p>
+  </header>
+  <div class="collection-grid">
+    <% cats.forEach(cat => { const latest = cat.posts.sort('-date').first(); %>
+      <a class="collection" href="<%- url_for(cat.path) %>">
+        <span class="collection-name"><%= cat.name %></span>
+        <% if (latest) { %><span class="collection-desc">最近：<%= latest.title %></span><% } %>
+        <span class="collection-count"><%= cat.length %> 篇 →</span>
+      </a>
+    <% }) %>
+  </div>
+</section>

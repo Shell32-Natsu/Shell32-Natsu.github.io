@@ -1,0 +1,12 @@
+<% if (page.comments && theme.disqus_shortname) { %>
+<section class="comments container-narrow" id="comments"
+  data-disqus="<%= theme.disqus_shortname %>"
+  data-url="<%= page.permalink %>"
+  data-identifier="<%= page.path %>"
+  data-title="<%= page.title %>">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+<% } %>

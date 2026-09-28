@@ -1,0 +1,19 @@
+<%# Year-grouped list of posts. locals: posts, showCategory %>
+<div class="year-groups" data-filter-list>
+  <% natsu_group_by_year(posts).forEach(group => { %>
+    <section class="year-group">
+      <h2 class="year-label"><span><%= group.year %></span><small><%= group.posts.length %></small></h2>
+      <ol class="post-rows">
+        <% group.posts.forEach(post => { const cat = showCategory ? natsu_category(post) : null; %>
+          <li class="post-row" data-filter-text="<%= (post.title || '').toLowerCase() %>">
+            <a href="<%- url_for(post.path) %>">
+              <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'MM.DD') %></time>
+              <span class="post-row-title"><%= post.title %></span>
+              <% if (cat) { %><span class="post-row-tag"><%= cat.name %></span><% } %>
+            </a>
+          </li>
+        <% }) %>
+      </ol>
+    </section>
+  <% }) %>
+</div>

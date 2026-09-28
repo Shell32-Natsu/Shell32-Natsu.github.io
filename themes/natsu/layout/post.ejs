@@ -1,0 +1,64 @@
+<%
+  const cat = natsu_category(page);
+  const tocHtml = theme.toc && page.toc !== false ? toc(page.content, { list_number: false, max_depth: 3 }) : '';
+  const older = page.next;
+  const newer = page.prev;
+%>
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <% if (cat) { %><a href="<%- url_for(cat.path) %>"><%= cat.name %></a><% } %>
+    </div>
+    <h1 class="post-title"><%= page.title %></h1>
+    <div class="post-meta">
+      <time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY 年 M 月 D 日') %></time>
+      <span aria-hidden="true">·</span>
+      <span>约 <%= natsu_reading_minutes(page.content) %> 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body<%= tocHtml ? ' has-toc' : '' %>">
+    <% if (tocHtml) { %>
+      <aside class="post-toc" aria-label="目录">
+        <p class="toc-title">目录</p>
+        <%- tocHtml %>
+      </aside>
+      <details class="toc-inline">
+        <summary>目录</summary>
+        <%- tocHtml %>
+      </details>
+    <% } %>
+    <div class="prose">
+      <%- page.content %>
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    <% if (page.tags && page.tags.length) { %>
+      <ul class="tag-list" aria-label="标签">
+        <% page.tags.forEach(tag => { %>
+          <li><a class="tag" href="<%- url_for(tag.path) %>">#<%= tag.name %></a></li>
+        <% }) %>
+      </ul>
+    <% } %>
+
+    <% if (older || newer) { %>
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        <% if (older) { %>
+          <a class="post-nav-item prev" href="<%- url_for(older.path) %>">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title"><%= older.title %></span>
+          </a>
+        <% } else { %><span></span><% } %>
+        <% if (newer) { %>
+          <a class="post-nav-item next" href="<%- url_for(newer.path) %>">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title"><%= newer.title %></span>
+          </a>
+        <% } %>
+      </nav>
+    <% } %>
+  </footer>
+
+  <%- partial('_partial/comments') %>
+</article>

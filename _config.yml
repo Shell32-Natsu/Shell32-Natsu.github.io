@@ -7,7 +7,7 @@ title: Shell32
 subtitle: Life/Code
 description:
 author: Shell32
-language: en
+language: zh-CN
 timezone:
 
 # URL
@@ -44,11 +44,11 @@ future: true
 
 syntax_highlighter: highlight.js
 highlight:
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
-  wrap: true
-  hljs: false
+  wrap: false
+  hljs: true
 
 # Category & Tag
 default_category: uncategorized
@@ -67,10 +67,20 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
+# Archive / tag / category pages list every post on one page
+archive_generator:
+  per_page: 0
+  yearly: true
+  monthly: true
+tag_generator:
+  per_page: 0
+category_generator:
+  per_page: 0
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: even
+theme: natsu
 
 # Markdown-it config
 ## Docs: https://github.com/hexojs/hexo-renderer-markdown-it

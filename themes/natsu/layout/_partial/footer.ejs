@@ -1,0 +1,23 @@
+<% const year = date(Date.now(), 'YYYY'); %>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; <%= theme.since && theme.since != year ? theme.since + '–' : '' %><%= year %> <%= config.author %></span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      <% Object.entries(theme.social || {}).forEach(([name, href]) => { if (!href) return; %>
+        <a href="<%- href %>"<% if (!href.startsWith('mailto:')) { %> rel="me noopener" target="_blank"<% } %>><%= name %></a>
+      <% }) %>
+      <a href="<%- url_for(config.feed && config.feed.path || 'atom.xml') %>">RSS</a>
+    </nav>
+    <% if (theme.friend_links && Object.keys(theme.friend_links).length) { %>
+      <div class="footer-friends">
+        <span>友链</span>
+        <% Object.entries(theme.friend_links).forEach(([name, href]) => { %>
+          <a href="<%- href %>" rel="noopener" target="_blank"><%= name %></a>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</footer>

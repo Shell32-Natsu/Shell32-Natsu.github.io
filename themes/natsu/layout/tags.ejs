@@ -1,0 +1,13 @@
+<% const tags = site.tags.sort('-length').filter(t => t.length); %>
+<section class="list-page container">
+  <header class="list-header">
+    <p class="eyebrow">标签</p>
+    <h1 class="list-title">所有标签</h1>
+    <p class="list-count">共 <%= tags.length %> 个</p>
+  </header>
+  <ul class="tag-cloud">
+    <% tags.forEach(tag => { %>
+      <li><a class="tag" href="<%- url_for(tag.path) %>">#<%= tag.name %><span><%= tag.length %></span></a></li>
+    <% }) %>
+  </ul>
+</section>

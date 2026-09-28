@@ -1,0 +1,41 @@
+<%
+  let pageTitle = config.title;
+  if (is_home()) pageTitle = config.title + ' · ' + config.subtitle;
+  else if (is_category()) pageTitle = page.category + ' · ' + config.title;
+  else if (is_tag()) pageTitle = '#' + page.tag + ' · ' + config.title;
+  else if (is_archive()) pageTitle = '归档 · ' + config.title;
+  else if (page.title) pageTitle = page.title + ' · ' + config.title;
+  const description = page.description || (is_post() ? natsu_excerpt(page, 120) : config.description) || config.subtitle;
+%>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><%= pageTitle %></title>
+<meta name="description" content="<%= description %>">
+<% if (page.tags && page.tags.length) { %>
+<meta name="keywords" content="<%= page.tags.map(t => t.name).join(',') %>">
+<% } %>
+<link rel="canonical" href="<%- config.url %>/<%- page.canonical_path.replace(/index\.html$/, '') %>">
+<%- open_graph({ description: description }) %>
+<%- feed_tag() %>
+<link rel="icon" href="<%- url_for(theme.favicon) %>" type="image/svg+xml">
+<link rel="alternate icon" href="<%- url_for('/favicon.ico') %>">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="<%- url_for('/css/style.css') %>?v=<%= theme.version %>">
+<% if (theme.google_analytics && !env.debug) { %>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<%= theme.google_analytics %>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '<%= theme.google_analytics %>');
+</script>
+<% } %>

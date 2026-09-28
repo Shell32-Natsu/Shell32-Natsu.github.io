@@ -1,0 +1,58 @@
+<%
+  const home = theme.home || {};
+  const all = page.posts.toArray();
+  const featured = all.slice(0, home.featured || 0);
+  const rest = all.slice(featured.length);
+%>
+<section class="hero container">
+  <% if (home.eyebrow) { %><p class="eyebrow"><%= home.eyebrow %></p><% } %>
+  <h1 class="hero-title"><%= home.title || config.title %></h1>
+  <% if (home.intro) { %><p class="hero-intro"><%= home.intro %></p><% } %>
+  <p class="hero-stats">
+    <span><strong><%= site.posts.length %></strong> 篇文章</span>
+    <span><strong><%= site.tags.length %></strong> 个标签</span>
+    <span>始于 <strong><%= theme.since %></strong></span>
+  </p>
+</section>
+
+<% if (featured.length) { %>
+<section class="container featured" aria-labelledby="latest-heading">
+  <h2 class="section-label" id="latest-heading">最近更新</h2>
+  <div class="featured-grid">
+    <% featured.forEach((post, i) => { const cat = natsu_category(post); %>
+      <article class="card<%= i === 0 ? ' card-lead' : '' %>">
+        <div class="card-meta">
+          <time datetime="<%= date_xml(post.date) %>"><%= date(post.date, 'YYYY.MM.DD') %></time>
+          <% if (cat) { %><span><%= cat.name %></span><% } %>
+          <% if (i === 0) { %><span class="card-badge">最新</span><% } %>
+        </div>
+        <h3 class="card-title"><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3>
+        <p class="card-excerpt"><%= natsu_excerpt(post, i === 0 ? 160 : 90) %></p>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<section class="container" aria-labelledby="all-heading">
+  <h2 class="section-label" id="all-heading">全部文章</h2>
+  <%- partial('_partial/post-list', { posts: rest, showCategory: true }) %>
+</section>
+
+<% if ((home.collections || []).length) { %>
+<section class="container collections" aria-labelledby="collections-heading">
+  <h2 class="section-label" id="collections-heading">专栏</h2>
+  <div class="collection-grid">
+    <% home.collections.forEach(c => {
+      const cat = c.category ? site.categories.findOne({ name: c.category }) : null;
+      const href = cat ? url_for(cat.path) : url_for(c.path);
+    %>
+      <a class="collection" href="<%- href %>">
+        <span class="collection-name"><%= c.name %></span>
+        <% if (c.desc) { %><span class="collection-desc"><%= c.desc %></span><% } %>
+        <span class="collection-count"><%= cat ? cat.length + ' 篇 →' : '阅读 →' %></span>
+      </a>
+    <% }) %>
+  </div>
+</section>
+<% } %>

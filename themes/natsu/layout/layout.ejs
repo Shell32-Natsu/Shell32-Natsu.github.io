@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<%- partial('_partial/head') %>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <%- partial('_partial/header') %>
+  <main id="main" class="main">
+    <%- body %>
+  </main>
+  <%- partial('_partial/footer') %>
+  <%- partial('_partial/search') %>
+  <script src="<%- url_for('/js/main.js') %>?v=<%= theme.version %>" defer></script>
+</body>
+</html>

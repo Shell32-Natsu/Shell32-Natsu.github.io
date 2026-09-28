@@ -1,0 +1,60 @@
+# ===========================================
+# Natsu — a quiet, typographic Hexo theme
+# ===========================================
+
+# Bumped on every CSS/JS change (cache-busting query string)
+version: 1.0.0
+
+since: 2014
+favicon: /favicon.svg
+
+# Top navigation. `match` is a path prefix used to highlight the current item.
+menu:
+  - name: 文章
+    path: /
+  - name: LeetCode
+    path: /categories/LeetCode/
+  - name: 归档
+    path: /archives/
+  - name: 标签
+    path: /tags/
+  - name: 关于
+    path: /about/
+
+# Homepage
+home:
+  eyebrow: Life / Code
+  title: 写生活，也写代码。
+  intro: 湾区码农，Ex-Googler。做过 k8s，做过 Linux 内核，现在在 Anthropic 做 SWE。
+  # Posts in these categories are left out of the homepage list; they keep
+  # their own index (see `home.collections`) and still appear in 归档.
+  exclude_categories:
+    - LeetCode
+  # Number of latest posts shown with an excerpt at the top
+  featured: 3
+  collections:
+    - name: LeetCode 题解
+      category: LeetCode
+      desc: 2016 – 2018 年刷题时写下的解题笔记。
+    - name: LeetCode Notes
+      path: /leetcode-notes/
+      desc: 刷题记录的前言与近况。
+
+toc: true
+
+social:
+  GitHub: https://github.com/Shell32-Natsu
+  LinkedIn: https://www.linkedin.com/in/dong-xia
+  Facebook: https://www.facebook.com/xiadong1994
+  Email: mailto:xiadong.main@gmail.com
+
+friend_links:
+  打满鸡血来刷题: https://wf94.github.io/
+  塞外麾下炙: http://tianyuh.com/
+
+# Comments (loaded lazily when the reader scrolls near them)
+disqus_shortname: www-xiadong-info
+
+# Google Analytics 4 measurement id (G-XXXXXXX). Universal Analytics (UA-) ids
+# stopped collecting data in 2023, so the old one is not carried over.
+google_analytics:

@@ -1,0 +1,22 @@
+<%
+  let kicker = '归档', heading = '全部文章';
+  if (is_category()) { kicker = '分类'; heading = page.category; }
+  else if (is_tag()) { kicker = '标签'; heading = '#' + page.tag; }
+  else if (page.year) { heading = page.year + (page.month ? ' 年 ' + page.month + ' 月' : ' 年'); }
+  const count = page.posts.length;
+%>
+<section class="list-page container">
+  <header class="list-header">
+    <p class="eyebrow"><%= kicker %></p>
+    <h1 class="list-title"><%= heading %></h1>
+    <p class="list-count">共 <%= count %> 篇</p>
+    <% if (count > 20) { %>
+      <label class="filter">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <input type="search" placeholder="筛选标题…" data-filter-input aria-label="按标题筛选">
+      </label>
+    <% } %>
+  </header>
+  <%- partial('_partial/post-list', { posts: page.posts, showCategory: !is_category() }) %>
+  <p class="filter-empty" data-filter-empty hidden>没有匹配的文章</p>
+</section>

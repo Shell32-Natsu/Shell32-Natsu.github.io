@@ -1,0 +1,11 @@
+<article class="post page">
+  <header class="post-header container-narrow">
+    <h1 class="post-title"><%= page.title %></h1>
+  </header>
+  <div class="post-body">
+    <div class="prose">
+      <%- page.content %>
+    </div>
+  </div>
+  <%- partial('_partial/comments') %>
+</article>
