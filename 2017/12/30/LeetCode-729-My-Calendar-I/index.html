@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 729. My Calendar I · Shell32</title>
+<meta name="description" content="Implement a MyCalendar class to store your events. A new event can be added if adding the event will not cause a double…">
+
+<meta name="keywords" content="LeetCode,二分搜索,算法,CPP">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/12/30/LeetCode-729-My-Calendar-I/">
+<meta name="description" content="Implement a MyCalendar class to store your events. A new event can be added if adding the event will not cause a double…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 729. My Calendar I">
+<meta property="og:url" content="http://blog.xiadong.info/2017/12/30/LeetCode-729-My-Calendar-I/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="Implement a MyCalendar class to store your events. A new event can be added if adding the event will not cause a double…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-12-30T17:40:44.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.398Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="二分搜索">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 729. My Calendar I</h1>
+    <div class="post-meta">
+      <time datetime="2017-12-30T17:40:44.000Z">2017 年 12 月 30 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 3 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>Implement a <code>MyCalendar</code> class to store your events. A new event can be added if adding the event will not cause a double booking.</p>
+<p>Your class will have the method, <code>book(int start, int end)</code>. Formally, this represents a booking on the half open interval <code>[start, end)</code>, the range of real numbers <code>x</code> such that <code>start &lt;= x &lt; end</code>.</p>
+<p>A <em>double booking</em> happens when two events have some non-empty intersection (ie., there is some time that is common to both events.)</p>
+<p>For each call to the method <code>MyCalendar.book</code>, return <code>true</code> if the event can be added to the calendar successfully without causing a double booking. Otherwise, return <code>false</code> and do not add the event to the calendar.</p>
+<p>Your class will be called like this:</p>
+<pre><code class="hljs plaintext">MyCalendar cal = new MyCalendar();
+MyCalendar.book(start, end)</code></pre>
+<p><strong>Example 1:</strong></p>
+<pre><code class="hljs plaintext">MyCalendar();
+MyCalendar.book(10, 20); // returns true
+MyCalendar.book(15, 25); // returns false
+MyCalendar.book(20, 30); // returns true
+Explanation: 
+The first event can be booked.  The second can&#x27;t because time 15 is already booked by another event.
+The third event can be booked, as the first event takes every time less than 20, but not including 20.
+</code></pre>
+<p><strong>Note:</strong></p>
+<p>The number of calls to <code>MyCalendar.book</code> per test case will be at most <code>1000</code>.</p>
+<p>In calls to <code>MyCalendar.book(start, end)</code>, <code>start</code> and <code>end</code> are integers in the range <code>[0, 10^9]</code>.</p>
+<span id="more"></span>
+<p>暴力解法：遍历已经booked的每一个区间判断是否有冲突。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyCalendar</span> &#123;
+    vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; booked;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyCalendar</span>() &#123;
+        
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span> </span>&#123;
+        <span class="hljs-keyword">auto</span> interval = <span class="hljs-built_in">make_pair</span>(start, end);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;p : booked) &#123;
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">notConflict</span>(p, interval)) &#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        
+        booked.<span class="hljs-built_in">push_back</span>(interval);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">notConflict</span><span class="hljs-params">(pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;p1, pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;p2)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> (p<span class="hljs-number">1.f</span>irst &gt;= p<span class="hljs-number">2.</span>second) || (p<span class="hljs-number">1.</span>second &lt;= p<span class="hljs-number">2.f</span>irst);
+    &#125;
+&#125;;</code></pre>
+<p>改进：使用二分搜索找出区间的应插入位置，判断前后是否有重叠。并且可以在插入后合并相邻的区间，因为我使用vector，所以删除区间会比较耗时。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyCalendar</span> &#123;
+    vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt; booked;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">MyCalendar</span>() &#123;
+        
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">book</span><span class="hljs-params">(<span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span> </span>&#123;
+        <span class="hljs-keyword">auto</span> interval = <span class="hljs-built_in">make_pair</span>(start, end);
+        <span class="hljs-keyword">if</span> (booked.<span class="hljs-built_in">empty</span>()) &#123;
+            booked.<span class="hljs-built_in">push_back</span>(interval);
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">auto</span> iter = <span class="hljs-built_in">upper_bound</span>(booked.<span class="hljs-built_in">begin</span>(), booked.<span class="hljs-built_in">end</span>(), interval);
+    
+        <span class="hljs-keyword">if</span> (iter == booked.<span class="hljs-built_in">begin</span>()) &#123;
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">notConflict</span>(*iter, interval))
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (iter == booked.<span class="hljs-built_in">end</span>()) &#123;
+            <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">notConflict</span>(*(iter - <span class="hljs-number">1</span>), interval)) 
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">notConflict</span>(*(iter - <span class="hljs-number">1</span>), interval) || !<span class="hljs-built_in">notConflict</span>(*iter, interval)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        
+        <span class="hljs-keyword">auto</span> insert_iter = booked.<span class="hljs-built_in">insert</span>(iter, interval);
+        <span class="hljs-keyword">if</span> (insert_iter == booked.<span class="hljs-built_in">begin</span>()) &#123;
+            <span class="hljs-keyword">if</span> (insert_iter-&gt;second == (insert_iter + <span class="hljs-number">1</span>)-&gt;first) &#123;
+                insert_iter-&gt;second = (insert_iter + <span class="hljs-number">1</span>)-&gt;second;
+                booked.<span class="hljs-built_in">erase</span>(insert_iter + <span class="hljs-number">1</span>);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (insert_iter == booked.<span class="hljs-built_in">end</span>() - <span class="hljs-number">1</span>) &#123;
+            <span class="hljs-keyword">if</span> (insert_iter-&gt;first == (insert_iter - <span class="hljs-number">1</span>)-&gt;second) &#123;
+                insert_iter-&gt;first = (insert_iter - <span class="hljs-number">1</span>)-&gt;first;
+                booked.<span class="hljs-built_in">erase</span>(insert_iter - <span class="hljs-number">1</span>);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">if</span> (insert_iter-&gt;second == (insert_iter + <span class="hljs-number">1</span>)-&gt;first) &#123;
+                insert_iter-&gt;second = (insert_iter + <span class="hljs-number">1</span>)-&gt;second;
+                booked.<span class="hljs-built_in">erase</span>(insert_iter + <span class="hljs-number">1</span>);
+            &#125;
+            <span class="hljs-keyword">if</span> (insert_iter-&gt;first == (insert_iter - <span class="hljs-number">1</span>)-&gt;second) &#123;
+                insert_iter-&gt;first = (insert_iter - <span class="hljs-number">1</span>)-&gt;first;
+                booked.<span class="hljs-built_in">erase</span>(insert_iter - <span class="hljs-number">1</span>);
+            &#125;
+        &#125;
+        
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">notConflict</span><span class="hljs-params">(pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;p1, pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;p2)</span> </span>&#123;
+        <span class="hljs-keyword">return</span> (p<span class="hljs-number">1.f</span>irst &gt;= p<span class="hljs-number">2.</span>second) || (p<span class="hljs-number">1.</span>second &lt;= p<span class="hljs-number">2.f</span>irst);
+    &#125;
+&#125;;</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2/">#二分搜索</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2017/12/30/LeetCode-744-Network-Delay-Time/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 744. Network Delay Time</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2018/01/04/Bangumi%E5%B9%B4%E9%89%B4%E7%94%9F%E6%88%90%E5%B0%8F%E5%B7%A5%E5%85%B7/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">Bangumi年鉴生成小工具</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/12/30/LeetCode-729-My-Calendar-I/"
+  data-identifier="2017/12/30/LeetCode-729-My-Calendar-I/"
+  data-title="LeetCode 729. My Calendar I">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

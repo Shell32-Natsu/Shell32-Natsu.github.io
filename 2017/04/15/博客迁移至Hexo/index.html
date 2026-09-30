@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>博客迁移至Hexo · Shell32</title>
+<meta name="description" content="前段时间多说宣布准备关闭服务，之后偶然看到一个用GitHub Issues来做评论系统的项目：https://github.com/imsun/gitment，倒不是说对这个想法很感兴趣，而且因为它又激起了我转移到静态博客+GitHub P…">
+
+<meta name="keywords" content="备忘,Hexo,博客">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/04/15/博客迁移至Hexo/">
+<meta name="description" content="前段时间多说宣布准备关闭服务，之后偶然看到一个用GitHub Issues来做评论系统的项目：https:&#x2F;&#x2F;github.com&#x2F;imsun&#x2F;gitment，倒不是说对这个想法很感兴趣，而且因为它又激起了我转移到静态博客+GitHub P…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客迁移至Hexo">
+<meta property="og:url" content="http://blog.xiadong.info/2017/04/15/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3Hexo/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="前段时间多说宣布准备关闭服务，之后偶然看到一个用GitHub Issues来做评论系统的项目：https:&#x2F;&#x2F;github.com&#x2F;imsun&#x2F;gitment，倒不是说对这个想法很感兴趣，而且因为它又激起了我转移到静态博客+GitHub P…">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.xiadong.info/image/post/Screenshot%20from%202017-04-15%2020-45-51.png">
+<meta property="article:published_time" content="2017-04-15T19:35:00.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.414Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="备忘">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.xiadong.info/image/post/Screenshot%20from%202017-04-15%2020-45-51.png">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/" aria-current="page">文章</a>
+      
+        <a href="/categories/LeetCode/">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/Life/">Life</a>
+    </div>
+    <h1 class="post-title">博客迁移至Hexo</h1>
+    <div class="post-meta">
+      <time datetime="2017-04-15T19:35:00.000Z">2017 年 4 月 15 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 3 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body has-toc">
+    
+      <aside class="post-toc" aria-label="目录">
+        <p class="toc-title">目录</p>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%81%E7%A7%BB%EF%BC%9F"><span class="toc-text">1. 为什么要迁移？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Hexo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-text">2. Hexo安装配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5"><span class="toc-text">3. 数据导入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E4%B8%BB%E9%A2%98"><span class="toc-text">4. 主题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E6%89%98%E7%AE%A1"><span class="toc-text">5. 托管</span></a></li></ol>
+      </aside>
+      <details class="toc-inline">
+        <summary>目录</summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%81%E7%A7%BB%EF%BC%9F"><span class="toc-text">1. 为什么要迁移？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Hexo%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="toc-text">2. Hexo安装配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5"><span class="toc-text">3. 数据导入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E4%B8%BB%E9%A2%98"><span class="toc-text">4. 主题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E6%89%98%E7%AE%A1"><span class="toc-text">5. 托管</span></a></li></ol>
+      </details>
+    
+    <div class="prose">
+      <p>前段时间多说宣布准备关闭服务，之后偶然看到一个用GitHub Issues来做评论系统的项目：<a target="_blank" rel="noopener" href="https://github.com/imsun/gitment">https://github.com/imsun/gitment</a>，倒不是说对这个想法很感兴趣，而且因为它又激起了我转移到静态博客+GitHub Pages的念头。今天算是付诸行动了吧。</p>
+<span id="more"></span>
+<h1 id="1-为什么要迁移？">1. 为什么要迁移？</h1>
+<p>当初搭博客的时候还是个小白，Hexo，Jekyll这种高大上<s>并不</s>的东西玩不转，所以退而求其次用了比较傻瓜化的WordPress。这几年用着也还可以，但是频繁的更新挺烦人的，而且不支持Markdown(JetPack提供的Markdown支持不知道为什么我总是用不了)，总体来说也还是太“重”了。最最主要的一点是从上个月开始每次更新插件/主题之后都不能退出维护模式，只能ssh到服务器上去手动删除<code>.maintenance</code>文件，所以我决定还是换一个轻量级的静态博客。并且静态博客折腾起主题之类的东西也方便的多。</p>
+<h1 id="2-Hexo安装配置">2. Hexo安装配置</h1>
+<p>网上教程到处都有，就不赘述了。</p>
+<h1 id="3-数据导入">3. 数据导入</h1>
+<p>Hexo提供从Wordpress迁移数据的插件<a target="_blank" rel="noopener" href="https://hexo.io/docs/migration.html">https://hexo.io/docs/migration.html</a>，是通过分析WP导出的数据文件来工作的，省去了我写脚本分析数据的麻烦。但是还是不可避免地会有许多问题。</p>
+<p>这个插件会保留WP中的tag和分类，tag是正常的，但是因为Hexo不支持一个页面多个分类（其实我也不太理解为什么WP会支持，跟tag的功能重复了），所以在WP中属于多个分类的页面在导入后会变成子分类的形式，比如一篇文章<code>article</code>分别属于<code>A</code>和<code>B</code>两个分类，在WP中是这样的：</p>
+<pre><code class="hljs plaintext"> article
+ /      \
+A        B</code></pre>
+<p>而导入到Hexo之后会变成类似</p>
+<pre><code class="hljs plaintext">article
+  |
+  B
+  |
+  A</code></pre>
+<p>这样的形式，在Hexo中看起来是相当的烦人。</p>
+<p>另一个问题是导入插件是通过把HTML文本转换为Markdown来进行数据导入的，这个逆向转换的过程很有可能让你的页面面目全非。不过我的博客数据主要是LeetCode的笔记，原本的Markdown文件都有保留，所以可以直接放弃转换出来的Markdown而使用正确的数据。</p>
+<p>以上两个问题我是通过Python脚本来解决的，脚本拼接导入数据的Front-matter部分和原始Markdown文件的正文部分，同时删除Front-matter<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>中除了第一个分类以外的分类。这个脚本只能处理LeetCode笔记（因为可以通过题号匹配起来），其余的文章不多，我就手动修改了。</p>
+<p>最后一个问题，Hexo的Markdown语法与我一直使用的语法不太一致，导致有的地方渲染不太正常。比如</p>
+<p><img src="/image/post/Screenshot%20from%202017-04-15%2020-45-51.png" alt=""></p>
+<p>这段Markdown，GitHub和Pandoc都会生成引用内的代码块的形式，而Hexo中的三个反引号似乎优先级更高。这个问题我还没有解决，涉及的页面太多了，情况也比较复杂。</p>
+<h1 id="4-主题">4. 主题</h1>
+<p>Hexo的主题并没多到让人挑花眼的程度，但是普遍质量都很高，而且自己修改起来也比较容易。在GitHub上搜索就可以找到很多，我现在用的是<a target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>这个主题，稍微改了一下字体。</p>
+<h1 id="5-托管">5. 托管</h1>
+<p>我以前的Wordpress博客是用我自己的服务器+CDN的形式，Hexo虽然也可以放在我的服务器上，不过既然已经是静态博客了还是GitHub Pages省心省力。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://hexo.io/docs/front-matter.html">https://hexo.io/docs/front-matter.html</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/%E5%A4%87%E5%BF%98/">#备忘</a></li>
+        
+          <li><a class="tag" href="/tags/Hexo/">#Hexo</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2017/04/09/leetcode-557-reverse-words-in-a-string-iii/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 557. Reverse Words in a String III</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2017/04/16/%E5%8D%9A%E5%AE%A2%E5%90%AF%E7%94%A8SSL/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">博客启用SSL</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/04/15/%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%E8%87%B3Hexo/"
+  data-identifier="2017/04/15/博客迁移至Hexo/"
+  data-title="博客迁移至Hexo">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

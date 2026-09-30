@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>在Hyper-V为Linux扩大分区 · Shell32</title>
+<meta name="description" content="问题来源 我在Hyper-V里安装的虚拟机一开始只分配了10G的虚拟硬盘, 今天编译RISC-V Toolchain的时候硬盘空间耗尽了(顺带吐槽一下编译的时候下载源代码再次被网速折磨), 所以就要扩大虚拟磁盘的空间. Hyper-V中的设…">
+
+<meta name="keywords" content="备忘,工具,Linux">
+
+<link rel="canonical" href="http://blog.xiadong.info/2016/09/01/在hyper-v为linux扩大分区/">
+<meta name="description" content="问题来源 我在Hyper-V里安装的虚拟机一开始只分配了10G的虚拟硬盘, 今天编译RISC-V Toolchain的时候硬盘空间耗尽了(顺带吐槽一下编译的时候下载源代码再次被网速折磨), 所以就要扩大虚拟磁盘的空间. Hyper-V中的设…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Hyper-V为Linux扩大分区">
+<meta property="og:url" content="http://blog.xiadong.info/2016/09/01/%E5%9C%A8hyper-v%E4%B8%BAlinux%E6%89%A9%E5%A4%A7%E5%88%86%E5%8C%BA/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="问题来源 我在Hyper-V里安装的虚拟机一开始只分配了10G的虚拟硬盘, 今天编译RISC-V Toolchain的时候硬盘空间耗尽了(顺带吐槽一下编译的时候下载源代码再次被网速折磨), 所以就要扩大虚拟磁盘的空间. Hyper-V中的设…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-01T13:56:24.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.414Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="备忘">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/" aria-current="page">文章</a>
+      
+        <a href="/categories/LeetCode/">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/Linux/">Linux</a>
+    </div>
+    <h1 class="post-title">在Hyper-V为Linux扩大分区</h1>
+    <div class="post-meta">
+      <time datetime="2016-09-01T13:56:24.000Z">2016 年 9 月 1 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 1 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body has-toc">
+    
+      <aside class="post-toc" aria-label="目录">
+        <p class="toc-title">目录</p>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%9D%A5%E6%BA%90"><span class="toc-text">问题来源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hyper-V%E4%B8%AD%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">Hyper-V中的设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="toc-text">修改分区表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0Linux%E4%B8%AD%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">回到Linux中的设置</span></a></li></ol>
+      </aside>
+      <details class="toc-inline">
+        <summary>目录</summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%9D%A5%E6%BA%90"><span class="toc-text">问题来源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hyper-V%E4%B8%AD%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">Hyper-V中的设置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%88%86%E5%8C%BA%E8%A1%A8"><span class="toc-text">修改分区表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0Linux%E4%B8%AD%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">回到Linux中的设置</span></a></li></ol>
+      </details>
+    
+    <div class="prose">
+      <h1 id="问题来源">问题来源</h1>
+<p>我在Hyper-V里安装的虚拟机一开始只分配了10G的虚拟硬盘, 今天编译RISC-V Toolchain的时候硬盘空间耗尽了(顺带吐槽一下编译的时候下载源代码再次被网速折磨), 所以就要扩大虚拟磁盘的空间.</p>
+<h1 id="Hyper-V中的设置">Hyper-V中的设置</h1>
+<p>首先就是在Hyper-V中的磁盘编辑中修改虚拟磁盘的大小. 这一步没有任何问题, 下一步是修改分区表.</p>
+<h1 id="修改分区表">修改分区表</h1>
+<p>在Linux中要修改一个分区的大小, 必须要把它<code>umount</code>, 但是我要扩展的是整个系统分区, 所以需要用Linux的系统安装光盘启动. 然后运行gparted程序来修改分区大小.</p>
+<h1 id="回到Linux中的设置">回到Linux中的设置</h1>
+<p>到了上一步还是不行, 因为我要扩展的是一个逻辑分区 <em>logical volume</em>, 需要在原来的系统中扩展逻辑分区和启用新的分区空间才可以.</p>
+<pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">lvresize -l 100%VG [your device]</span></code></pre>
+<p><code>100%VG</code>的意思是使用全部空闲空间. 然后启用空间.</p>
+<pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">resize2fs [your device]</span></code></pre>
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/%E5%A4%87%E5%BF%98/">#备忘</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a></li>
+        
+          <li><a class="tag" href="/tags/Linux/">#Linux</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2016/08/31/leetcode-104-maximum-depth-of-binary-tree/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 104. Maximum Depth of Binary Tree</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2016/09/01/leetcode-105-construct-binary-tree-from-preorder-and-inorder-traversal/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 105. Construct Binary Tree from Preorder and Inorder Traversal</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2016/09/01/%E5%9C%A8hyper-v%E4%B8%BAlinux%E6%89%A9%E5%A4%A7%E5%88%86%E5%8C%BA/"
+  data-identifier="2016/09/01/在hyper-v为linux扩大分区/"
+  data-title="在Hyper-V为Linux扩大分区">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

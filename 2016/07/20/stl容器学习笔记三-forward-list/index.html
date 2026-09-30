@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STL容器学习笔记三 - Forward_list · Shell32</title>
+<meta name="description" content="Forward list 前向链表[C++11] 前向链表是提供常数复杂度的插入删除操作的容器, 它被实现为一个单链接链表. forward_list与list的区别在于前者保存指向每个节点的后一个节点的指针, 而后者保存前后两个节点的指针…">
+
+<meta name="keywords" content="备忘,STL,C++">
+
+<link rel="canonical" href="http://blog.xiadong.info/2016/07/20/stl容器学习笔记三-forward-list/">
+<meta name="description" content="Forward list 前向链表[C++11] 前向链表是提供常数复杂度的插入删除操作的容器, 它被实现为一个单链接链表. forward_list与list的区别在于前者保存指向每个节点的后一个节点的指针, 而后者保存前后两个节点的指针…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL容器学习笔记三 - Forward_list">
+<meta property="og:url" content="http://blog.xiadong.info/2016/07/20/stl%E5%AE%B9%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89-forward-list/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="Forward list 前向链表[C++11] 前向链表是提供常数复杂度的插入删除操作的容器, 它被实现为一个单链接链表. forward_list与list的区别在于前者保存指向每个节点的后一个节点的指针, 而后者保存前后两个节点的指针…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-20T19:18:15.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.413Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="备忘">
+<meta property="article:tag" content="STL">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/" aria-current="page">文章</a>
+      
+        <a href="/categories/LeetCode/">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/STL/">STL</a>
+    </div>
+    <h1 class="post-title">STL容器学习笔记三 - Forward_list</h1>
+    <div class="post-meta">
+      <time datetime="2016-07-20T19:18:15.000Z">2016 年 7 月 20 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 3 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body has-toc">
+    
+      <aside class="post-toc" aria-label="目录">
+        <p class="toc-title">目录</p>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Forward-list-%E5%89%8D%E5%90%91%E9%93%BE%E8%A1%A8-C-11"><span class="toc-text">Forward list 前向链表[C++11]</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E5%87%BD%E6%95%B0"><span class="toc-text">部分函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">默认构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A1%AB%E5%85%85%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">填充构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">范围构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">拷贝构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">移动构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="toc-text">初始化列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-before-begin"><span class="toc-text">forward_list::before___begin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-emplace-after"><span class="toc-text">forward_list::emplace_after</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-emplace-front"><span class="toc-text">forward_list::emplace_front</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-erase-after"><span class="toc-text">forward_list::erase_after</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-merge"><span class="toc-text">forward_list::merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-remove-if"><span class="toc-text">forward_list::remove_if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-sort"><span class="toc-text">forward_list::sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-unique"><span class="toc-text">forward_list::unique</span></a></li></ol></li></ol>
+      </aside>
+      <details class="toc-inline">
+        <summary>目录</summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Forward-list-%E5%89%8D%E5%90%91%E9%93%BE%E8%A1%A8-C-11"><span class="toc-text">Forward list 前向链表[C++11]</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E5%88%86%E5%87%BD%E6%95%B0"><span class="toc-text">部分函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">默认构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A1%AB%E5%85%85%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">填充构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">范围构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">拷贝构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">移动构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="toc-text">初始化列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-before-begin"><span class="toc-text">forward_list::before___begin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-emplace-after"><span class="toc-text">forward_list::emplace_after</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-emplace-front"><span class="toc-text">forward_list::emplace_front</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-erase-after"><span class="toc-text">forward_list::erase_after</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-merge"><span class="toc-text">forward_list::merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-remove-if"><span class="toc-text">forward_list::remove_if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-sort"><span class="toc-text">forward_list::sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#forward-list-unique"><span class="toc-text">forward_list::unique</span></a></li></ol></li></ol>
+      </details>
+    
+    <div class="prose">
+      <h1 id="Forward-list-前向链表-C-11"><a target="_blank" rel="noopener" href="http://www.cplusplus.com/reference/forward_list/forward_list/">Forward list</a> 前向链表[C++11]</h1>
+<p>前向链表是提供常数复杂度的插入删除操作的容器, 它被实现为一个单链接链表.</p>
+<p><code>forward_list</code>与<code>list</code>的区别在于前者保存指向每个节点的后一个节点的指针, 而后者保存前后两个节点的指针. <code>forward_list</code>比<code>list</code>稍微高效, 但是缺点在于只能向前遍历.</p>
+<p>与其他顺序容器相比主要优点在于在容器任意位置插入, 提取和移动的表现更好. 不足在于不能根据元素在容器中的位置来访问元素.</p>
+<p><code>forward_list</code>被设计得非常高效, 它与一个简单的C语言手写单向链表的效率相当. 实际上, <strong>它是唯一一个出于性能考虑而不提供<code>size</code>成员函数的标准容器</strong>.</p>
+<h1 id="部分函数">部分函数</h1>
+<p>只列举一些我不太熟悉的函数.</p>
+<h2 id="构造函数">构造函数</h2>
+<h3 id="默认构造函数">默认构造函数</h3>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">forward_list</span> <span class="hljs-params">(<span class="hljs-type">const</span> allocator_type&amp; alloc = allocator_type())</span></span>;</code></pre>
+<p>创建一个空容器.
+​</p>
+<h3 id="填充构造函数">填充构造函数</h3>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">forward_list</span> <span class="hljs-params">(size_type n)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">forward_list</span> <span class="hljs-params">(size_type n, <span class="hljs-type">const</span> value_type&amp; val,</span></span>
+<span class="hljs-params"><span class="hljs-function">                      <span class="hljs-type">const</span> allocator_type&amp; alloc = allocator_type())</span></span>;</code></pre>
+<p>创建一个大小为n的容器, 如果提供了val, 则n个值都初始化为val.
+​</p>
+<h3 id="范围构造函数">范围构造函数</h3>
+<pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">InputIterator</span>&gt;
+  forward_list (InputIterator first, InputIterator last,
+                    <span class="hljs-type">const</span> allocator_type&amp; alloc = <span class="hljs-built_in">allocator_type</span>());</code></pre>
+<p>用<code>[first, last)</code>中的数据初始化.</p>
+<h3 id="拷贝构造函数">拷贝构造函数</h3>
+<pre><code class="hljs c++">forward_list (<span class="hljs-type">const</span> forward_list&amp; fwdlst);
+forward_list (<span class="hljs-type">const</span> forward_list&amp; fwdlst, <span class="hljs-type">const</span> allocator_type&amp; alloc);</code></pre>
+<h3 id="移动构造函数">移动构造函数</h3>
+<pre><code class="hljs c++">forward_list (forward_list&amp;&amp; fwdlst);
+forward_list (forward_list&amp;&amp; fwdlst, <span class="hljs-type">const</span> allocator_type&amp; alloc);</code></pre>
+<p>除非alloc的类型与fwdlst不一致, 否则不会构造任何一个元素, 它们的所有权被直接转移.</p>
+<h3 id="初始化列表">初始化列表</h3>
+<pre><code class="hljs c++">forward_list (initializer_list&lt;value_type&gt; il,
+<span class="hljs-type">const</span> allocator_type&amp; alloc = <span class="hljs-built_in">allocator_type</span>());</code></pre>
+<h2 id="forward-list-before-begin">forward_list::before___begin</h2>
+<pre><code class="hljs c++"><span class="hljs-function">iterator <span class="hljs-title">before_begin</span><span class="hljs-params">()</span> <span class="hljs-keyword">noexcept</span></span>;
+<span class="hljs-function">const_iterator <span class="hljs-title">before_begin</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> <span class="hljs-keyword">noexcept</span></span>;</code></pre>
+<p>返回指向容器中首个元素之前的元素的迭代器. 该迭代器不能解引用, 主要作为成员函数<code>emplace_after</code>, <code>insert_after</code>, <code>erase_after</code>和<code>splice_after</code>的参数.</p>
+<h2 id="forward-list-emplace-after">forward_list::emplace_after</h2>
+<pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span>... Args&gt;
+<span class="hljs-function">iterator <span class="hljs-title">emplace_after</span> <span class="hljs-params">(const_iterator position, Args&amp;&amp;... args)</span></span>;</code></pre>
+<p>在position的位置之后插入元素, args为插入的新元素的初始化参数.</p>
+<h2 id="forward-list-emplace-front">forward_list::emplace_front</h2>
+<pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span>... Args&gt;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">emplace_front</span> <span class="hljs-params">(Args&amp;&amp;... args)</span></span>;</code></pre>
+<p>在容器头部插入新元素, args为插入的新元素的初始化参数.</p>
+<h2 id="forward-list-erase-after">forward_list::erase_after</h2>
+<pre><code class="hljs c++"><span class="hljs-function">iterator <span class="hljs-title">erase_after</span> <span class="hljs-params">(const_iterator position)</span></span>;
+<span class="hljs-function">iterator <span class="hljs-title">erase_after</span> <span class="hljs-params">(const_iterator position, const_iterator last)</span></span>;</code></pre>
+<p>删除容器中position之后的一个元素或者(position, last)范围内的元素.</p>
+<h2 id="forward-list-merge">forward_list::merge</h2>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span> <span class="hljs-params">(forward_list&amp; fwdlst)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span> <span class="hljs-params">(forward_list&amp;&amp; fwdlst)</span></span>;
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">Compare</span>&gt;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span> <span class="hljs-params">(forward_list&amp; fwdlst, Compare comp)</span></span>;
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">Compare</span>&gt;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">merge</span> <span class="hljs-params">(forward_list&amp;&amp; fwdlst, Compare comp)</span></span>;</code></pre>
+<p>根据指定顺序将fwdlst与当前容器合并.</p>
+<h2 id="forward-list-remove-if">forward_list::remove_if</h2>
+<pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">Predicate</span>&gt;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">remove_if</span> <span class="hljs-params">(Predicate pred)</span></span>;</code></pre>
+<p>对容器中的每个元素, 执行pred(以<code>pred(*i)</code>的形式), 如果为true则删除该元素.</p>
+<p>pred可以为函数指针或者函数对象.</p>
+<h2 id="forward-list-sort">forward_list::sort</h2>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">sort</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">Compare</span>&gt;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">sort</span> <span class="hljs-params">(Compare comp)</span></span>;</code></pre>
+<p>排序函数, 该函数是稳定排序. 整个操作不包括任何的元素构造, 析构和复制. 元素只是在容器内移动.</p>
+<p><strong>时间复杂度</strong>: NlogN.</p>
+<h2 id="forward-list-unique">forward_list::unique</h2>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">unique</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">BinaryPredicate</span>&gt;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">unique</span> <span class="hljs-params">(BinaryPredicate binary_pred)</span></span>;</code></pre>
+<p>删除重复元素. <strong>这个操作只会删除与前一个元素相同的元素, 也就是说只能用于已经排序的容器.</strong></p>
+<p>第二种形式中的参数binary_pred以<code>binary_pred(*i, *(i - 1))</code>的形式调用, 此函数返回true则认为两个元素相等.</p>
+<p>binary_pred可以为函数指针或者函数对象.</p>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/%E5%A4%87%E5%BF%98/">#备忘</a></li>
+        
+          <li><a class="tag" href="/tags/STL/">#STL</a></li>
+        
+          <li><a class="tag" href="/tags/C/">#C++</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2016/07/20/leetcode-26-remove-duplicates-from-sorted-array-2/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 27. Remove Element</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2016/07/21/%E5%85%B3%E4%BA%8E%E7%BB%99%E7%88%B6%E6%AF%8D%E5%88%86%E4%BA%AB%E7%85%A7%E7%89%87/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">关于给父母分享照片</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2016/07/20/stl%E5%AE%B9%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89-forward-list/"
+  data-identifier="2016/07/20/stl容器学习笔记三-forward-list/"
+  data-title="STL容器学习笔记三 - Forward_list">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

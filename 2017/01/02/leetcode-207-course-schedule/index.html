@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 207. Course Schedule · Shell32</title>
+<meta name="description" content="题目描述： There are a total of n courses you have to take, labeled from 0 to n - 1. Some courses may have prerequisites, for…">
+
+<meta name="keywords" content="LeetCode,算法,CPP,图,搜索">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/01/02/leetcode-207-course-schedule/">
+<meta name="description" content="题目描述： There are a total of n courses you have to take, labeled from 0 to n - 1. Some courses may have prerequisites, for…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 207. Course Schedule">
+<meta property="og:url" content="http://blog.xiadong.info/2017/01/02/leetcode-207-course-schedule/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="题目描述： There are a total of n courses you have to take, labeled from 0 to n - 1. Some courses may have prerequisites, for…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-01-02T17:47:08.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.404Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="图">
+<meta property="article:tag" content="搜索">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 207. Course Schedule</h1>
+    <div class="post-meta">
+      <time datetime="2017-01-02T17:47:08.000Z">2017 年 1 月 2 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 2 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>题目描述：</p>
+<blockquote>
+<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n - 1</code>.</p>
+<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
+<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, is it possible for you to finish all courses?</p>
+<p>For example:</p>
+<pre><code class="hljs plaintext">2, [[1,0]]</code></pre>
+<p>There are a total of 2 courses to take. To take course 1 you should have finished course 0. So it is possible.</p>
+<pre><code class="hljs plaintext">2, [[1,0],[0,1]]</code></pre>
+<p>There are a total of 2 courses to take. To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.</p>
+<p><strong>Note:</strong>
+The input prerequisites is a graph represented by <strong>a list of edges</strong>, not adjacency matrices. Read more about <a target="_blank" rel="noopener" href="https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/representing-graphs">how a graph is represented</a>.</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>This problem is equivalent to finding if a cycle exists in a directed graph. If a cycle exists, no topological ordering exists and therefore it will be impossible to take all courses.</li>
+<li><a target="_blank" rel="noopener" href="https://class.coursera.org/algo-003/lecture/52">Topological Sort via DFS</a> - A great video tutorial (21 minutes) on Coursera explaining the basic concepts of Topological Sort.</li>
+<li>Topological sort could also be done via <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Topological_sorting#Algorithms">BFS</a>.</li>
+</ul>
+</blockquote>
+<p>Hint中已经说的很明确了，就是判断一个图中有没有环。我用DFS来遍历每个节点，有两个出现环的情况：</p>
+<ol>
+<li>出现了路径中已经出现的节点</li>
+<li>有的节点没有被遍历到过，说明它们没有起始的端点</li>
+</ol>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">canFinish</span><span class="hljs-params">(<span class="hljs-type">int</span> numCourses, vector&lt;pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;
+		vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">gg</span>(numCourses);
+		<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">prerequested</span><span class="hljs-params">(numCourses, <span class="hljs-literal">false</span>)</span>, <span class="hljs-title">allVisited</span><span class="hljs-params">(numCourses, <span class="hljs-literal">false</span>)</span></span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; prerequisites.<span class="hljs-built_in">size</span>(); i++) &#123;
+			gg[prerequisites[i].first].<span class="hljs-built_in">push_back</span>(prerequisites[i].second);
+			prerequested[prerequisites[i].second] = <span class="hljs-literal">true</span>;
+		&#125;
+		<span class="hljs-type">int</span> prerequestedNum = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numCourses; i++) &#123;
+			<span class="hljs-keyword">if</span> (!prerequested[i]) &#123;
+				<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">thisTimeVisited</span><span class="hljs-params">(numCourses, <span class="hljs-literal">false</span>)</span></span>;
+				thisTimeVisited[i] = <span class="hljs-literal">true</span>;
+				allVisited[i] = <span class="hljs-literal">true</span>;
+				<span class="hljs-keyword">if</span> (!<span class="hljs-built_in">DFS</span>(gg, i, allVisited, thisTimeVisited))&#123;
+					<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+				&#125;
+				thisTimeVisited[i] = <span class="hljs-literal">false</span>;
+			&#125;
+			<span class="hljs-keyword">else</span> &#123;
+				prerequestedNum++;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">if</span> (prerequestedNum == numCourses) &#123;
+			<span class="hljs-comment">//no start node</span>
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; numCourses; i++) &#123;
+			<span class="hljs-keyword">if</span> (!allVisited[i]) &#123;
+				<span class="hljs-comment">//some nodes cannot be visited</span>
+				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">DFS</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; &amp;gg, <span class="hljs-type">int</span> node, vector&lt;<span class="hljs-type">int</span>&gt; &amp;allVisited, vector&lt;<span class="hljs-type">int</span>&gt; &amp;thisTimeVisited)</span> </span>&#123;
+		vector&lt;<span class="hljs-type">int</span>&gt; nextNodes = gg[node];
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nextNodes.<span class="hljs-built_in">size</span>(); i++) &#123;
+			<span class="hljs-keyword">if</span> (thisTimeVisited[nextNodes[i]]) &#123;
+				<span class="hljs-comment">//find cycle</span>
+				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+			&#125;
+			allVisited[nextNodes[i]] = <span class="hljs-literal">true</span>;
+			thisTimeVisited[nextNodes[i]] = <span class="hljs-literal">true</span>;
+			<span class="hljs-keyword">if</span> (!<span class="hljs-built_in">DFS</span>(gg, nextNodes[i], allVisited, thisTimeVisited))
+				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+			thisTimeVisited[nextNodes[i]] = <span class="hljs-literal">false</span>;
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	&#125;
+&#125;;
+</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%9B%BE/">#图</a></li>
+        
+          <li><a class="tag" href="/tags/%E6%90%9C%E7%B4%A2/">#搜索</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2016/12/31/%E6%96%B0%E5%B9%B4%EF%BC%8C2017/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">新年，2017</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2017/01/02/leetcode-208-implement-trie-prefix-tree/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 208. Implement Trie (Prefix Tree)</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/01/02/leetcode-207-course-schedule/"
+  data-identifier="2017/01/02/leetcode-207-course-schedule/"
+  data-title="LeetCode 207. Course Schedule">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

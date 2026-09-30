@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 748. Shortest Completing Word · Shell32</title>
+<meta name="description" content="Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such…">
+
+<meta name="keywords" content="LeetCode,算法,CPP,哈希表">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/12/24/LeetCode-748-Shortest-Completing-Word/">
+<meta name="description" content="Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 748. Shortest Completing Word">
+<meta property="og:url" content="http://blog.xiadong.info/2017/12/24/LeetCode-748-Shortest-Completing-Word/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-12-24T11:41:20.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.398Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="哈希表">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 748. Shortest Completing Word</h1>
+    <div class="post-meta">
+      <time datetime="2017-12-24T11:41:20.000Z">2017 年 12 月 24 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 2 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>Find the minimum length word from a given dictionary <code>words</code>, which has all the letters from the string <code>licensePlate</code>. Such a word is said to <em>complete</em> the given string <code>licensePlate</code></p>
+<p>Here, for letters we ignore case. For example, <code>&quot;P&quot;</code> on the <code>licensePlate</code> still matches <code>&quot;p&quot;</code> on the word.</p>
+<p>It is guaranteed an answer exists. If there are multiple answers, return the one that occurs first in the array.</p>
+<p>The license plate might have the same letter occurring multiple times. For example, given a <code>licensePlate</code> of <code>&quot;PP&quot;</code>, the word <code>&quot;pair&quot;</code>does not complete the <code>licensePlate</code>, but the word <code>&quot;supper&quot;</code> does.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code class="hljs plaintext">Input: licensePlate = &quot;1s3 PSt&quot;, words = [&quot;step&quot;, &quot;steps&quot;, &quot;stripe&quot;, &quot;stepple&quot;]
+Output: &quot;steps&quot;
+Explanation: The smallest length word that contains the letters &quot;S&quot;, &quot;P&quot;, &quot;S&quot;, and &quot;T&quot;.
+Note that the answer is not &quot;step&quot;, because the letter &quot;s&quot; must occur in the word twice.
+Also note that we ignored case for the purposes of comparing whether a letter exists in the word.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code class="hljs plaintext">Input: licensePlate = &quot;1s3 456&quot;, words = [&quot;looks&quot;, &quot;pest&quot;, &quot;stew&quot;, &quot;show&quot;]
+Output: &quot;pest&quot;
+Explanation: There are 3 smallest length words that contains the letters &quot;s&quot;.
+We return the one that occurred first.
+</code></pre>
+<p><strong>Note:</strong></p>
+<ol>
+<li><code>licensePlate</code> will be a string with length in range <code>[1, 7]</code>.</li>
+<li><code>licensePlate</code> will contain digits, spaces, or letters (uppercase or lowercase).</li>
+<li><code>words</code> will have a length in the range <code>[10, 1000]</code>.</li>
+<li>Every <code>words[i]</code> will consist of lowercase letters, and have length in range <code>[1, 15]</code>.</li>
+</ol>
+<span id="more"></span>
+<p>没什么难度，用哈希表记录<code>licensePlate</code>中每个字母的出现次数，在对<code>words</code>中的每一个词判断能否覆盖，记录其中的最短字符串。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+    unordered_map&lt;<span class="hljs-type">char</span>, <span class="hljs-type">int</span>&gt; cnts;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">string <span class="hljs-title">shortestCompletingWord</span><span class="hljs-params">(string licensePlate, vector&lt;string&gt;&amp; words)</span> </span>&#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> ch : licensePlate) &#123;
+            ch = <span class="hljs-built_in">tolower</span>(ch);
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isalpha</span>(ch)) &#123;
+                cnts[ch]++;
+            &#125;
+        &#125;
+        
+        string ans;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;word : words) &#123;
+            <span class="hljs-keyword">if</span> (!ans.<span class="hljs-built_in">empty</span>() &amp;&amp; ans.<span class="hljs-built_in">length</span>() &lt;= word.<span class="hljs-built_in">length</span>())
+                <span class="hljs-keyword">continue</span>;
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">cover</span>(word)) &#123;
+                <span class="hljs-keyword">if</span> (ans.<span class="hljs-built_in">empty</span>() || ans.<span class="hljs-built_in">length</span>() &gt; word.<span class="hljs-built_in">length</span>())
+                    ans = word;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> ans;
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cover</span><span class="hljs-params">(<span class="hljs-type">const</span> string&amp; word)</span> </span>&#123;
+        <span class="hljs-keyword">auto</span> tmpCnts = cnts;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> ch : word) &#123;
+            <span class="hljs-keyword">if</span> (tmpCnts.<span class="hljs-built_in">count</span>(ch) &amp;&amp; tmpCnts[ch] &gt; <span class="hljs-number">0</span>) &#123;
+                tmpCnts[ch]--;
+            &#125;
+        &#125;
+        
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> p : tmpCnts) &#123;
+            <span class="hljs-keyword">if</span> (p.second &gt; <span class="hljs-number">0</span>)
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+&#125;;</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/">#哈希表</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2017/12/24/LeetCode-753-Cracking-the-Safe/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 753. Cracking the Safe</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2017/12/29/LeetCode-740-Delete-and-Earn/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 740. Delete and Earn</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/12/24/LeetCode-748-Shortest-Completing-Word/"
+  data-identifier="2017/12/24/LeetCode-748-Shortest-Completing-Word/"
+  data-title="LeetCode 748. Shortest Completing Word">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

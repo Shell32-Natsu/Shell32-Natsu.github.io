@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>杂记——我就是要吐槽Windows · Shell32</title>
+<meta name="description" content="这几天微软因为.Net开源的原因又搞出了个“大新闻”，知乎上也是一片喊着Java可以去死了的声音，但是作为一个微软粉转路人，昨天折腾了我一下午的事情简直让我想变成一生黑。 事情是这样的：上个周末的时候看着又要告急万里江山一片红的C盘，想着还…">
+
+<link rel="canonical" href="http://blog.xiadong.info/2014/11/19/杂记——我就是要吐槽Windows/">
+<meta name="description" content="这几天微软因为.Net开源的原因又搞出了个“大新闻”，知乎上也是一片喊着Java可以去死了的声音，但是作为一个微软粉转路人，昨天折腾了我一下午的事情简直让我想变成一生黑。 事情是这样的：上个周末的时候看着又要告急万里江山一片红的C盘，想着还…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杂记——我就是要吐槽Windows">
+<meta property="og:url" content="http://blog.xiadong.info/2014/11/19/%E6%9D%82%E8%AE%B0%E2%80%94%E2%80%94%E6%88%91%E5%B0%B1%E6%98%AF%E8%A6%81%E5%90%90%E6%A7%BDWindows/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="这几天微软因为.Net开源的原因又搞出了个“大新闻”，知乎上也是一片喊着Java可以去死了的声音，但是作为一个微软粉转路人，昨天折腾了我一下午的事情简直让我想变成一生黑。 事情是这样的：上个周末的时候看着又要告急万里江山一片红的C盘，想着还…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-11-19T12:00:50.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.416Z">
+<meta property="article:author" content="Shell32">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/" aria-current="page">文章</a>
+      
+        <a href="/categories/LeetCode/">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/Life/">Life</a>
+    </div>
+    <h1 class="post-title">杂记——我就是要吐槽Windows</h1>
+    <div class="post-meta">
+      <time datetime="2014-11-19T12:00:50.000Z">2014 年 11 月 19 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 4 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>这几天微软因为.Net开源的原因又搞出了个“大新闻”，知乎上也是一片喊着Java可以去死了的声音，但是作为一个微软粉转路人，昨天折腾了我一下午的事情简直让我想变成一生黑。</p>
+<p>事情是这样的：上个周末的时候看着又要告急万里江山一片红的C盘，想着还是去卸载一些东西吧，于是遵从微软的教导，打开控制面板－程序－卸载程序，结果看来看去发现实在没有什么可以卸载的，于是打算拿从来没有用过的SQL Server下手。不要问我为什么装它，装VS的时候貌似是默认的，亦或者我没有把它勾掉。说实话我知道VS是一个优秀的IDE，但是我仍然对它没有什么好感，过于臃肿，要不是课程要用到我才不会装呢。不论如何，我是打算拿SQL Server开刀了，列表中列出了大概六到七个相关的组件，嗯，挨个卸载吧。开头两个点击卸载后提示依赖于另一个程序，要先卸载另一个，好，你说先卸载就先卸载，结果依赖的程序点击卸载后卸载出错，出错就出错吧，也不少见了，但是可气的是只告诉我出错又不告诉我哪里出错，要是移动设备什么的也就算了，告诉用户出错原因用户可能也束手无策。但是作为桌面操作系统，就不能告诉我到底哪里错了吗？这个问题后面再讨论，还是继续我的卸载之旅吧。既然正常的卸载方法卸载不掉，那就只能用非常手段了，于是祭出Installer Clean Up，这是微软官方的用于删除msi安装包的工具，虽然很久没有更新了，但是在删除一些极其顽固的软件的时候还是很有用的（没错，Office，说的就是你）。找到要卸载的软件后点Clean，继续坑爹，删除进程卡住了，这是一个命令行工具，主要是扫描注册表和系统文件再执行删除，但是它运行到一半的时候卡住了。看来这个办法也行不通了，作为一个轻度强迫症患者，我想卸载却无法卸载简直就是折磨，于是一通Google，在微软官网找到了官方卸载修复工具，down下来之后总算是把SQL Server删除了。但是这却引起了更严重的问题，Office 2013每次打开的时候都要进行一次配置，当时我还没有在意，以为是没有重启导致的，结果昨天重启之后还是这个样子，这简直可以把强迫症逼疯好麻！！结果在尝试了修改注册表等方法无果后，还是痛下决心决定重装Office（昨天是要做明天答辩的PPT的，这个时候决定重装需要多大的决心你造吗？）这中间又出了多么坑爹的注册表权限问题我就不提了，安装完Office 2013 SP1后打补丁吧，我不说要打三个G的Office补丁了，但是你有两个跟Office和SQL Server没半毛钱关系的补丁出现未知错误是怎么回事？我已经不想吐槽了，又花了大半个晚上的时间才把这两个补丁装上。</p>
+<p>微软是一家伟大的公司，它的产品技术也是世界顶级的，但是作为一个长年Windows用户（其实是没钱买不起Mac，呵呵说多了都是泪）实在不觉得Windows是个优秀的产品，它为了兼容性和市场份额而背负了太多的包袱。而且Windows作为一个操作系统本身的复杂程度就已经非常高，谁也不能保证不出问题，但是它总是会出一些莫名奇妙的问题我就无法理解了。如果是第三方软件出问题还可以辩解说是第三方软件的问题，但是微软自家产品出的问题也不少，比如我每次要重装Office的时候都几乎必然会出问题（注册表是重灾区），还经常有上文这样无法卸载的东西，甚至用官方的东西卸载后导致其他部分出问题，一个人生病，全家卧床不起。你可以说我本来就不应该去卸载SQL Server，一个软件连最基本的卸载都搞不定我还怎么对它有好感？</p>
+<p>大概Windows认为大多数用户无法自己解决问题，所以出错提示都相当简短，最多有个错误号，即使到系统日志里看到了具体的错误一般也是个程序的返回码，比如我最后安装那两个补丁时报的错，还有这周在网络实验室的Server 2008 R2上添加活动区域的时候，都是告诉用户错了，但是具体哪里错了我就是不告诉你，其实系统也不知道到底哪里错了，它只从程序那里得到一个错误码而已。没有很深的专业知识和经验想要查出问题在哪简直是不可能。而且因为Win的开放度和兼容性导致Win的目录结构常常变的极其混乱，这个时候出问题大多数人还是重装了事吧。</p>
+<p>昨天在遇到最后的更新问题时，在微软的官方论坛上列出的方法有十几种之多，几乎大半要求重启，作为一个普通用户我觉得这种建议是毫无意义的，因为太过于麻烦，可操作性差，全部尝试也不一定能解决问题，原因还是错误原因千奇百怪，根本原因呢？怕还是在Windows自己身上。什么时候Windows对软件的限制多一些，强硬一些，把自家大型软件的耦合性降低一些（比如VS做成插件模式就很好，不会像现在这样臃肿，当然我只是在闲扯），那么Windows的体验还能上升一个台阶。</p>
+<p> </p>
+<p> </p>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2014/11/08/pythonopencv%E5%9B%BE%E5%83%8F%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96%E5%A4%84%E7%90%86/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">Python+OpenCV图像直方图均衡化处理</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2014/12/19/zip%E6%96%87%E4%BB%B6%E5%90%8D%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">zip文件名乱码的解决方法</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2014/11/19/%E6%9D%82%E8%AE%B0%E2%80%94%E2%80%94%E6%88%91%E5%B0%B1%E6%98%AF%E8%A6%81%E5%90%90%E6%A7%BDWindows/"
+  data-identifier="2014/11/19/杂记——我就是要吐槽Windows/"
+  data-title="杂记——我就是要吐槽Windows">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

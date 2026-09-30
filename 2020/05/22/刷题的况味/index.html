@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>刷题的况味 · Shell32</title>
+<meta name="description" content="写下这个标题的时候我才发现我竟然一直都不是很确定“况味”这个词到底是个什么意思，忘记了中学时候在什么地方看到过这个词，估计是在哪一堂语文课或者哪一次语文阅读的时候遇到的吧。去查了一下才知道跟“滋味”是差不多的，这么说来放在标题也还是挺贴切的…">
+
+<meta name="keywords" content="Life,Study">
+
+<link rel="canonical" href="http://blog.xiadong.info/2020/05/22/刷题的况味/">
+<meta name="description" content="写下这个标题的时候我才发现我竟然一直都不是很确定“况味”这个词到底是个什么意思，忘记了中学时候在什么地方看到过这个词，估计是在哪一堂语文课或者哪一次语文阅读的时候遇到的吧。去查了一下才知道跟“滋味”是差不多的，这么说来放在标题也还是挺贴切的…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刷题的况味">
+<meta property="og:url" content="http://blog.xiadong.info/2020/05/22/%E5%88%B7%E9%A2%98%E7%9A%84%E5%86%B5%E5%91%B3/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="写下这个标题的时候我才发现我竟然一直都不是很确定“况味”这个词到底是个什么意思，忘记了中学时候在什么地方看到过这个词，估计是在哪一堂语文课或者哪一次语文阅读的时候遇到的吧。去查了一下才知道跟“滋味”是差不多的，这么说来放在标题也还是挺贴切的…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-22T11:50:45.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.414Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="Life">
+<meta property="article:tag" content="Study">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/" aria-current="page">文章</a>
+      
+        <a href="/categories/LeetCode/">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/Life/">Life</a>
+    </div>
+    <h1 class="post-title">刷题的况味</h1>
+    <div class="post-meta">
+      <time datetime="2020-05-22T11:50:45.000Z">2020 年 5 月 22 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 5 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>写下这个标题的时候我才发现我竟然一直都不是很确定“况味”这个词到底是个什么意思，忘记了中学时候在什么地方看到过这个词，估计是在哪一堂语文课或者哪一次语文阅读的时候遇到的吧。去查了一下才知道跟“滋味”是差不多的，这么说来放在标题也还是挺贴切的。</p>
+<span id="more"></span>
+<p>我的博客里目前有343篇属于LeetCode类别的文章，而我实际在LeetCode上solve了834题，翻了提交记录发现我的第一次提交是在5年两个月前，也就是2015年的3月份。现在我已经忘记了当时为什么要开始做题，那个时候我还没有能出国、能来硅谷的奢望，估计大概是为了准备那一年的蓝桥杯和暑假里的保研夏令营吧。</p>
+<p>我一开始的做题过程完全没有章法，纯粹是随机挑一题开始做，第一次提交竟然是#191，不知道当时是怎么找到这一题的。我本科的时候曾经还参与过学校的ACM比赛，水平实在是过于垃圾所以我用“参与”而不是“参加”，那个时候我看过刘汝佳的白书（算法竞赛入门经典），虽然几乎什么都没有记住，但是也算是对于LeetCode这种形式不是一张白纸吧。</p>
+<p>我真正开始正视刷题这件事应该是在16年下半年的时候，毕竟有在北美找工作的压力，但是也还是没有什么计划性，我记得那时候应该是按照题号从小往大来刷的，笔记啊，整理啊更是统统没有（其实我现在也是没有🤷‍♂️）。我应该是从那个时候开始做周赛的，从那之后一直做了好几年。17年的时候应该一直在刷题，但是同时CMU的课业也是相当繁重，所以我也不清楚做了多少题。</p>
+<p>绝大多数的题我都已经没有印象了，但是我还清晰的记得某些难题做不出来的时候，那种感受跟高中时的数学或者物理试卷上碰到难题的感觉差不多，似乎能抓住一点尾巴但是脑袋里面总是像是堵满了浆糊。</p>
+<p>从18年，或者19的时候开始，大概做了400到500题左右，我能感觉到我的做题水平进入了一个新的阶段。很难精确地去描述这种感觉，我能感觉到我已经能在脑中快速过一遍LeetCode题目用到的所有的数据结构和算法，在看到一道题的时候，读完题我大概就知道需要用什么数据结构和算法来做。还有一个表现就是抽象能力的提高，稍微复杂一点的题目的文字描述总是会找一个情景套进去，从这个情景的描述中快速抽象出实际上应该使用的数据结构和算法是很重要的。</p>
+<p>很多人总是会说做题无用，数据结构和算法在实际工作中基本上用不到。v2ex上这种自称CRUD boy的人尤其的多。不错，我工作快两年来一次都没有用到过DP和图论之类的东西，但是我认为更重要的不是你能记住几种算法，而是面对实际问题快速把它抽象为计算机语言的能力。</p>
+<p>其实我是不喜欢“刷题”这个说法的，它给我的感觉总是有点功利化，有点漫不经心。做题本身应该是一种解决问题的娱乐方式，就像做数独，读侦探小说一样享受解谜的快感。而不是机械得去“刷”。</p>
+<p>有一个很好的例子，在我写POI浏览器的<a target="_blank" rel="noopener" href="https://github.com/Shell32-Natsu/poi-plugin-collection-progress">舰娘收集进度插件</a>的时候，遇到过这种情况：舰C服务器返回的数据中，舰娘类别数据和拥有的舰娘本身的数据是分开的。可以把类别数据当作是一个类，而实际拥有的舰娘是类的实例，比如你可以有两艘吹雪，她们都是同一个“类别”，每个舰娘的属性有一个ID会指向她的舰种。我现在的第一舰队旗舰是Fletcher改，她的舰船ID（api_id）是24326，舰种ID（api_ship_id）是692。而收集进度插件在处理的时候应该考虑类别而非实际舰娘，也就是即使你有两艘吹雪也只应该代表着“吹雪”这艘船已经收集了。但当考虑到改造的时候，问题就变得复杂了，在舰C服务器的数据中，每个舰娘类别中都有一个api_aftershipid属性，它指的是改造后的舰娘类别ID；与此同时吹雪、吹雪改和吹雪改二在收集进度中应该考虑为同一艘船，那么在有吹雪多号机以及不同改造形态的情况下，如何判断一艘吹雪改和一艘吹雪改二都是“吹雪”？稍微了解一些数据结构就能很容易地想到这个结构是一个典型的单链表：吹雪=&gt;吹雪改=&gt;吹雪改二，那么问题就抽象为，给定两个单链表节点，它们可能在也可能不在一个链表中，你要实现一个函数，返回它们是否在一个链表中。bruteforce的方法就是从一个节点开始遍历看能否到达另一个节点，因为两个节点的先后顺序不确定，所以前后调换再遍历一次。</p>
+<p>让这个问题变得更有趣的是，舰娘改造现在是可以“反复横跳”的。Fletcher改 Mod.2的api_aftershipid指向Fletcher Mk.II，而Fletcher Mk.II的api_aftershipid又指向Fletcher改 Mod.2，在游戏中的表现就是形态切换了。而这个机制的存在就让上述的链表算法可能陷入死循环中。问题现在加了一个条件，这个单链表可能有环。要在链表的基础上解决这个问题就有点麻烦了，你也许会说：Fletcher这种情况，只要判断aftershipid是不是前一个节点不就行了？对于Fletcher这个特例，或者说大多数双形态切换来说都可行，但刷过题你应该就知道，用特例来通过边界条件是大忌，因为你不知道还有没有其他的边界条件。夕张就是这么个边界条件，她是三形态切换，具体的表现就是夕张改二、夕张改二特和夕张改二丁首尾相连都在环中。你需要一个更具有普适性的算法。</p>
+<p>想到链表其实是一个有向图，而在我们的问题中，方向并不是很重要，所以可以抽象为一个无向有环图，实际上要解决的问题是非连通无向有环图中判断两个节点是否连通，或者说这两个节点是否在一个集合中。说到这里是不是觉得很熟悉了，刷了题你就应该知道无向图中两个节点是否连通是个非常常见的问题，你可以用DFS，BFS或者并查集来解决。而并查集简直就是为了解决这个问题而存在的。到此为止，这个问题终于有了一个简洁优雅的算法。</p>
+<p>算法题没有做到熟练，对于数据结构不够熟悉，你可能要在这个问题上耗费不少的时间写出bug一堆的代码。谁也不知道在实际工作中会不会哪一天就碰到这种问题，如果没有过这种经历的话，恐怕真的到了那个时候才能体味一下刷题的况味吧。</p>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/Life/">#Life</a></li>
+        
+          <li><a class="tag" href="/tags/Study/">#Study</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2020/05/21/%E4%BC%BC%E4%B9%8E%E8%AF%BB%E4%B8%8D%E4%B8%8B%E5%8E%BB%E4%B9%A6%E4%BA%86/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">似乎读不下去书了</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2020/05/24/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%83%AD%E8%A1%B7%E4%BA%8E%E5%8D%87%E7%BA%A7%E8%BD%AF%E4%BB%B6%E4%BA%86/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">我为什么不热衷于升级软件了</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2020/05/22/%E5%88%B7%E9%A2%98%E7%9A%84%E5%86%B5%E5%91%B3/"
+  data-identifier="2020/05/22/刷题的况味/"
+  data-title="刷题的况味">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

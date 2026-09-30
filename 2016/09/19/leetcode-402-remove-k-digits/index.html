@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 402. Remove K Digits · Shell32</title>
+<meta name="description" content="题目描述: Given a non-negative integer num represented as a string, remove k digits from the number so that the new number i…">
+
+<meta name="keywords" content="LeetCode,字符串,算法,CPP,栈">
+
+<link rel="canonical" href="http://blog.xiadong.info/2016/09/19/leetcode-402-remove-k-digits/">
+<meta name="description" content="题目描述: Given a non-negative integer num represented as a string, remove k digits from the number so that the new number i…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 402. Remove K Digits">
+<meta property="og:url" content="http://blog.xiadong.info/2016/09/19/leetcode-402-remove-k-digits/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="题目描述: Given a non-negative integer num represented as a string, remove k digits from the number so that the new number i…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-09-19T17:02:06.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.406Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="栈">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 402. Remove K Digits</h1>
+    <div class="post-meta">
+      <time datetime="2016-09-19T17:02:06.000Z">2016 年 9 月 19 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 2 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>题目描述:</p>
+<blockquote>
+<p>Given a non-negative integer <em>num</em> represented as a string, remove <em>k</em> digits from the number so that the new number is the smallest possible.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The length of <em>num</em> is less than 10002 and will be ≥ <em>k</em>.</li>
+<li>The given <em>num</em> does not contain any leading zero.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<pre><code class="hljs plaintext">Input: num = &quot;1432219&quot;, k = 3
+Output: &quot;1219&quot;
+Explanation: Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code class="hljs plaintext">Input: num = &quot;10200&quot;, k = 1
+Output: &quot;200&quot;
+Explanation: Remove the leading 1 and the number is 200. Note that the output must not contain leading zeroes.
+</code></pre>
+<p><strong>Example 3:</strong></p>
+<pre><code class="hljs plaintext">Input: num = &quot;10&quot;, k = 2
+Output: &quot;0&quot;
+Explanation: Remove all the digits from the number and it is left with nothing which is 0.</code></pre>
+</blockquote>
+<p>这道题的主要思想就是&quot;如果遇到了一个较小的值, 那么就把已得到的字符串中尾部所有比它大的值删除, 再把它放入末尾; 如果比末尾元素大, 那么就把它直接添加到末尾&quot;. 这是一个栈的问题, 但是除了主要的思路以外还有另一个问题: 最终栈的大小必须是<code>num.size()-k</code>, 所以在添加和删除时必须要考虑栈的大小.</p>
+<p>在元素比栈顶元素大的情况下还要增加一个条件: 栈的大小还没有达到<code>num.size()-k</code>.</p>
+<p>而元素比栈顶元素小的情况下, 在弹出栈顶元素时要求num中剩下的元素数量&gt;=栈的目标大小-栈目前的大小, 这样才能保证栈能被填满.</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">string <span class="hljs-title">removeKdigits</span><span class="hljs-params">(string num, <span class="hljs-type">int</span> k)</span> </span>&#123;
+        string ans;
+        <span class="hljs-type">int</span> target = num.<span class="hljs-built_in">size</span>() - k, size = num.<span class="hljs-built_in">size</span>(), i;
+        <span class="hljs-keyword">if</span>(target == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;0&quot;</span>;
+        ans.<span class="hljs-built_in">push_back</span>(num[<span class="hljs-number">0</span>]);
+        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>; i &lt; k + ans.<span class="hljs-built_in">size</span>(); i++)&#123;
+            <span class="hljs-keyword">if</span>(num[i] &gt; ans.<span class="hljs-built_in">back</span>() &amp;&amp; ans.<span class="hljs-built_in">size</span>() &lt; target) ans.<span class="hljs-built_in">push_back</span>(num[i]);
+            <span class="hljs-keyword">else</span>&#123;
+                <span class="hljs-keyword">while</span>(!ans.<span class="hljs-built_in">empty</span>() &amp;&amp; ans.<span class="hljs-built_in">back</span>() &gt; num[i] &amp;&amp; size - i - <span class="hljs-number">1</span> &gt;= target - ans.<span class="hljs-built_in">size</span>()) ans.<span class="hljs-built_in">pop_back</span>();
+                <span class="hljs-keyword">if</span>(ans.<span class="hljs-built_in">size</span>() &lt; target) ans.<span class="hljs-built_in">push_back</span>(num[i]);
+            &#125;
+        &#125;
+        <span class="hljs-keyword">for</span>(; ans.<span class="hljs-built_in">size</span>() &lt; target; i++)&#123;
+            ans.<span class="hljs-built_in">push_back</span>(num[i]);
+        &#125;
+        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; ans[i] == <span class="hljs-string">&#x27;0&#x27;</span>; i++);
+        <span class="hljs-keyword">if</span>(ans.<span class="hljs-built_in">empty</span>() || i == ans.<span class="hljs-built_in">size</span>()) <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;0&quot;</span>;
+        <span class="hljs-keyword">return</span> ans.<span class="hljs-built_in">substr</span>(i);
+    &#125;
+&#125;;</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">#字符串</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E6%A0%88/">#栈</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2016/09/18/leetcode-401-binary-watch/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 401. Binary Watch</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2016/09/19/leetcode-403-frog-jump/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 403. Frog Jump</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2016/09/19/leetcode-402-remove-k-digits/"
+  data-identifier="2016/09/19/leetcode-402-remove-k-digits/"
+  data-title="LeetCode 402. Remove K Digits">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

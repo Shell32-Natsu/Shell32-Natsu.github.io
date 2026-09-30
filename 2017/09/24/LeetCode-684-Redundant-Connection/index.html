@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 684. Redundant Connection · Shell32</title>
+<meta name="description" content="We are given a “tree” in the form of a 2D-array, with distinct values for each node. In the given 2D-array, each element…">
+
+<meta name="keywords" content="LeetCode,CPP,图,并查集">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/09/24/LeetCode-684-Redundant-Connection/">
+<meta name="description" content="We are given a “tree” in the form of a 2D-array, with distinct values for each node. In the given 2D-array, each element…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 684. Redundant Connection">
+<meta property="og:url" content="http://blog.xiadong.info/2017/09/24/LeetCode-684-Redundant-Connection/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="We are given a “tree” in the form of a 2D-array, with distinct values for each node. In the given 2D-array, each element…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-09-24T11:57:13.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.398Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="图">
+<meta property="article:tag" content="并查集">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 684. Redundant Connection</h1>
+    <div class="post-meta">
+      <time datetime="2017-09-24T11:57:13.000Z">2017 年 9 月 24 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 3 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>We are given a “tree” in the form of a 2D-array, with <code>distinct</code> values for each node.</p>
+<p>In the given 2D-array, each element pair <code>[u, v]</code> represents that <code>v</code> is a child of <code>u</code> in the tree.</p>
+<p>We can remove <code>exactly</code> one redundant pair in this “tree” to make the result a tree.</p>
+<p>You need to find and output such a pair. If there are multiple answers for this question, output the one appearing last in the 2D-array. There is always at least one answer.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code class="hljs plaintext">Input: [[1,2], [1,3], [2,3]]
+Output: [2,3]
+Explanation: Original tree will be like this:
+  1
+ / \
+2 - 3
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code class="hljs plaintext">Input: [[1,2], [1,3], [3,1]]
+Output: [3,1]
+Explanation: Original tree will be like this:
+  1
+ / \\
+2   3
+</code></pre>
+<p><strong>Note:</strong></p>
+<p>The size of the input 2D-array will be between 1 and 1000.</p>
+<p>Every integer represented in the 2D-array will be between 1 and 2000.</p>
+<span id="more"></span>
+<p>这道题的题目描述相当的坑，我被<code>child</code>这个词和test case困扰了挺久。而且要再复习一个概念：我们常说的“父子节点”是针对<strong>有根树 Rooted Tree</strong>来说的，而树的定义：无向连通无环图是没有父子节点这种区分的，而这道题的输入数据是就是一个广义上的树，不要被题目误导了。</p>
+<p>实际上这道题就是要判断一个无向图是否是一个棵树。主要探测两个条件：</p>
+<ol>
+<li>是否有环</li>
+<li>是否连通</li>
+</ol>
+<p>最直接的办法就是用DFS遍历查找环，但是因为要删去一条下标最大的边，所以从后往前依次删除边，直到剩下的边可以组成一个树。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isTree</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edges, <span class="hljs-type">int</span> skip)</span> </span>&#123;
+        vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">graph</span>(<span class="hljs-number">2001</span>);
+        unordered_set&lt;<span class="hljs-type">int</span>&gt; nodes;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; edges.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">if</span> (i == skip) <span class="hljs-keyword">continue</span>;
+            graph[edges[i][<span class="hljs-number">0</span>]].<span class="hljs-built_in">push_back</span>(edges[i][<span class="hljs-number">1</span>]);
+            graph[edges[i][<span class="hljs-number">1</span>]].<span class="hljs-built_in">push_back</span>(edges[i][<span class="hljs-number">0</span>]);
+            nodes.<span class="hljs-built_in">insert</span>(edges[i][<span class="hljs-number">0</span>]);
+            nodes.<span class="hljs-built_in">insert</span>(edges[i][<span class="hljs-number">1</span>]);
+        &#125;
+
+        unordered_set&lt;<span class="hljs-type">int</span>&gt; visited;
+
+        vector&lt;<span class="hljs-type">int</span>&gt; path;
+        <span class="hljs-type">int</span> start = edges[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">dfs</span>(graph, visited, path, start))
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> visited.<span class="hljs-built_in">size</span>() == nodes.<span class="hljs-built_in">size</span>();
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; graph, unordered_set&lt;<span class="hljs-type">int</span>&gt; &amp;visited, vector&lt;<span class="hljs-type">int</span>&gt; &amp;path, <span class="hljs-type">int</span> node)</span> </span>&#123;
+        <span class="hljs-type">int</span> parent = <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">if</span> (!path.<span class="hljs-built_in">empty</span>()) parent = path.<span class="hljs-built_in">back</span>();
+        path.<span class="hljs-built_in">push_back</span>(node);
+        visited.<span class="hljs-built_in">insert</span>(node);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> n : graph[node]) &#123;
+            <span class="hljs-keyword">if</span> (visited.<span class="hljs-built_in">count</span>(n) &amp;&amp; parent != <span class="hljs-number">-1</span> &amp;&amp; n != parent) &#123;
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!visited.<span class="hljs-built_in">count</span>(n)) &#123;
+                <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">dfs</span>(graph, visited, path, n))
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            &#125;
+        &#125;
+        path.<span class="hljs-built_in">pop_back</span>();
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    &#125;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">findRedundantConnection</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;
+        vector&lt;<span class="hljs-type">int</span>&gt; ans;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = edges.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">isTree</span>(edges, i)) &#123;
+                ans = edges[i];
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> ans;
+    &#125;
+&#125;;</code></pre>
+<p>然而这个办法效率很低。更优的解法是使用并查集。当一条边连接了两个本来就在一个集合中的节点时，这条边就破坏了树的结构，只要返回这条边就好了。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findHead</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;u, <span class="hljs-type">int</span> node)</span> </span>&#123;
+        <span class="hljs-keyword">while</span>(u[node] != node)
+            node = u[node];
+        <span class="hljs-keyword">return</span> node;
+    &#125;
+    
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">uf</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">u</span><span class="hljs-params">(<span class="hljs-number">2001</span>)</span></span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; u.<span class="hljs-built_in">size</span>(); i++) &#123;
+            u[i] = i;
+        &#125;
+        
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;edge: edges) &#123;
+            <span class="hljs-type">int</span> h1 = <span class="hljs-built_in">findHead</span>(u, edge[<span class="hljs-number">1</span>]);
+            <span class="hljs-type">int</span> h2 = <span class="hljs-built_in">findHead</span>(u, edge[<span class="hljs-number">0</span>]);
+            <span class="hljs-keyword">if</span> (h1 == h2) <span class="hljs-keyword">return</span> edge;
+            u[h1] = h2;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;();
+    &#125;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">findRedundantConnection</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; edges)</span> </span>&#123;
+        vector&lt;<span class="hljs-type">int</span>&gt; ans;
+        ans = <span class="hljs-built_in">uf</span>(edges);
+        <span class="hljs-keyword">return</span> ans;
+    &#125;
+&#125;;</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%9B%BE/">#图</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">#并查集</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2017/09/24/LeetCode-683-K-Empty-Slots/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 683. K Empty Slots</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2017/12/21/17-Fall-%E6%80%BB%E7%BB%93/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">17 Fall 总结</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/09/24/LeetCode-684-Redundant-Connection/"
+  data-identifier="2017/09/24/LeetCode-684-Redundant-Connection/"
+  data-title="LeetCode 684. Redundant Connection">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

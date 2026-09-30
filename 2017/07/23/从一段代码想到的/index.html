@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>从一段代码想到的 · Shell32</title>
+<meta name="description" content="今天看到一篇微信推送，说下面这段代码有可能引起死循环： int main() &amp;#123; int a[10], i; for (i = 1; i &amp;lt;= 10; i++) &amp;#123; a[i] = 0; &amp;#125; return…">
+
+<meta name="keywords" content="C">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/07/23/从一段代码想到的/">
+<meta name="description" content="今天看到一篇微信推送，说下面这段代码有可能引起死循环： int main() &#123; int a[10], i; for (i &#x3D; 1; i &lt;&#x3D; 10; i++) &#123; a[i] &#x3D; 0; &#125; return…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从一段代码想到的">
+<meta property="og:url" content="http://blog.xiadong.info/2017/07/23/%E4%BB%8E%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%83%B3%E5%88%B0%E7%9A%84/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="今天看到一篇微信推送，说下面这段代码有可能引起死循环： int main() &#123; int a[10], i; for (i &#x3D; 1; i &lt;&#x3D; 10; i++) &#123; a[i] &#x3D; 0; &#125; return…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-07-23T19:46:03.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.414Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/" aria-current="page">文章</a>
+      
+        <a href="/categories/LeetCode/">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/Study/">Study</a>
+    </div>
+    <h1 class="post-title">从一段代码想到的</h1>
+    <div class="post-meta">
+      <time datetime="2017-07-23T19:46:03.000Z">2017 年 7 月 23 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 4 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body has-toc">
+    
+      <aside class="post-toc" aria-label="目录">
+        <p class="toc-title">目录</p>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%8F%8D%E5%BA%94"><span class="toc-text">第一反应</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%84%B6%E8%80%8C%E2%80%A6%E2%80%A6"><span class="toc-text">然而……</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E8%AD%A6%E5%91%8A"><span class="toc-text">编译器的警告</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%AF%E8%A7%A3%E4%B8%8E%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88"><span class="toc-text">常见的误解与老生常谈</span></a></li></ol>
+      </aside>
+      <details class="toc-inline">
+        <summary>目录</summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%8F%8D%E5%BA%94"><span class="toc-text">第一反应</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%84%B6%E8%80%8C%E2%80%A6%E2%80%A6"><span class="toc-text">然而……</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E8%AD%A6%E5%91%8A"><span class="toc-text">编译器的警告</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%AF%E8%A7%A3%E4%B8%8E%E8%80%81%E7%94%9F%E5%B8%B8%E8%B0%88"><span class="toc-text">常见的误解与老生常谈</span></a></li></ol>
+      </details>
+    
+    <div class="prose">
+      <p>今天看到一篇微信推送，说下面这段代码有可能引起死循环：</p>
+<pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> 
+&#123; 
+    <span class="hljs-type">int</span> a[<span class="hljs-number">10</span>], i;
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++)
+    &#123;
+        a[i] = <span class="hljs-number">0</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>；
+&#125;</code></pre>
+<p>再看看文章下面的评论，基本上都是认为对于<code>a[10]</code>的引用实际上是变量<code>i</code>的地址，然而即使是我这个半吊子水平也知道这显然是错误的解释。但是实际实验了一下之后发现我的第一印象也是有点想当然了。</p>
+<span id="more"></span>
+<h1 id="第一反应">第一反应</h1>
+<p>我之所以认为评论中的解释是错误的，所基于的理由是：<strong>函数栈是从高地址往低地址生长的</strong>。因此在不考虑使用寄存器的情况下，先定义的变量应该会出现在高地址，如果编译器按照声明的顺序来分配栈，那么<code>i</code>应该在<code>a[0]</code>之前而非<code>a[9]</code>之后，因此数组越界写入到<code>i</code>里面去是显然错误的。我在我的机器上使用GCC 5.4.0版本编译上述代码的结果也符合我的预期：</p>
+<pre><code class="hljs asm">        .file   &quot;main.c&quot;
+        .text
+        .globl  main
+        .type   main, @function
+main:
+.LFB0:
+        .cfi_startproc
+        pushq   %rbp
+        .cfi_def_cfa_offset 16
+        .cfi_offset 6, -16
+        movq    %rsp, %rbp
+        .cfi_def_cfa_register 6
+        subq    $64, %rsp
+        movq    %fs:40, %rax
+        movq    %rax, -8(%rbp)
+        xorl    %eax, %eax
+        movl    $1, -52(%rbp)
+        jmp     .L2
+.L3:
+        movl    -52(%rbp), %eax
+        cltq
+        movl    $0, -48(%rbp,%rax,4)
+        addl    $1, -52(%rbp)
+.L2:
+        cmpl    $10, -52(%rbp)
+        jle     .L3
+        movl    $0, %eax
+        movq    -8(%rbp), %rdx
+        xorq    %fs:40, %rdx
+        je      .L5
+        call    __stack_chk_fail
+.L5:
+        leave
+        .cfi_def_cfa 7, 8
+        ret
+        .cfi_endproc
+.LFE0:
+        .size   main, .-main
+        .ident  &quot;GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609&quot;
+        .section        .note.GNU-stack,&quot;&quot;,@progbits</code></pre>
+<p>可以看到变量<code>i</code>的位置是在<code>-52(%rbp)</code>中，而数组<code>a</code>是从<code>-48(%rbp)</code>开始的，并不存在<code>a[10]</code>就是<code>i</code>的情况。以上的汇编代码执行结果是</p>
+<pre><code class="hljs plaintext">*** stack smashing detected ***: ./main terminated
+已放弃 (核心已转储)</code></pre>
+<p>原因是第31行的<code>call    __stack_chk_fail</code>检测到了数组越界，而如何检测数组越界？是靠的第14、15行对于<code>-8(%rbp)</code>的设置和第28、29行对它的检测（这种检测也并不是很靠谱）。</p>
+<h1 id="然而……">然而……</h1>
+<p>我在另一台机器上使用GCC 4.4.6编译却得到了完全不同的结果。</p>
+<pre><code class="hljs asm">    .file   &quot;main.c&quot;                             
+    .text
+.globl main
+    .type   main, @function
+main:
+.LFB0:
+    .cfi_startproc
+    pushq   %rbp
+    .cfi_def_cfa_offset 16
+    .cfi_offset 6, -16
+    movq    %rsp, %rbp
+    .cfi_def_cfa_register 6
+    movl    $1, -4(%rbp)
+    jmp .L2
+.L3:
+    movl    -4(%rbp), %eax
+    cltq
+    movl    $0, -48(%rbp,%rax,4)
+    addl    $1, -4(%rbp)
+.L2:
+    cmpl    $10, -4(%rbp)
+    jle .L3
+    movl    $0, %eax
+    leave
+    .cfi_def_cfa 7, 8
+    ret
+    .cfi_endproc
+.LFE0:
+    .size   main, .-main
+    .ident  &quot;GCC: (GNU) 4.4.6 20110731 (Red Hat 4.4.6-4)&quot;
+    .section    .note.GNU-stack,&quot;&quot;,@progbits</code></pre>
+<p>这次编译器把变量<code>i</code>给放到了数组<code>a</code>之后的<code>-4(%rbp)</code>中（但是这段代码也仍然不会出现死循环，把循环终止条件从<code>&lt;=10</code>变成<code>&lt;=11</code>就可以造成死循环了，原因从汇编中很容易就能发现）。同一编译器的不同版本都把相同声明顺序的变量放到了不同的地址，说明我的第一印象是错误的，<strong>编译器并不会严格地按顺序在栈中分配变量空间</strong>，所有对于顺序的假定都是没什么意义的。</p>
+<h1 id="编译器的警告">编译器的警告</h1>
+<p>实际上，在GCC 5.4.0中使用<code>-O2</code>或<code>-O3</code>选项编译开头代码的话，是会产生警告的</p>
+<pre><code class="hljs plaintext">main.c: In function ‘main’:
+main.c:6:8: warning: iteration 9u invokes undefined behavior [-Waggressive-loop-optimizations]
+   a[i] = 0;
+        ^
+main.c:4:2: note: containing loop
+  for (i = 1; i &lt;= 10; i++)
+  ^</code></pre>
+<p>而这个警告的含义是：</p>
+<blockquote>
+<p>Warn if in a loop with constant number of iterations the compiler detects undefined behavior in some statement during one or more of the iterations.</p>
+</blockquote>
+<p>也就是说，这段代码会引起<strong>Undefined Behavior</strong>。</p>
+<h1 id="常见的误解与老生常谈">常见的误解与老生常谈</h1>
+<p>很多人一直认为（包括我），数组越界最多只是引起<em>Segment Fault</em>或者写坏其他变量，然而这是错误的，数组越界是一个<strong>未定义行为(Undefined Behavior)</strong>。具体原因可参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/18727216/3317502">这个链接</a>。</p>
+<p>未定义行为是一个常常被提起的概念，它常常被调侃为一旦出现，编译器可以选择忽略，或者烧掉你的CPU，或者格式化整个硬盘，又或者按下核弹发射按钮。这些都是符合标准的行为，因为标准把处理方式的选择权交给了编译器实现者，实现者可以自由发挥。所以，开头的那段代码说可能引起死循环也不能算错，因为<strong>完全可能出现任何情况！</strong></p>
+<div style="font-size: 2.5em;font-weight: bold;">任何依赖于UB的问题和代码都是耍流氓！</div>
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/C/">#C</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2017/07/16/%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%AD%A6%E7%BC%96%E7%A8%8B%EF%BC%9F/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">应该如何学编程？</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2017/08/01/%E5%AE%9E%E4%B9%A0%E8%A7%81%E9%97%BB/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">实习见闻</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/07/23/%E4%BB%8E%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%83%B3%E5%88%B0%E7%9A%84/"
+  data-identifier="2017/07/23/从一段代码想到的/"
+  data-title="从一段代码想到的">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

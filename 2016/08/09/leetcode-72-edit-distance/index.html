@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 72. Edit Distance · Shell32</title>
+<meta name="description" content="题目描述: Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operat…">
+
+<meta name="keywords" content="LeetCode,算法,CPP,动态规划">
+
+<link rel="canonical" href="http://blog.xiadong.info/2016/08/09/leetcode-72-edit-distance/">
+<meta name="description" content="题目描述: Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operat…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 72. Edit Distance">
+<meta property="og:url" content="http://blog.xiadong.info/2016/08/09/leetcode-72-edit-distance/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="题目描述: Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operat…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-09T18:15:46.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.411Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="动态规划">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 72. Edit Distance</h1>
+    <div class="post-meta">
+      <time datetime="2016-08-09T18:15:46.000Z">2016 年 8 月 9 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 2 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>题目描述:</p>
+<blockquote>
+<p>Given two words <em>word1</em> and <em>word2</em>, find the minimum number of steps required to convert <em>word1</em> to <em>word2</em>. (each operation is counted as 1 step.)</p>
+<p>You have the following 3 operations permitted on a word:</p>
+<p>a) Insert a character
+b) Delete a character
+c) Replace a character</p>
+</blockquote>
+<p>题目要求计算两个单词(word1, word2)的&quot;距离&quot;, 就是说最少经过多少步可以从word1变幻到word2. 可以使用的操作有三种:</p>
+<ol>
+<li>插入一个字符</li>
+<li>删除一个字符</li>
+<li>替换一个字符</li>
+</ol>
+<p>这道题目使用动态规划来解决.</p>
+<p>数组<code>dp[i][j]</code>表示<code>word1[0:i-1]</code>(包括i-1)与<code>word2[0:j-1]</code>之间的距离.</p>
+<p>根据最后一次操作的类型分为三类:</p>
+<ol>
+<li>word1插入字符, 此时<code>dp[i][j] = dp[i][j - 1] + 1</code>, 因为这是在<code>word1[0:i-1]=&gt;word2[0:j-2]</code>需要<code>dp[i][j - 1]</code>的基础上, word2最后又增加了一个字符, 因此<code>word1[0:i-1]=&gt;word2[0:j-2]</code>之后再增加一步插入字符的操作(也可以看作word2=&gt;word1最后多删除了一个字符)</li>
+<li>word2插入字符, 此时<code>dp[i][j] = dp[i - 1][j] + 1</code>, 因为这是在<code>word2[0:j-1]=&gt;word1[0:i-2]</code>需要<code>dp[i - 1][j]</code>的基础上, word1最后又增加了一个字符, 因此<code>word2[0:j-1]=&gt;word1[0:i-2]</code>之后再增加一步插入字符的操作(也可以看作word1=&gt;word2最后多删除了一个字符)</li>
+<li>替换操作, 如果<code>word1[i - 1] == word2[j - 1]</code>, 那么<code>dp[i][j] = dp[i - 1][j - 1]</code>, 否则<code>dp[i][j] = dp[i - 1][j - 1] + 1</code></li>
+</ol>
+<p>因此递推方程为</p>
+<p><code>dp[i][j] = min(dp[i-1][j-1] + (word1[i-1] == word2[j-1] ? 0 : 1), dp[i][j - 1] + 1, dp[i - 1][j] + 1)</code></p>
+<p>初始条件为<code>dp[i][0] = i; dp[0][j] = j;</code>(全部为插入操作)</p>
+<pre><code>class Solution &#123;
+public:
+    int minDistance(string word1, string word2) &#123;
+        int len1 = word1.length(), len2 = word2.length();
+        int arr[len1 + 1][len2 + 1];
+        arr[0][0] = 0;
+        for(int i = 1; i &lt;= len2; i++)&#123;
+            arr[0][i] = i;
+        &#125;
+        for(int i = 1; i &lt;= len1; i++)&#123;
+            arr[i][0] = i;
+        &#125;
+        for(int i = 1; i &lt;= len1; i++)&#123;
+            for(int j = 1; j &lt;= len2; j++)&#123;
+                int tmp1 = arr[i - 1][j] + 1, tmp2 = arr[i][j - 1] + 1, tmp3;
+                if(word1[i - 1] == word2[j - 1]) tmp3 = arr[i - 1][j - 1];
+                else tmp3 = arr[i - 1][j - 1] + 1;
+                arr[i][j] = min(tmp1, min(tmp2, tmp3));
+            &#125;
+        &#125;
+        return arr[len1][len2];
+    &#125;
+&#125;;
+</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2016/08/09/leetcode-71-simplify-path/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 71. Simplify Path</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2016/08/10/leetcode-382-linked-list-random-node/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 382. Linked List Random Node</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2016/08/09/leetcode-72-edit-distance/"
+  data-identifier="2016/08/09/leetcode-72-edit-distance/"
+  data-title="LeetCode 72. Edit Distance">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

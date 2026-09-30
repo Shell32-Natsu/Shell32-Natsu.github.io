@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 547. Friend Circles · Shell32</title>
+<meta name="description" content="题目描述： There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in n…">
+
+<meta name="keywords" content="LeetCode,算法,CPP,图,搜索,并查集">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/04/09/leetcode-547-friend-circles/">
+<meta name="description" content="题目描述： There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in n…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 547. Friend Circles">
+<meta property="og:url" content="http://blog.xiadong.info/2017/04/09/leetcode-547-friend-circles/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="题目描述： There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in n…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-04-09T17:15:42.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.410Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="图">
+<meta property="article:tag" content="搜索">
+<meta property="article:tag" content="并查集">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 547. Friend Circles</h1>
+    <div class="post-meta">
+      <time datetime="2017-04-09T17:15:42.000Z">2017 年 4 月 9 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 3 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>题目描述：</p>
+<blockquote>
+<p>There are <strong>N</strong> students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a <strong>direct</strong> friend of B, and B is a <strong>direct</strong> friend of C, then A is an <strong>indirect</strong> friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.</p>
+<p>Given a <strong>N*N</strong> matrix <strong>M</strong> representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are <strong>direct</strong> friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.</p>
+<p><strong>Example 1:</strong></p>
+<pre><code class="hljs plaintext">Input: 
+[[1,1,0],
+ [1,1,0],
+ [0,0,1]]
+Output: 2
+Explanation:The 0th and 1st students are direct friends, so they are in a friend circle. 
+The 2nd student himself is in a friend circle. So return 2.
+</code></pre>
+<p><strong>Example 2:</strong></p>
+<pre><code class="hljs plaintext">Input: 
+[[1,1,0],
+ [1,1,1],
+ [0,1,1]]
+Output: 1
+Explanation:The 0th and 1st students are direct friends, the 1st and 2nd students are direct friends, 
+so the 0th and 2nd students are indirect friends. All of them are in the same friend circle, so return 1.
+</code></pre>
+<p><strong>Note:</strong></p>
+<ol>
+<li>N is in range [1,200].</li>
+<li>M[i][i] = 1 for all students.</li>
+<li>If M[i][j] = 1, then M[j][i] = 1.</li>
+</ol>
+</blockquote>
+<p>比较典型的并查集题目，也可以使用广度优先搜索来解决。</p>
+<p><em>话说朋友圈就直接翻译成Friend Circle?</em></p>
+<p>并查集：</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findCircleNum</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; M)</span> </span>&#123;
+        <span class="hljs-type">int</span> num = M.<span class="hljs-built_in">size</span>();
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">uf</span><span class="hljs-params">(num)</span></span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++) uf[i] = i;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>; j &lt; num; j++) &#123;
+                <span class="hljs-keyword">if</span> (!M[i][j]) <span class="hljs-keyword">continue</span>;
+                <span class="hljs-keyword">if</span> (uf[i] == i &amp;&amp; uf[j] == j) &#123;
+                    uf[j] = i;
+                &#125;
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (uf[i] == i) &#123;
+                    <span class="hljs-type">int</span> h = j;
+                    <span class="hljs-keyword">while</span> (uf[h] != h) h = uf[h];
+                    uf[i] = h;
+                &#125;
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (uf[j] == j) &#123;
+                    <span class="hljs-type">int</span> h = i;
+                    <span class="hljs-keyword">while</span> (uf[h] != h) h = uf[h];
+                    uf[j] = h;
+                &#125;
+                <span class="hljs-keyword">else</span> &#123;
+                    <span class="hljs-type">int</span> h1 = j, h2 = i;
+                    <span class="hljs-keyword">while</span> (uf[h1] != h1) h1 = uf[h1];
+                    <span class="hljs-keyword">while</span> (uf[h2] != h2) h2 = uf[h2];
+                    uf[h2] = h1;
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-type">int</span> circleNum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++) &#123;
+            <span class="hljs-keyword">if</span> (uf[i] == i) circleNum++;
+        &#125;
+        <span class="hljs-keyword">return</span> circleNum;
+    &#125;
+&#125;;</code></pre>
+<p>BFS：每发现一个未标记的人，则通过广度优先搜索找出他所在的朋友圈的所有人并全部标记为访问过，朋友圈数量+1<s>s</s>。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">findCircleNum</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; M)</span> </span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">visited</span><span class="hljs-params">(M.size(), <span class="hljs-number">0</span>)</span></span>;
+        <span class="hljs-type">int</span> friendCircleNum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; M.<span class="hljs-built_in">size</span>(); i++) &#123;
+            <span class="hljs-keyword">if</span> (!visited[i]) &#123;
+                <span class="hljs-built_in">setMatrix</span>(M, visited, i);
+                ++friendCircleNum;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> friendCircleNum;
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setMatrix</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; M, vector&lt;<span class="hljs-type">int</span>&gt;&amp; visited, <span class="hljs-type">int</span> x)</span> </span>&#123;
+        queue&lt;<span class="hljs-type">int</span>&gt; q;
+        q.<span class="hljs-built_in">push</span>(x);
+        visited[x] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(!q.<span class="hljs-built_in">empty</span>()) &#123;
+            <span class="hljs-type">int</span> p = q.<span class="hljs-built_in">front</span>();
+            q.<span class="hljs-built_in">pop</span>();
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; M.<span class="hljs-built_in">size</span>(); i++) &#123;
+                <span class="hljs-keyword">if</span> (M[p][i] &amp;&amp; !visited[i]) &#123;
+                    visited[i] = <span class="hljs-number">1</span>;
+                    q.<span class="hljs-built_in">push</span>(i);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;;</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%9B%BE/">#图</a></li>
+        
+          <li><a class="tag" href="/tags/%E6%90%9C%E7%B4%A2/">#搜索</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">#并查集</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2017/03/27/leetcode-543-diameter-of-binary-tree/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 543. Diameter of Binary Tree</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2017/04/09/leetcode-554-brick-wall/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 554. Brick Wall</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/04/09/leetcode-547-friend-circles/"
+  data-identifier="2017/04/09/leetcode-547-friend-circles/"
+  data-title="LeetCode 547. Friend Circles">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

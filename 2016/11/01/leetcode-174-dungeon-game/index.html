@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 174. Dungeon Game · Shell32</title>
+<meta name="description" content="题目描述: The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon c…">
+
+<meta name="keywords" content="LeetCode,二分搜索,算法,CPP,动态规划">
+
+<link rel="canonical" href="http://blog.xiadong.info/2016/11/01/leetcode-174-dungeon-game/">
+<meta name="description" content="题目描述: The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon c…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 174. Dungeon Game">
+<meta property="og:url" content="http://blog.xiadong.info/2016/11/01/leetcode-174-dungeon-game/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="题目描述: The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon c…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-11-01T18:40:03.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.403Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="二分搜索">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="动态规划">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 174. Dungeon Game</h1>
+    <div class="post-meta">
+      <time datetime="2016-11-01T18:40:03.000Z">2016 年 11 月 1 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 3 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>题目描述:</p>
+<blockquote>
+<p>The demons had captured the princess (<strong>P</strong>) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (<strong>K</strong>) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.</p>
+<p>The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.</p>
+<p>Some of the rooms are guarded by demons, so the knight loses health (<em>negative</em> integers) upon entering these rooms; other rooms are either empty (<em>0’s</em>) or contain magic orbs that increase the knight’s health (<em>positive</em> integers).</p>
+<p>In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.</p>
+<p><strong>Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.</strong></p>
+<p>For example, given the dungeon below, the initial health of the knight must be at least <strong>7</strong> if he follows the optimal path <code>RIGHT-&gt; RIGHT -&gt; DOWN -&gt; DOWN</code>.</p>
+<p><img src="data:image/png;base64,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" alt="img"></p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>The knight’s health has no upper bound.</li>
+<li>Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.</li>
+</ul>
+</blockquote>
+<p>使用二分搜索+DP. 单纯的二维DP是不行的, 因为这道题要求从起点到终点的路径中每个格子的值都不能小于1. 有可能出现终点时生命值大于0但是每一条路径实际上都无法抵达.</p>
+<p>但是我们可以使用DP来判断一个特定初始生命值的knight能否救到princess. 然后在外层使用二分搜索来找到最小的初始生命值. 虽然可以用<code>0~INT_MAX</code>作为搜索范围, 但是先找出初始生命值为0时每一条路径中出现的最小的生命值可以大大缩小这个范围, 实际上如果初始生命值为0时, 所有的格子中生命值都是大于1的, 可以直接返回1; 否则搜索范围的最大值就是最小生命值的绝对值加1.</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">calculateMinimumHP</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; dungeon)</span> </span>&#123;
+		<span class="hljs-keyword">if</span> (dungeon.<span class="hljs-built_in">empty</span>()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">if</span> (dungeon[<span class="hljs-number">0</span>].<span class="hljs-built_in">empty</span>()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		<span class="hljs-type">int</span> tmp = <span class="hljs-built_in">minInPath</span>(dungeon);
+		<span class="hljs-keyword">if</span>(tmp &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+		<span class="hljs-type">int</span> left = <span class="hljs-number">0</span>, right = -tmp + <span class="hljs-number">1</span>, mid = (right + left) / <span class="hljs-number">2</span>;
+		<span class="hljs-keyword">while</span> (left &lt; right) &#123;
+			<span class="hljs-type">int</span> h = <span class="hljs-built_in">canArrive</span>(dungeon, mid);
+			<span class="hljs-keyword">if</span>(h == <span class="hljs-number">1</span>)&#123;
+			    <span class="hljs-keyword">break</span>;
+			&#125;
+		    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (h &lt; <span class="hljs-number">1</span>) &#123;
+				left = mid + <span class="hljs-number">1</span>;
+			&#125;
+			<span class="hljs-keyword">else</span> &#123;
+				right = mid;
+			&#125;
+			mid = (right + left) / <span class="hljs-number">2</span>;
+		&#125;
+		<span class="hljs-keyword">return</span> mid ? mid : <span class="hljs-number">1</span>;
+	&#125;
+
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">canArrive</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; dungeon, <span class="hljs-type">int</span> target)</span> </span>&#123;
+		<span class="hljs-type">int</span> row = dungeon.<span class="hljs-built_in">size</span>(), col = dungeon[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();
+		vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(row, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(col, <span class="hljs-number">0</span>));
+		dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = target + dungeon[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; col; i++) &#123;
+			<span class="hljs-keyword">if</span> (dp[<span class="hljs-number">0</span>][i - <span class="hljs-number">1</span>] &gt; <span class="hljs-number">0</span>) dp[<span class="hljs-number">0</span>][i] = dp[<span class="hljs-number">0</span>][i - <span class="hljs-number">1</span>] + dungeon[<span class="hljs-number">0</span>][i];
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; row; i++) &#123;
+			<span class="hljs-keyword">if</span> (dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] &gt; <span class="hljs-number">0</span>) dp[i][<span class="hljs-number">0</span>] = dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + dungeon[i][<span class="hljs-number">0</span>];
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; row; i++) &#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; col; j++) &#123;
+				<span class="hljs-keyword">if</span>(dp[i - <span class="hljs-number">1</span>][j] &gt; <span class="hljs-number">0</span> || dp[i][j - <span class="hljs-number">1</span>] &gt; <span class="hljs-number">0</span>)
+					dp[i][j] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][j], dp[i][j - <span class="hljs-number">1</span>]) + dungeon[i][j];
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> dp[row - <span class="hljs-number">1</span>][col - <span class="hljs-number">1</span>];
+	&#125;
+	
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minInPath</span><span class="hljs-params">(vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; dungeon)</span></span>&#123;
+	    <span class="hljs-type">int</span> row = dungeon.<span class="hljs-built_in">size</span>(), col = dungeon[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(), minInPath = INT_MAX;
+		vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(row, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(col, <span class="hljs-number">0</span>));
+		dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = dungeon[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];
+		minInPath = <span class="hljs-built_in">min</span>(minInPath, dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; col; i++) &#123;
+			dp[<span class="hljs-number">0</span>][i] = dp[<span class="hljs-number">0</span>][i - <span class="hljs-number">1</span>] + dungeon[<span class="hljs-number">0</span>][i];
+			minInPath = <span class="hljs-built_in">min</span>(minInPath, dp[<span class="hljs-number">0</span>][i]);
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; row; i++) &#123;
+			dp[i][<span class="hljs-number">0</span>] = dp[i - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + dungeon[i][<span class="hljs-number">0</span>];
+			minInPath = <span class="hljs-built_in">min</span>(minInPath, dp[i][<span class="hljs-number">0</span>]);
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; row; i++) &#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; col; j++) &#123;
+				dp[i][j] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][j], dp[i][j - <span class="hljs-number">1</span>]) + dungeon[i][j];
+				minInPath = <span class="hljs-built_in">min</span>(minInPath, dp[i][j]);
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> minInPath;
+	&#125;
+&#125;;</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2/">#二分搜索</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2016/10/31/leetcode-173-binary-search-tree-iterator/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 173. Binary Search Tree Iterator</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2016/11/01/leetcode-179-largest-number/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 179. Largest Number</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2016/11/01/leetcode-174-dungeon-game/"
+  data-identifier="2016/11/01/leetcode-174-dungeon-game/"
+  data-title="LeetCode 174. Dungeon Game">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

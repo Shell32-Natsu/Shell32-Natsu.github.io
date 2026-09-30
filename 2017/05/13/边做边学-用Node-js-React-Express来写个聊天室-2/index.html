@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[边做边学]用Node.js+React+Express来写个聊天室(2) · Shell32</title>
+<meta name="description" content="期末考完了，春活也全甲全船了，来继续更这个没人看的系列 我的前端写的很丑，就不提CSS了……">
+
+<meta name="keywords" content="WEB,JavaScript,Node.js,React,Express">
+
+<link rel="canonical" href="http://blog.xiadong.info/2017/05/13/边做边学-用Node-js-React-Express来写个聊天室-2/">
+<meta name="description" content="期末考完了，春活也全甲全船了，来继续更这个没人看的系列 我的前端写的很丑，就不提CSS了……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[边做边学]用Node.js+React+Express来写个聊天室(2)">
+<meta property="og:url" content="http://blog.xiadong.info/2017/05/13/%E8%BE%B9%E5%81%9A%E8%BE%B9%E5%AD%A6-%E7%94%A8Node-js-React-Express%E6%9D%A5%E5%86%99%E4%B8%AA%E8%81%8A%E5%A4%A9%E5%AE%A4-2/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="期末考完了，春活也全甲全船了，来继续更这个没人看的系列 我的前端写的很丑，就不提CSS了……">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-05-13T16:14:43.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.416Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="WEB">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Express">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/" aria-current="page">文章</a>
+      
+        <a href="/categories/LeetCode/">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/Study/">Study</a>
+    </div>
+    <h1 class="post-title">[边做边学]用Node.js+React+Express来写个聊天室(2)</h1>
+    <div class="post-meta">
+      <time datetime="2017-05-13T16:14:43.000Z">2017 年 5 月 13 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 4 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body has-toc">
+    
+      <aside class="post-toc" aria-label="目录">
+        <p class="toc-title">目录</p>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#React"><span class="toc-text">React</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96React%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">初始化React应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E7%BB%84%E4%BB%B6"><span class="toc-text">渲染组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E7%BB%84%E4%BB%B6"><span class="toc-text">增加组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MessageList"><span class="toc-text">MessageList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Message"><span class="toc-text">Message</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NewMessageForm"><span class="toc-text">NewMessageForm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-text">下一步</span></a></li></ol>
+      </aside>
+      <details class="toc-inline">
+        <summary>目录</summary>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#React"><span class="toc-text">React</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96React%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="toc-text">初始化React应用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E7%BB%84%E4%BB%B6"><span class="toc-text">渲染组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%8A%A0%E7%BB%84%E4%BB%B6"><span class="toc-text">增加组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MessageList"><span class="toc-text">MessageList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Message"><span class="toc-text">Message</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NewMessageForm"><span class="toc-text">NewMessageForm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5"><span class="toc-text">下一步</span></a></li></ol>
+      </details>
+    
+    <div class="prose">
+      <p><s>期末考完了，春活也全甲全船了，来继续更这个没人看的系列</s></p>
+<p><s>我的前端写的很丑，就不提CSS了……</s></p>
+<!-- toc -->
+<span id="more"></span>
+<h1 id="前端">前端</h1>
+<h2 id="React">React</h2>
+<p><a href="tps://facebook.github.io/react/">React</a>是Facebook开源的一个前端框架，它把本来应该写在HTML文件中的HTML语句放到JS中，HTML结构不是由浏览器直接下载解析，而是执行JS语句之后才会生成，再交给浏览器解析。那么相比于传统的HTML+JS的结构，React这种框架有什么优势呢，以下的链接可能会有帮助：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://facebook.github.io/react/blog/2013/06/05/why-react.html">https://facebook.github.io/react/blog/2013/06/05/why-react.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.syncano.io/reactjs-reasons-why-part-1/">https://blog.syncano.io/reactjs-reasons-why-part-1/</a></li>
+</ul>
+<p>从我这个初学者的角度来说，React的组件化开发方式相比于HTML的树状结构在结构上更清晰，开发效率也更高，更接近传统桌面应用程序的结构。对于页面结构（也就是HTML的结构）的变化更容易处理，适合构建<a target="_blank" rel="noopener" href="https://www.wikiwand.com/en/Single-page_application">单页应用</a>。</p>
+<p>React文档地址：<a target="_blank" rel="noopener" href="https://facebook.github.io/react/docs/hello-world.html">https://facebook.github.io/react/docs/hello-world.html</a></p>
+<h2 id="初始化React应用程序">初始化React应用程序</h2>
+<p>安装指引：<a target="_blank" rel="noopener" href="https://facebook.github.io/react/docs/installation.html">https://facebook.github.io/react/docs/installation.html</a></p>
+<pre><code class="hljs bash">npm install -g create-react-app
+create-react-app frontend
+
+<span class="hljs-built_in">cd</span> frontend
+npm start</code></pre>
+<p>我当前的React版本</p>
+<pre><code class="hljs js"><span class="hljs-string">&quot;dependencies&quot;</span>: &#123;
+  <span class="hljs-string">&quot;react&quot;</span>: <span class="hljs-string">&quot;^15.5.4&quot;</span>,
+  <span class="hljs-string">&quot;react-dom&quot;</span>: <span class="hljs-string">&quot;^15.5.4&quot;</span>
+&#125;,</code></pre>
+<p>最后的<code>npm start</code>会启动一个HTTP调试服务器，访问<code>http://localhost:3000</code>可以看到初始页面。运行<code>npm run build</code>可以在<code>build/static</code>目录下编译出静态js和css文件。</p>
+<p>虽然React把HTML放在了JS中，但是还是要有一个最简单的HTML文件作为基础，这个文件在<code>public/index.html</code>。这个文件很简单，<code>body</code>标签中只有一个<code>id=&quot;root&quot;</code>的<code>div</code>标签，整个过程中我们基本不需要修改这个文件，我们的主要目标在<code>src</code>目录中。</p>
+<h2 id="渲染组件">渲染组件</h2>
+<p><code>src</code>目录中有一个<code>index.js</code>文件，该文件调用<code>ReactDOM.render</code>来进行组件的渲染。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">ReactDOM</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./index.css&#x27;</span>;
+
+<span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>,
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>)
+);</code></pre>
+<p>而<code>App.js</code>中创建了一个继承<code>Component</code>的<code>App</code>类，并把它导出。这个类中的<code>render()</code>方法返回了HTML文本。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, &#123; <span class="hljs-title class_">Component</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> logo <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./logo.svg&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./App.css&#x27;</span>;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Component</span> &#123;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;App&quot;</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;App-header&quot;</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#123;logo&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;App-logo&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;logo&quot;</span> /&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Welcome to React<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;App-intro&quot;</span>&gt;</span></span>
+<span class="language-xml">          To get started, edit <span class="hljs-tag">&lt;<span class="hljs-name">code</span>&gt;</span>src/App.js<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span> and save to reload.</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  &#125;
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">App</span>;</code></pre>
+<h2 id="增加组件">增加组件</h2>
+<p>创建一个<code>Chatroom.js</code>文件用于保存聊天室js代码。页面上显示三个component：标题，消息列表，发送消息的表单。所以先创建一个<code>Chatroom</code>类，它再创建这三个组件。</p>
+<pre><code class="hljs js"><span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;this.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">MessageList</span> <span class="hljs-attr">messages</span> = <span class="hljs-string">&#123;this.messages&#125;/</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">NewMessageForm</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+&#125;</code></pre>
+<h3 id="MessageList"><code>MessageList</code></h3>
+<p><code>MessageList</code>用于显示消息列表，它就是一个简单的<code>&lt;ul&gt;</code>标签，它的传入参数中有一个<code>messages</code>是要显示的消息的list。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Component</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) &#123;
+    <span class="hljs-variable language_">super</span>(props);
+
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span> = props;
+  &#125;
+
+  <span class="hljs-title function_">getMessageList</span> (messages) &#123;
+    <span class="hljs-keyword">return</span> messages.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">msg</span>) =&gt;</span>
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">Message</span> <span class="hljs-attr">message</span> = <span class="hljs-string">&#123;msg&#125;</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    );
+  &#125;
+
+
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span></span>
+<span class="language-xml">      &#123;this.getMessageList(this.props.messages)&#125;</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></span>
+    );
+  &#125;
+&#125;</code></pre>
+<p><code>getMessageList</code>这个函数使用<code>map</code>方法为<code>messages</code>中的每一条message创建一个<code>&lt;li&gt;</code>标签，<code>&lt;li&gt;</code>标签中包含<code>Message</code>组件。</p>
+<h3 id="Message"><code>Message</code></h3>
+<p><code>Message</code>组件返回一个包含message内容的<code>&lt;div&gt;</code>标签。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Message</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Component</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) &#123;
+    <span class="hljs-variable language_">super</span>(props);
+
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span> = props;
+  &#125;
+
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;this.props.message&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  &#125;
+&#125;</code></pre>
+<h3 id="NewMessageForm"><code>NewMessageForm</code></h3>
+<p><code>NewMessageForm</code>是发送消息的表单，关于React表单的使用参考这里<a target="_blank" rel="noopener" href="https://facebook.github.io/react/docs/forms.html">https://facebook.github.io/react/docs/forms.html</a></p>
+<pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NewMessageForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Component</span> &#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) &#123;
+    <span class="hljs-variable language_">super</span>(props);
+
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = &#123;<span class="hljs-attr">inputMessage</span>: <span class="hljs-string">&#x27;&#x27;</span>&#125;;
+
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">handleChange</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">handleChange</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">handleSubmit</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">handleSubmit</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>);
+  &#125;
+
+  <span class="hljs-title function_">handleSubmit</span> (event) &#123;
+    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;Message: &quot;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">inputMessage</span>);
+    event.<span class="hljs-title function_">preventDefault</span>();
+  &#125;
+
+  <span class="hljs-title function_">handleChange</span> (event) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>(&#123;<span class="hljs-attr">inputMessage</span>: event.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>&#125;);
+  &#125;
+
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">onSubmit</span>=<span class="hljs-string">&#123;this.handleSubmit&#125;</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Message:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;this.state.inputMessage&#125;</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">&#123;this.handleChange&#125;</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;submit&#x27;</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  &#125;
+&#125;</code></pre>
+<p>该类的实现中使用了<code>this.state</code>，它可以用于保存组件的各种状态，并且在<code>state</code>发生变更时自动地更新使用它的值的位置所显示的内容。关于state参考这里：<a target="_blank" rel="noopener" href="https://facebook.github.io/react/docs/state-and-lifecycle.html">https://facebook.github.io/react/docs/state-and-lifecycle.html</a>。</p>
+<p>在表单提交的时候，为了避免页面刷新，以前我都是使用AJAX来提交数据，不过这次我打算使用WebSocket来进行通信。</p>
+<h1 id="下一步">下一步</h1>
+<p>实现WebSocket通信。</p>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/WEB/">#WEB</a></li>
+        
+          <li><a class="tag" href="/tags/JavaScript/">#JavaScript</a></li>
+        
+          <li><a class="tag" href="/tags/Node-js/">#Node.js</a></li>
+        
+          <li><a class="tag" href="/tags/React/">#React</a></li>
+        
+          <li><a class="tag" href="/tags/Express/">#Express</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2017/05/01/LeetCode-567-Permutation-in-String/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 567. Permutation in String</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2017/06/04/%E8%BF%91%E5%86%B5/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">近况</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2017/05/13/%E8%BE%B9%E5%81%9A%E8%BE%B9%E5%AD%A6-%E7%94%A8Node-js-React-Express%E6%9D%A5%E5%86%99%E4%B8%AA%E8%81%8A%E5%A4%A9%E5%AE%A4-2/"
+  data-identifier="2017/05/13/边做边学-用Node-js-React-Express来写个聊天室-2/"
+  data-title="[边做边学]用Node.js+React+Express来写个聊天室(2)">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>

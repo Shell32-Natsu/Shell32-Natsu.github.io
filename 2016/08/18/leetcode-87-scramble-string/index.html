@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeetCode 87. Scramble String · Shell32</title>
+<meta name="description" content="题目描述: Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively…">
+
+<meta name="keywords" content="LeetCode,算法,CPP,动态规划,递归">
+
+<link rel="canonical" href="http://blog.xiadong.info/2016/08/18/leetcode-87-scramble-string/">
+<meta name="description" content="题目描述: Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode 87. Scramble String">
+<meta property="og:url" content="http://blog.xiadong.info/2016/08/18/leetcode-87-scramble-string/index.html">
+<meta property="og:site_name" content="Shell32">
+<meta property="og:description" content="题目描述: Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-18T19:11:47.000Z">
+<meta property="article:modified_time" content="2026-09-30T20:28:29.412Z">
+<meta property="article:author" content="Shell32">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="CPP">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="递归">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" href="/atom.xml" title="Shell32" type="application/atom+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/favicon.ico">
+<meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141413" media="(prefers-color-scheme: dark)">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="/css/style.css?v=1.0.0">
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shell32 首页">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span class="brand-name">Shell32</span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      
+        <a href="/">文章</a>
+      
+        <a href="/categories/LeetCode/" aria-current="page">LeetCode</a>
+      
+        <a href="/archives/">归档</a>
+      
+        <a href="/tags/">标签</a>
+      
+        <a href="/about/">关于</a>
+      
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-trigger" type="button" data-search-open aria-label="搜索 (⌘K)">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+        <kbd class="search-kbd">⌘K</kbd>
+      </button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="切换深色 / 浅色">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+  <main id="main" class="main">
+    
+<article class="post">
+  <header class="post-header container-narrow">
+    <div class="post-kicker">
+      <a href="/categories/LeetCode/">LeetCode</a>
+    </div>
+    <h1 class="post-title">LeetCode 87. Scramble String</h1>
+    <div class="post-meta">
+      <time datetime="2016-08-18T19:11:47.000Z">2016 年 8 月 18 日</time>
+      <span aria-hidden="true">·</span>
+      <span>约 3 分钟读完</span>
+    </div>
+  </header>
+
+  <div class="post-body">
+    
+    <div class="prose">
+      <p>题目描述:</p>
+<blockquote>
+<p>Given a string <em>s1</em>, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.</p>
+<p>Below is one possible representation of <em>s1</em> = <code>&quot;great&quot;</code>:</p>
+<pre><code class="hljs plaintext">    great
+   /    \
+  gr    eat
+ / \    /  \
+g   r  e   at
+           / \
+          a   t
+</code></pre>
+<p>To scramble the string, we may choose any non-leaf node and swap its two children.</p>
+<p>For example, if we choose the node <code>&quot;gr&quot;</code> and swap its two children, it produces a scrambled string <code>&quot;rgeat&quot;</code>.</p>
+<pre><code class="hljs plaintext">    rgeat
+   /    \
+  rg    eat
+ / \    /  \
+r   g  e   at
+           / \
+          a   t
+</code></pre>
+<p>We say that <code>&quot;rgeat&quot;</code> is a scrambled string of <code>&quot;great&quot;</code>.</p>
+<p>Similarly, if we continue to swap the children of nodes <code>&quot;eat&quot;</code> and <code>&quot;at&quot;</code>, it produces a scrambled string <code>&quot;rgtae&quot;</code>.</p>
+<pre><code class="hljs plaintext">    rgtae
+   /    \
+  rg    tae
+ / \    /  \
+r   g  ta  e
+       / \
+      t   a
+</code></pre>
+<p>We say that <code>&quot;rgtae&quot;</code> is a scrambled string of <code>&quot;great&quot;</code>.</p>
+<p>Given two strings <em>s1</em> and <em>s2</em> of the same length, determine if <em>s2</em> is a scrambled string of <em>s1</em>.</p>
+</blockquote>
+<p>看完这道题, 首先想到的是使用递归, 但是思维惯性让我觉得递归可能超时, 所以按照tag中的动态规划方法来做, 我是使用了三维数组来进行动态规划, 有四重循环, 所以可能还有优化空间. <code>dp[i][j][k]</code>表示s1[i]和s2[j]开始的长度为k的子串是不是scramble的, 最后要返回的结果是<code>dp[0][0][s1.length()]</code>, 所以i和j要从大到小遍历.</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isScramble</span><span class="hljs-params">(string s1, string s2)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(s<span class="hljs-number">1.l</span>ength() != s<span class="hljs-number">2.l</span>ength()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-type">int</span> len = s<span class="hljs-number">1.l</span>ength();
+        vector&lt;vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&gt; <span class="hljs-built_in">dp</span>(len, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;(len, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(len + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>)));
+        
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; len; j++)&#123;
+                <span class="hljs-keyword">if</span>(s1[i] == s2[j])&#123;
+                    dp[i][j][<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;
+                &#125;
+            &#125;
+        &#125;
+        
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = len - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--)&#123;
+            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = len - <span class="hljs-number">1</span>; j &gt;= <span class="hljs-number">0</span>; j--)&#123;
+                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">2</span>; i + k &lt;= len &amp;&amp; j + k &lt;= len; k++)&#123;
+                    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> r = <span class="hljs-number">1</span>; r &lt; k &amp;&amp; !dp[i][j][k]; r++)&#123;
+                        dp[i][j][k] = (dp[i][j][r] &amp;&amp; dp[i + r][j + r][k - r]) || (dp[i][j + k - r][r] &amp;&amp; dp[i + r][j][k - r]);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+
+        <span class="hljs-keyword">return</span> dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>][len];
+    &#125;
+&#125;;</code></pre>
+<p>但是这个方法速度并不是很理想, 比较快的方法反而是递归+剪枝, 在递归前先判断字符串中字母数量是不是相同, 如果不相同则可以直接返回false.</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isScramble</span><span class="hljs-params">(string s1, string s2)</span> </span>&#123;
+        <span class="hljs-keyword">if</span>(s<span class="hljs-number">1.l</span>ength() != s<span class="hljs-number">2.l</span>ength()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">isScrambleImpl</span>(s1, s2, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, s<span class="hljs-number">1.l</span>ength());
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isScrambleImpl</span><span class="hljs-params">(string &amp;s1, string &amp;s2, <span class="hljs-type">int</span> start1, <span class="hljs-type">int</span> start2, <span class="hljs-type">int</span> len)</span></span>&#123;
+        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">charTimes</span><span class="hljs-params">(<span class="hljs-number">26</span>, <span class="hljs-number">0</span>)</span></span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = start1; i &lt; start1 + len; i++)&#123;
+            charTimes[s1[i] - <span class="hljs-string">&#x27;a&#x27;</span>]++;
+        &#125;
+        <span class="hljs-type">int</span> flag  = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = start2; i &lt; start2 + len; i++)&#123;
+            charTimes[s2[i] - <span class="hljs-string">&#x27;a&#x27;</span>]--;
+            <span class="hljs-keyword">if</span>(charTimes[s2[i] - <span class="hljs-string">&#x27;a&#x27;</span>] &lt; <span class="hljs-number">0</span>)&#123;
+                flag = <span class="hljs-literal">false</span>;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span>(!flag) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">if</span>(len == <span class="hljs-number">1</span> &amp;&amp; len == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// 只有一个字母并且相同</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; len; i++)&#123;
+            <span class="hljs-keyword">if</span>((<span class="hljs-built_in">isScrambleImpl</span>(s1, s2, start1, start2, i) &amp;&amp; <span class="hljs-built_in">isScrambleImpl</span>(s1, s2, start1 + i, start2 + i, len - i))
+                || (<span class="hljs-built_in">isScrambleImpl</span>(s1, s2, start1, start2 + len - i, i) &amp;&amp; <span class="hljs-built_in">isScrambleImpl</span>(s1, s2, start1 + i, start2, len - i)))&#123;
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    &#125;
+&#125;;</code></pre>
+
+    </div>
+  </div>
+
+  <footer class="post-footer container-narrow">
+    
+      <ul class="tag-list" aria-label="标签">
+        
+          <li><a class="tag" href="/tags/LeetCode/">#LeetCode</a></li>
+        
+          <li><a class="tag" href="/tags/%E7%AE%97%E6%B3%95/">#算法</a></li>
+        
+          <li><a class="tag" href="/tags/CPP/">#CPP</a></li>
+        
+          <li><a class="tag" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">#动态规划</a></li>
+        
+          <li><a class="tag" href="/tags/%E9%80%92%E5%BD%92/">#递归</a></li>
+        
+      </ul>
+    
+
+    
+      <nav class="post-nav" aria-label="上一篇 / 下一篇">
+        
+          <a class="post-nav-item prev" href="/2016/08/17/leetcode-86-partition-list/">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">LeetCode 86. Partition List</span>
+          </a>
+        
+        
+          <a class="post-nav-item next" href="/2016/08/19/leetcode-88-merge-sorted-array/">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">LeetCode 88. Merge Sorted Array</span>
+          </a>
+        
+      </nav>
+    
+  </footer>
+
+  
+<section class="comments container-narrow" id="comments"
+  data-disqus="www-xiadong-info"
+  data-url="http://blog.xiadong.info/2016/08/18/leetcode-87-scramble-string/"
+  data-identifier="2016/08/18/leetcode-87-scramble-string/"
+  data-title="LeetCode 87. Scramble String">
+  <h2 class="section-label">评论</h2>
+  <div id="disqus_thread">
+    <button type="button" class="button" data-load-comments>加载评论（Disqus）</button>
+  </div>
+</section>
+
+
+</article>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">S</span>
+      <span>&copy; 2014–2026 Shell32</span>
+    </div>
+    <nav class="footer-links" aria-label="社交链接">
+      
+        <a href="https://github.com/Shell32-Natsu" rel="me noopener" target="_blank">GitHub</a>
+      
+        <a href="https://www.linkedin.com/in/dong-xia" rel="me noopener" target="_blank">LinkedIn</a>
+      
+        <a href="https://www.facebook.com/xiadong1994" rel="me noopener" target="_blank">Facebook</a>
+      
+        <a href="mailto:xiadong.main@gmail.com">Email</a>
+      
+      <a href="/atom.xml">RSS</a>
+    </nav>
+    
+      <div class="footer-friends">
+        <span>友链</span>
+        
+          <a href="https://wf94.github.io/" rel="noopener" target="_blank">打满鸡血来刷题</a>
+        
+          <a href="http://tianyuh.com/" rel="noopener" target="_blank">塞外麾下炙</a>
+        
+      </div>
+    
+  </div>
+</footer>
+
+  <dialog class="search-dialog" id="search-dialog" aria-label="搜索文章" data-index="/search.json">
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="search-input" placeholder="搜索标题、标签或正文…" autocomplete="off" spellcheck="false" aria-controls="search-results">
+      <button type="button" class="search-close" data-search-close aria-label="关闭"><kbd>esc</kbd></button>
+    </div>
+    <ol class="search-results" id="search-results" role="listbox"></ol>
+    <p class="search-status" id="search-status" aria-live="polite">输入关键词开始搜索</p>
+  </div>
+</dialog>
+
+  <script src="/js/main.js?v=1.0.0" defer></script>
+</body>
+</html>
