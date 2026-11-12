@@ -1,11 +1,14 @@
-<% const tags = site.tags.sort('-length').filter(t => t.length); %>
+<%
+  const tags = site.tags.sort('-length').filter(t => t.length);
+  const max = Math.log(Math.max(2, ...tags.map(t => t.length)));
+%>
 <header class="page-header">
   <p class="kicker">标签</p>
   <h1 class="page-title">所有标签</h1>
   <p class="meta"><span>共 <%= tags.length %> 个</span></p>
 </header>
-<ul class="tags">
+<ul class="tags tag-cloud">
   <% tags.forEach(tag => { %>
-    <li><a href="<%- url_for(tag.path) %>">#<%= tag.name %><small><%= tag.length %></small></a></li>
+    <li><a href="<%- url_for(tag.path) %>" style="--w:<%= (Math.log(tag.length) / max).toFixed(2) %>">#<%= tag.name %><small><%= tag.length %></small></a></li>
   <% }) %>
 </ul>

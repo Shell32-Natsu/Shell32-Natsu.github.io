@@ -4,50 +4,52 @@
   const lead = all[0];
   const leadCat = lead && natsu_category(lead);
 %>
-<section class="hero">
-  <div>
-    <h1 class="hero-title"><%= home.title || config.title %></h1>
-    <% if (home.intro) { %><p class="hero-intro"><%= home.intro %></p><% } %>
-  </div>
-  <div class="hero-chart">
-    <%- partial('_partial/year-chart') %>
-    <p class="hero-stats"><%= site.posts.length %> 篇 · <%= theme.since %> — <%= date(Date.now(), 'YYYY') %></p>
-  </div>
+<section class="hero" aria-label="<%= config.title %>">
+  <h1 class="hero-word"><%= config.title %></h1>
+  <canvas class="ascii" data-ascii="<%= config.title.toUpperCase() %>" aria-hidden="true"></canvas>
 </section>
+<div class="statusbar">
+  <div class="wrap">
+    <div><span><%= (config.subtitle || '').toUpperCase().split('/').join(' / ') %></span></div>
+    <div>
+      <span><b><%= site.posts.length %></b> 篇</span><span class="wide"><b><%= site.tags.length %></b> 标签</span><span><%= theme.since %> — <%= date(Date.now(), 'YYYY') %></span>
+    </div>
+  </div>
+</div>
 
-<% if (lead) { %>
-<section aria-labelledby="latest">
-  <h2 class="label" id="latest">最新</h2>
-  <article class="lead">
-    <h3 class="lead-title"><a href="<%- url_for(lead.path) %>"><%= lead.title %></a></h3>
-    <p class="lead-excerpt"><%= natsu_excerpt(lead, 120) %></p>
-    <p class="meta">
-      <time datetime="<%= date_xml(lead.date) %>"><%= date(lead.date, 'YYYY-MM-DD') %></time>
-      <% if (leadCat) { %><span><%= leadCat.name %></span><% } %>
-      <span>约 <%= natsu_reading_minutes(lead.content) %> 分钟</span>
-    </p>
-  </article>
-</section>
-<% } %>
+<div class="wrap">
+  <% if (lead) { %>
+  <section class="band" aria-labelledby="latest">
+    <h2 class="band-side label" id="latest">最新</h2>
+    <article class="lead">
+      <h3 class="lead-title"><a href="<%- url_for(lead.path) %>" data-morph><%= lead.title %></a></h3>
+      <p class="lead-excerpt"><%= natsu_excerpt(lead, 160) %></p>
+      <p class="meta">
+        <time datetime="<%= date_xml(lead.date) %>"><%= date(lead.date, 'YYYY-MM-DD') %></time>
+        <% if (leadCat) { %><span><%= leadCat.name %></span><% } %>
+        <span>约 <%= natsu_reading_minutes(lead.content) %> 分钟</span>
+        <span>阅读 <i>→</i></span>
+      </p>
+    </article>
+  </section>
+  <% } %>
 
-<section aria-labelledby="all">
-  <h2 class="label" id="all">文章</h2>
   <%- partial('_partial/post-list', { posts: all.slice(1), showCategory: true }) %>
-</section>
 
-<% if ((home.collections || []).length) { %>
-<section aria-labelledby="collections">
-  <h2 class="label" id="collections">专栏</h2>
-  <ul class="links">
-    <% home.collections.forEach(c => {
-      const cat = c.category ? site.categories.findOne({ name: c.category }) : null;
-    %>
-      <li><a href="<%- cat ? url_for(cat.path) : url_for(c.path) %>">
-        <span class="links-name"><%= c.name %></span>
-        <% if (c.desc) { %><span class="links-desc"><%= c.desc %></span><% } %>
-        <span class="links-count"><%= cat ? cat.length + ' 篇' : '' %> →</span>
-      </a></li>
-    <% }) %>
-  </ul>
-</section>
-<% } %>
+  <% if ((home.collections || []).length) { %>
+  <section class="band" aria-labelledby="collections">
+    <h2 class="band-side label" id="collections">专栏</h2>
+    <ul class="tiles">
+      <% home.collections.forEach(c => {
+        const cat = c.category ? site.categories.findOne({ name: c.category }) : null;
+      %>
+        <li><a class="tile" href="<%- cat ? url_for(cat.path) : url_for(c.path) %>">
+          <% if (cat) { %><span class="tile-count"><%= cat.length %></span><% } %>
+          <span class="tile-name"><%= c.name %></span>
+          <% if (c.desc) { %><span class="tile-desc"><%= c.desc %></span><% } %>
+        </a></li>
+      <% }) %>
+    </ul>
+  </section>
+  <% } %>
+</div>

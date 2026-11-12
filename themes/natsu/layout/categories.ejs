@@ -4,12 +4,12 @@
   <h1 class="page-title">所有分类</h1>
   <p class="meta"><span>共 <%= cats.length %> 个</span></p>
 </header>
-<ul class="links">
+<ul class="tiles">
   <% cats.forEach(cat => { const latest = cat.posts.sort('-date').first(); %>
-    <li><a href="<%- url_for(cat.path) %>">
-      <span class="links-name"><%= cat.name %></span>
-      <% if (latest) { %><span class="links-desc">最近：<%= latest.title %></span><% } %>
-      <span class="links-count"><%= cat.length %> 篇 →</span>
+    <li><a class="tile" href="<%- url_for(cat.path) %>">
+      <span class="tile-count"><%= cat.length %></span>
+      <span class="tile-name"><%= cat.name %></span>
+      <% if (latest) { %><span class="tile-desc">最近：<%= latest.title %></span><% } %>
     </a></li>
   <% }) %>
 </ul>

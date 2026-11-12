@@ -6,6 +6,7 @@
   const older = page.next;
   const newer = page.prev;
 %>
+<div class="progress" aria-hidden="true"></div>
 <article class="post">
   <header class="page-header">
     <h1 class="page-title"><%= page.title %></h1>
@@ -16,41 +17,43 @@
     </p>
   </header>
 
-  <% if (tocHtml) { %>
-    <aside class="post-toc" aria-label="目录">
-      <p class="label">目录</p>
-      <%- tocHtml %>
-    </aside>
-    <details class="toc-inline">
-      <summary>目录</summary>
-      <%- tocHtml %>
-    </details>
-  <% } %>
+  <div class="post-grid">
+    <% if (tocHtml) { %>
+      <aside class="post-toc" aria-label="目录">
+        <p class="label">目录</p>
+        <%- tocHtml %>
+      </aside>
+      <details class="toc-inline">
+        <summary>目录</summary>
+        <%- tocHtml %>
+      </details>
+    <% } %>
 
-  <div class="prose">
-    <%- page.content %>
+    <div class="prose">
+      <%- page.content %>
+    </div>
+
+    <footer class="post-footer">
+      <% if (page.tags && page.tags.length) { %>
+        <ul class="tags" aria-label="标签">
+          <% page.tags.forEach(tag => { %>
+            <li><a href="<%- url_for(tag.path) %>">#<%= tag.name %></a></li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+      <% if (older || newer) { %>
+        <nav class="post-nav" aria-label="上一篇 / 下一篇">
+          <% if (older) { %>
+            <a class="prev" href="<%- url_for(older.path) %>"><small>← 上一篇</small><span data-morph><%= older.title %></span></a>
+          <% } %>
+          <% if (newer) { %>
+            <a class="next" href="<%- url_for(newer.path) %>"><small>下一篇 →</small><span data-morph><%= newer.title %></span></a>
+          <% } %>
+        </nav>
+      <% } %>
+
+      <%- partial('_partial/comments') %>
+    </footer>
   </div>
-
-  <footer class="post-footer">
-    <% if (page.tags && page.tags.length) { %>
-      <ul class="tags" aria-label="标签">
-        <% page.tags.forEach(tag => { %>
-          <li><a href="<%- url_for(tag.path) %>">#<%= tag.name %></a></li>
-        <% }) %>
-      </ul>
-    <% } %>
-
-    <% if (older || newer) { %>
-      <nav class="post-nav" aria-label="上一篇 / 下一篇">
-        <% if (older) { %>
-          <a class="prev" href="<%- url_for(older.path) %>"><small>← 上一篇</small><%= older.title %></a>
-        <% } %>
-        <% if (newer) { %>
-          <a class="next" href="<%- url_for(newer.path) %>"><small>下一篇 →</small><%= newer.title %></a>
-        <% } %>
-      </nav>
-    <% } %>
-  </footer>
-
-  <%- partial('_partial/comments') %>
 </article>

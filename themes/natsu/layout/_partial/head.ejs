@@ -5,7 +5,7 @@
   else if (is_tag()) pageTitle = '#' + page.tag + ' · ' + config.title;
   else if (is_archive()) pageTitle = (page.year ? page.year + ' 年' : '归档') + ' · ' + config.title;
   else if (page.title) pageTitle = page.title + ' · ' + config.title;
-  const description = page.description || (is_post() ? natsu_excerpt(page, 120) : config.description) || (theme.home || {}).intro || config.subtitle;
+  const description = page.description || (is_post() ? natsu_excerpt(page, 120) : config.description) || config.subtitle;
 %>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,9 +16,9 @@
 <%- feed_tag() %>
 <link rel="icon" href="<%- url_for(theme.favicon) %>" type="image/svg+xml">
 <link rel="alternate icon" href="<%- url_for('/favicon.ico') %>">
-<meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111315" media="(prefers-color-scheme: dark)">
-<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="theme-color" content="#fbfbfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0d0f" media="(prefers-color-scheme: dark)">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="<%- natsu_asset('css/style.css') %>">
 <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/html/*"}},{"not":{"href_matches":"/*.xml"}}]},"eagerness":"moderate"}]}</script>
 <% if (theme.google_analytics && !env.debug) { %>

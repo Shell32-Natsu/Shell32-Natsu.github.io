@@ -6,7 +6,8 @@
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
   <%- partial('_partial/header') %>
-  <main id="main" class="wrap">
+  <%# The homepage and 404 have a full-bleed hero and wrap their own content. %>
+  <main id="main"<% if (!is_home() && page.layout !== '404') { %> class="wrap"<% } %>>
     <%- body %>
   </main>
   <%- partial('_partial/footer') %>

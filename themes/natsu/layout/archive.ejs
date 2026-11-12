@@ -7,10 +7,14 @@
   const isRoot = !is_category() && !is_tag() && !page.year;
 %>
 <header class="page-header">
-  <p class="kicker"><%= kicker %></p>
-  <h1 class="page-title"><%= heading %></h1>
-  <p class="meta"><span>共 <%= count %> 篇</span></p>
-  <% if (isRoot) { %><%- partial('_partial/year-chart') %><% } %>
+  <div class="list-header">
+    <div>
+      <p class="kicker"><%= kicker %></p>
+      <h1 class="page-title"><%= heading %></h1>
+      <p class="meta"><span>共 <%= count %> 篇</span></p>
+    </div>
+    <% if (isRoot) { %><%- partial('_partial/year-chart') %><% } %>
+  </div>
   <% if (count > 20) { %>
     <label class="filter">
       <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>

@@ -6,11 +6,12 @@
 since: 2014
 favicon: /favicon.svg
 
-# Top navigation (the brand links home).
+# Top navigation (the brand links home). `short` replaces `name` on phones.
 menu:
   - name: 归档
     path: /archives/
   - name: LeetCode
+    short: 题解
     path: /categories/LeetCode/
   - name: 标签
     path: /tags/
@@ -19,8 +20,6 @@ menu:
 
 # Homepage
 home:
-  title: 写生活，也写代码。
-  intro: 湾区码农，Ex-Googler。做过 k8s，做过 Linux 内核，现在在 Anthropic 做 SWE。
   # Posts in these categories are left out of the homepage list; they keep
   # their own index (see `home.collections`) and still appear in 归档.
   exclude_categories:

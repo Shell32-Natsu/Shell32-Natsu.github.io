@@ -1,6 +1,16 @@
-<header class="page-header notfound">
-  <p class="kicker">404</p>
-  <h1 class="page-title">这里什么都没有。</h1>
-  <p class="hero-intro">链接可能已经失效，或者文章搬了家。</p>
-  <p><a class="button" href="<%- url_for('/') %>">回到首页</a> <button type="button" class="button" data-search-open>搜索文章</button></p>
-</header>
+<section class="hero" aria-label="404">
+  <h1 class="hero-word">404</h1>
+  <canvas class="ascii" data-ascii="404" aria-hidden="true"></canvas>
+</section>
+<div class="statusbar">
+  <div class="wrap">
+    <div><span>NOT FOUND</span></div>
+    <div><span>链接可能已经失效，或者文章搬了家</span></div>
+  </div>
+</div>
+<div class="wrap">
+  <p class="notfound">
+    <a class="button" href="<%- url_for('/') %>">回到首页</a>
+    <button type="button" class="button" data-search-open>搜索文章</button>
+  </p>
+</div>

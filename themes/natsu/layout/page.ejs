@@ -2,8 +2,10 @@
   <header class="page-header">
     <h1 class="page-title"><%= page.title %></h1>
   </header>
-  <div class="prose">
-    <%- page.content %>
+  <div class="post-grid">
+    <div class="prose">
+      <%- page.content %>
+    </div>
+    <%- partial('_partial/comments') %>
   </div>
-  <%- partial('_partial/comments') %>
 </article>
