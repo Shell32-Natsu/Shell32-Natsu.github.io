@@ -6,11 +6,11 @@
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
   <%- partial('_partial/header') %>
-  <main id="main" class="main">
+  <main id="main" class="wrap">
     <%- body %>
   </main>
   <%- partial('_partial/footer') %>
   <%- partial('_partial/search') %>
-  <script src="<%- url_for('/js/main.js') %>?v=<%= theme.version %>" defer></script>
+  <script src="<%- natsu_asset('js/main.js') %>" defer></script>
 </body>
 </html>

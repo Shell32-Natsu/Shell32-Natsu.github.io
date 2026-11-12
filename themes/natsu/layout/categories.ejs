@@ -1,17 +1,15 @@
 <% const cats = site.categories.sort('-length').filter(c => c.length); %>
-<section class="list-page container">
-  <header class="list-header">
-    <p class="eyebrow">分类</p>
-    <h1 class="list-title">所有分类</h1>
-    <p class="list-count">共 <%= cats.length %> 个</p>
-  </header>
-  <div class="collection-grid">
-    <% cats.forEach(cat => { const latest = cat.posts.sort('-date').first(); %>
-      <a class="collection" href="<%- url_for(cat.path) %>">
-        <span class="collection-name"><%= cat.name %></span>
-        <% if (latest) { %><span class="collection-desc">最近：<%= latest.title %></span><% } %>
-        <span class="collection-count"><%= cat.length %> 篇 →</span>
-      </a>
-    <% }) %>
-  </div>
-</section>
+<header class="page-header">
+  <p class="kicker">分类</p>
+  <h1 class="page-title">所有分类</h1>
+  <p class="meta"><span>共 <%= cats.length %> 个</span></p>
+</header>
+<ul class="links">
+  <% cats.forEach(cat => { const latest = cat.posts.sort('-date').first(); %>
+    <li><a href="<%- url_for(cat.path) %>">
+      <span class="links-name"><%= cat.name %></span>
+      <% if (latest) { %><span class="links-desc">最近：<%= latest.title %></span><% } %>
+      <span class="links-count"><%= cat.length %> 篇 →</span>
+    </a></li>
+  <% }) %>
+</ul>

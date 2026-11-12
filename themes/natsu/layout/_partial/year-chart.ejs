@@ -1,0 +1,11 @@
+<%# Posts-per-year bar chart that doubles as navigation into the archive. %>
+<% const stats = natsu_year_stats(); const max = Math.max(...stats.map(s => s.count)); %>
+<nav class="chart" aria-label="历年文章数">
+  <% stats.forEach(s => { const h = s.count ? Math.max(6, Math.round(Math.sqrt(s.count / max) * 100)) : 0; %>
+    <% if (s.count) { %>
+      <a href="<%- url_for('/archives/') %>#y<%= s.year %>" title="<%= s.year %> 年 · <%= s.count %> 篇" style="--h:<%= h %>%"><b data-n="<%= s.count %>"></b><span><%= String(s.year).slice(2) %></span></a>
+    <% } else { %>
+      <i title="<%= s.year %> 年 · 0 篇"><b></b><span><%= String(s.year).slice(2) %></span></i>
+    <% } %>
+  <% }) %>
+</nav>

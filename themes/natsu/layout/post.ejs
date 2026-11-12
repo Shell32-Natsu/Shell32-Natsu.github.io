@@ -1,43 +1,41 @@
 <%
   const cat = natsu_category(page);
-  const tocHtml = theme.toc && page.toc !== false ? toc(page.content, { list_number: false, max_depth: 3 }) : '';
+  let tocHtml = theme.toc && page.toc !== false ? toc(page.content, { list_number: false, max_depth: 3 }) : '';
+  // A table of contents only earns its place with at least two headings.
+  if ((tocHtml.match(/<li/g) || []).length < 2) tocHtml = '';
   const older = page.next;
   const newer = page.prev;
 %>
 <article class="post">
-  <header class="post-header container-narrow">
-    <div class="post-kicker">
+  <header class="page-header">
+    <h1 class="page-title"><%= page.title %></h1>
+    <p class="meta">
+      <time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY-MM-DD') %></time>
       <% if (cat) { %><a href="<%- url_for(cat.path) %>"><%= cat.name %></a><% } %>
-    </div>
-    <h1 class="post-title"><%= page.title %></h1>
-    <div class="post-meta">
-      <time datetime="<%= date_xml(page.date) %>"><%= date(page.date, 'YYYY 年 M 月 D 日') %></time>
-      <span aria-hidden="true">·</span>
-      <span>约 <%= natsu_reading_minutes(page.content) %> 分钟读完</span>
-    </div>
+      <span>约 <%= natsu_reading_minutes(page.content) %> 分钟</span>
+    </p>
   </header>
 
-  <div class="post-body<%= tocHtml ? ' has-toc' : '' %>">
-    <% if (tocHtml) { %>
-      <aside class="post-toc" aria-label="目录">
-        <p class="toc-title">目录</p>
-        <%- tocHtml %>
-      </aside>
-      <details class="toc-inline">
-        <summary>目录</summary>
-        <%- tocHtml %>
-      </details>
-    <% } %>
-    <div class="prose">
-      <%- page.content %>
-    </div>
+  <% if (tocHtml) { %>
+    <aside class="post-toc" aria-label="目录">
+      <p class="label">目录</p>
+      <%- tocHtml %>
+    </aside>
+    <details class="toc-inline">
+      <summary>目录</summary>
+      <%- tocHtml %>
+    </details>
+  <% } %>
+
+  <div class="prose">
+    <%- page.content %>
   </div>
 
-  <footer class="post-footer container-narrow">
+  <footer class="post-footer">
     <% if (page.tags && page.tags.length) { %>
-      <ul class="tag-list" aria-label="标签">
+      <ul class="tags" aria-label="标签">
         <% page.tags.forEach(tag => { %>
-          <li><a class="tag" href="<%- url_for(tag.path) %>">#<%= tag.name %></a></li>
+          <li><a href="<%- url_for(tag.path) %>">#<%= tag.name %></a></li>
         <% }) %>
       </ul>
     <% } %>
@@ -45,16 +43,10 @@
     <% if (older || newer) { %>
       <nav class="post-nav" aria-label="上一篇 / 下一篇">
         <% if (older) { %>
-          <a class="post-nav-item prev" href="<%- url_for(older.path) %>">
-            <span class="post-nav-label">← 上一篇</span>
-            <span class="post-nav-title"><%= older.title %></span>
-          </a>
-        <% } else { %><span></span><% } %>
+          <a class="prev" href="<%- url_for(older.path) %>"><small>← 上一篇</small><%= older.title %></a>
+        <% } %>
         <% if (newer) { %>
-          <a class="post-nav-item next" href="<%- url_for(newer.path) %>">
-            <span class="post-nav-label">下一篇 →</span>
-            <span class="post-nav-title"><%= newer.title %></span>
-          </a>
+          <a class="next" href="<%- url_for(newer.path) %>"><small>下一篇 →</small><%= newer.title %></a>
         <% } %>
       </nav>
     <% } %>

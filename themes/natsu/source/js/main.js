@@ -23,14 +23,6 @@
     });
   });
 
-  // --------------------------------------------------------------- header
-  var header = $('.site-header');
-  if (header) {
-    var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
   // ---------------------------------------------------------- code blocks
   $$('.prose pre').forEach(function (pre) {
     var code = pre.querySelector('code');
@@ -76,7 +68,7 @@
       var current = headings.find(function (h) { return visible.has(h); });
       if (!current) {
         // Nothing visible: pick the last heading above the viewport
-        current = headings.filter(function (h) { return h.getBoundingClientRect().top < 100; }).pop();
+        current = headings.filter(function (h) { return h.getBoundingClientRect().top < 40; }).pop();
       }
       tocLinks.forEach(function (a) { a.classList.remove('is-active'); });
       if (current) byId[current.id].classList.add('is-active');
@@ -84,28 +76,28 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { e.isIntersecting ? visible.add(e.target) : visible.delete(e.target); });
       setActive();
-    }, { rootMargin: '-72px 0px -60% 0px' });
+    }, { rootMargin: '0px 0px -60% 0px' });
     headings.forEach(function (h) { io.observe(h); });
   }
 
   // --------------------------------------------------------- list filter
   var filterInput = $('[data-filter-input]');
   if (filterInput) {
-    var groups = $$('.year-group');
+    var groups = $$('.year');
     var empty = $('[data-filter-empty]');
     filterInput.addEventListener('input', function () {
       var q = filterInput.value.trim().toLowerCase();
       var any = false;
       groups.forEach(function (group) {
         var shown = 0;
-        $$('.post-row', group).forEach(function (row) {
+        $$('.row', group).forEach(function (row) {
           var match = !q || row.dataset.filterText.indexOf(q) !== -1;
           row.hidden = !match;
           if (match) shown++;
         });
         group.hidden = shown === 0;
         var count = $('.year-label small', group);
-        if (count) count.textContent = shown;
+        if (count) count.textContent = shown + ' 篇';
         any = any || shown > 0;
       });
       if (empty) empty.hidden = any;
@@ -129,7 +121,7 @@
       s.src = 'https://' + d.disqus + '.disqus.com/embed.js';
       s.setAttribute('data-timestamp', String(+new Date()));
       s.onerror = function () {
-        $('#disqus_thread').innerHTML = '<p class="search-status">评论加载失败（Disqus 在部分网络环境下不可用）。</p>';
+        $('#disqus_thread').innerHTML = '<p class="empty">评论加载失败（Disqus 在部分网络环境下不可用）。</p>';
       };
       document.body.appendChild(s);
     };
@@ -230,9 +222,9 @@
     list.innerHTML = r.items.map(function (item, i) {
       var p = item.post;
       return '<li><a href="' + p.u + '" role="option" aria-selected="' + (i === 0) + '">' +
-        '<span class="search-result-title">' + highlight(p.t, r.terms) + '</span>' +
-        '<span class="search-result-meta">' + p.d + (p.c.length ? ' · ' + escapeHTML(p.c.join(' / ')) : '') + '</span>' +
-        '<span class="search-result-snippet">' + highlight(snippet(p, r.terms), r.terms) + '</span>' +
+        '<b>' + highlight(p.t, r.terms) + '</b>' +
+        '<small>' + p.d + (p.c.length ? ' · ' + escapeHTML(p.c.join(' / ')) : '') + '</small>' +
+        '<span>' + highlight(snippet(p, r.terms), r.terms) + '</span>' +
         '</a></li>';
     }).join('');
     status.textContent = r.total ? (r.total > r.items.length ? '显示前 ' + r.items.length + ' 条，共 ' + r.total + ' 条结果' : '') : '没有找到相关文章';
@@ -251,6 +243,8 @@
   input.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
+    // A search field swallows the first Escape to clear itself; close instead.
+    else if (e.key === 'Escape') { e.preventDefault(); dialog.close(); }
     else if (e.key === 'Enter' && !e.isComposing) {
       var link = $$('a', list)[selected];
       if (link) { e.preventDefault(); window.location.href = link.href; }
