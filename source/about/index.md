@@ -6,7 +6,7 @@ comments: false
 date: 2024-10-17 19:25:41
 ---
 
-湾区码农，Ex-Googler。做过k8s，做过Linux内核，现在在Anthropic做SWE。
+湾区码农，Ex-Googler。做过k8s，做过Linux内核，现在在某LLM LAB做SWE。
 
 C++, C, Go, JavaScript, Python, PHP, Java, Shell。Rust学习中。
 
